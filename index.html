@@ -307,10 +307,10 @@
             <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
                 <div>
                     <h2 class="text-3xl font-bold text-white mb-2">Technical Portfolio</h2>
-                    <p class="text-[#4D4D4D]">A collection of systems, APIs, and decentralized tools.</p>
+                    <p class="text-[#4D4D4D]">Major projects first, followed by APIs, systems work, and decentralized tools.</p>
                 </div>
                 <div id="filter-container" class="flex flex-wrap bg-[#121212] p-1 rounded-lg border border-[#262626] font-mono text-xs gap-1">
-                    <button data-filter="featured" class="filter-btn px-4 py-2 rounded-md transition-all active-btn bg-[#F25623] text-[#171717] font-bold uppercase">featured</button>
+                    <button data-filter="featured" class="filter-btn px-4 py-2 rounded-md transition-all active-btn bg-[#F25623] text-[#171717] font-bold uppercase">major</button>
                     <button data-filter="all" class="filter-btn px-4 py-2 rounded-md transition-all text-[#4D4D4D] hover:text-white uppercase">all</button>
                     <button data-filter="node" class="filter-btn px-4 py-2 rounded-md transition-all text-[#4D4D4D] hover:text-white uppercase">node.js</button>
                     <button data-filter="web3" class="filter-btn px-4 py-2 rounded-md transition-all text-[#4D4D4D] hover:text-white uppercase">web3</button>
@@ -319,6 +319,21 @@
             </div>
 
             <div id="projects-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Project: ProTask -->
+                <a href="https://github.com/naiih001/protask" target="_blank" rel="noopener noreferrer" class="project-card p-8 rounded-2xl flex flex-col justify-between" data-category="featured node">
+                    <div>
+                        <div class="flex justify-between items-center mb-4">
+                            <div class="text-[#F25623]"><i class="fas fa-diagram-project text-2xl"></i></div>
+                            <span class="text-[9px] text-[#F25623] border border-[#F25623]/30 px-2 py-0.5 rounded font-mono uppercase">Major</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2 uppercase">ProTask</h3>
+                        <p class="text-[#DEDEDE]/60 text-sm mb-6">A NestJS 11 task management API built around organizations, projects, tasks, comments, invitations, and activity logs. It uses JWT auth, Prisma with PostgreSQL, Redis-backed BullMQ queues, Swagger docs, rate limiting, and Dockerized local setup for a production-minded backend architecture.</p>
+                    </div>
+                    <div class="flex flex-wrap gap-2 text-[10px] uppercase font-mono text-[#4D4D4D]">
+                        <span>NestJS</span> <span>TypeScript</span> <span>Prisma</span> <span>PostgreSQL</span> <span>Redis</span> <span>BullMQ</span> <span>JWT Auth</span> <span>Swagger</span> <span>Docker</span>
+                    </div>
+                </a>
+
                 <!-- Project: EduTrackr Backend -->
                 <a href="https://github.com/naiih001/edutrackr-backend" target="_blank" rel="noopener noreferrer" class="project-card p-8 rounded-2xl flex flex-col justify-between" data-category="featured node">
                     <div>
