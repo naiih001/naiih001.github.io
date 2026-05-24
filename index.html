@@ -3,1261 +3,480 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- SEO Tags -->
     <title>Isaac Hayab | Fullstack & Web3 Engineer</title>
+    <meta name="description" content="Isaac Hayab is a Software Engineer specializing in backend systems, concurrency, and Web3 development. View portfolio and projects in Go, C++, Node.js, and Solidity.">
+    <meta name="keywords" content="Software Engineer, Web3 Developer, Backend, Systems Programming, Go, C++, Node.js, Solidity">
+    <meta name="author" content="Isaac Hayab">
+    <meta property="og:title" content="Isaac Hayab | Fullstack & Web3 Engineer">
+    <meta property="og:description" content="Software Engineer specializing in backend systems, concurrency, and Web3 development.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://naiih001.github.io/">
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
 
         :root {
-            --bg-primary: #0a0a0a;
-            --bg-secondary: #121212;
-            --bg-tertiary: #181818;
-            --accent-orange: #F25623;
-            --accent-glow: rgba(242, 86, 35, 0.15);
-            --border-color: rgba(255, 255, 255, 0.08);
-            --text-main: #f3f4f6;
-            --text-muted: #9ca3af;
-            --text-dark: #4b5563;
-            --dot-color: rgba(255, 255, 255, 0.03);
-            --spotlight-gradient: radial-gradient(circle, rgba(242, 86, 35, 0.1) 0%, transparent 70%);
+            --bg-color: #050505;
+            --text-main: #f5f5f5;
+            --text-muted: #888888;
+            --border-color: #222222;
         }
 
+        /* Default to dark, but support light mode toggle */
         body.light-mode {
-            --bg-primary: #f8fafc;
-            --bg-secondary: #ffffff;
-            --bg-tertiary: #f1f5f9;
-            --accent-orange: #e14d1a;
-            --accent-glow: rgba(225, 77, 26, 0.08);
-            --border-color: rgba(0, 0, 0, 0.08);
-            --text-main: #0f172a;
-            --text-muted: #475569;
-            --text-dark: #94a3b8;
-            --dot-color: rgba(0, 0, 0, 0.03);
-            --spotlight-gradient: radial-gradient(circle, rgba(225, 77, 26, 0.05) 0%, transparent 70%);
+            --bg-color: #fafafa;
+            --text-main: #111111;
+            --text-muted: #666666;
+            --border-color: #e5e5e5;
         }
 
         body {
             font-family: 'Inter', sans-serif;
-            background-color: var(--bg-primary);
+            background-color: var(--bg-color);
             color: var(--text-main);
-            overflow-x: hidden;
-            background-image: radial-gradient(var(--dot-color) 1px, transparent 1px);
-            background-size: 24px 24px;
-            animation: entrance 1s ease-out 0.3s forwards;
-            opacity: 0;
+            transition: background-color 0.3s, color 0.3s;
+            line-height: 1.6;
         }
 
-        @keyframes entrance {
-            from {
-                opacity: 0;
-                transform: translateY(15px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .font-mono { font-family: 'JetBrains Mono', monospace; }
+
+        *:focus-visible {
+            outline: 2px solid var(--text-muted);
+            outline-offset: 2px;
         }
 
-        .font-mono {
-            font-family: 'JetBrains Mono', monospace;
-        }
-
-        /* Ambient Glow Spotlights */
-        .glow-spotlight-1 {
-            position: absolute;
-            top: 5%;
-            left: -5%;
-            width: 500px;
-            height: 500px;
-            border-radius: 50%;
-            background: var(--spotlight-gradient);
-            filter: blur(80px);
-            pointer-events: none;
-            z-index: 0;
-            opacity: 0.8;
-        }
-        .glow-spotlight-2 {
-            position: absolute;
-            top: 35%;
-            right: -10%;
-            width: 600px;
-            height: 600px;
-            border-radius: 50%;
-            background: var(--spotlight-gradient);
-            filter: blur(100px);
-            pointer-events: none;
-            z-index: 0;
-            opacity: 0.7;
-        }
-        .glow-spotlight-3 {
-            position: absolute;
-            bottom: 15%;
-            left: -5%;
-            width: 550px;
-            height: 550px;
-            border-radius: 50%;
-            background: var(--spotlight-gradient);
-            filter: blur(90px);
-            pointer-events: none;
-            z-index: 0;
-            opacity: 0.75;
-        }
-
-        /* Glassmorphism Styles */
-        .glass-nav {
-            background-color: rgba(10, 10, 10, 0.75);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border-bottom: 1px solid var(--border-color);
-        }
-        body.light-mode .glass-nav {
-            background-color: rgba(248, 250, 252, 0.8);
-        }
-
-        .glass-card {
-            background-color: var(--bg-secondary);
+        .card {
             border: 1px solid var(--border-color);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
+            background: transparent;
+            transition: border-color 0.2s ease;
         }
-        body.light-mode .glass-card {
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
-        }
-
-        /* Semantic styles mapped to Tailwind elements */
-        .bg-primary { background-color: var(--bg-primary); }
-        .bg-secondary { background-color: var(--bg-secondary); }
-        .bg-tertiary { background-color: var(--bg-tertiary); }
-        .border-main { border-color: var(--border-color); }
-        .text-main { color: var(--text-main); }
-        .text-muted { color: var(--text-muted); }
-
-        .terminal-cursor {
-            display: inline-block;
-            width: 8px;
-            height: 18px;
-            background-color: var(--accent-orange);
-            margin-left: 4px;
-            animation: blink 1s infinite;
-            vertical-align: middle;
+        .card:hover {
+            border-color: var(--text-main);
         }
 
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
+        .fade-in {
+            animation: fadeIn 0.8s ease-out forwards;
         }
-
-        /* Status Ping Animation */
-        .status-ping {
-            position: relative;
-            display: flex;
-            height: 8px;
-            width: 8px;
-        }
-        .status-ping-pulse {
-            animation: ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
-            position: absolute;
-            display: inline-flex;
-            height: 100%;
-            width: 100%;
-            border-radius: 9999px;
-            background-color: var(--accent-orange);
-            opacity: 0.75;
-        }
-        .status-ping-dot {
-            position: relative;
-            display: inline-flex;
-            border-radius: 9999px;
-            height: 8px;
-            width: 8px;
-            background-color: var(--accent-orange);
-        }
-
-        @keyframes ping {
-            75%, 100% {
-                transform: scale(2.5);
-                opacity: 0;
-            }
-        }
-
-        .project-card {
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            background-color: var(--bg-secondary);
-            border: 1px solid var(--border-color);
-        }
-
-        .project-card:hover {
-            border-color: var(--accent-orange);
-            box-shadow: 0 12px 30px rgba(242, 86, 35, 0.12);
-            transform: translateY(-6px);
-        }
-
-        .hidden-project {
-            display: none !important;
-        }
-
-        #mobile-menu {
-            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            transform: translateX(100%);
-            background-color: rgba(10, 10, 10, 0.95);
-            backdrop-filter: blur(20px);
-        }
-        body.light-mode #mobile-menu {
-            background-color: rgba(248, 250, 252, 0.95);
-        }
-
-        #mobile-menu.active {
-            transform: translateX(0);
-        }
-
-        /* High Accessibility Focus State */
-        .focus-ring:focus-visible {
-            outline: 2px solid var(--accent-orange);
-            outline-offset: 4px;
-        }
-
-        /* Transition engine for smooth theme change */
-        body, nav, .project-card, .filter-btn, input, textarea, button, a {
-            transition: background-color 0.4s ease, border-color 0.4s ease, color 0.4s ease, box-shadow 0.4s ease, transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        /* Coding Journey Timeline */
-        .timeline-track {
-            position: relative;
-        }
-        .timeline-track::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            left: 50%;
-            width: 2px;
-            background: var(--border-color);
-            transform: translateX(-50%);
-        }
-        @media (max-width: 768px) {
-            .timeline-track::before {
-                left: 20px;
-            }
-        }
-        .timeline-node {
-            position: relative;
-            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-            opacity: 0;
-            transform: translateY(30px);
-        }
-        .timeline-node.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        .timeline-dot {
-            position: absolute;
-            left: 50%;
-            top: 24px;
-            width: 14px;
-            height: 14px;
-            border-radius: 50%;
-            background-color: var(--accent-orange);
-            border: 3px solid var(--bg-primary);
-            box-shadow: 0 0 10px var(--accent-orange);
-            transform: translateX(-50%);
-            z-index: 10;
-        }
-        @media (max-width: 768px) {
-            .timeline-dot {
-                left: 20px;
-                transform: none;
-            }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
-<body class="selection:bg-[#F25623]/30">
+<body class="antialiased">
 
-    <div class="glow-spotlight-1"></div>
-
-    <!-- Navigation -->
-    <nav id="navbar" class="fixed top-0 w-full z-50 py-6 transition-all duration-300">
-        <div class="max-w-6xl mx-auto px-6 flex justify-between items-center">
-            <div class="flex items-center space-x-2">
-                <div class="w-8 h-8 bg-[#F25623] rounded flex items-center justify-center">
-                    <img src="favicon.svg" alt="Logo" class="w-full h-full p-1">
-                </div>
-                <a href="#" class="font-mono font-bold tracking-tighter text-xl text-main focus-ring uppercase">ISAAC HAYAB</a>
-            </div>
-
-            <div class="hidden md:flex space-x-8 text-sm font-medium uppercase tracking-widest items-center">
-                <a href="#about" class="text-muted hover:text-[#F25623] focus-ring transition-colors flex items-center"><i class="fas fa-layer-group mr-2"></i>Stack</a>
-                <a href="#journey" class="text-muted hover:text-[#F25623] focus-ring transition-colors flex items-center"><i class="fas fa-route mr-2"></i>Journey</a>
-                <a href="#projects" class="text-muted hover:text-[#F25623] focus-ring transition-colors flex items-center"><i class="fas fa-briefcase mr-2"></i>Portfolio</a>
-                <a href="#contact" class="text-muted hover:text-[#F25623] focus-ring transition-colors flex items-center"><i class="fas fa-id-card mr-2"></i>Contact</a>
-                <button id="theme-toggle" class="theme-toggle-btn text-xl text-muted hover:text-[#F25623] focus-ring transition-colors" aria-label="Toggle Theme">
-                    <i class="fas fa-sun"></i>
+    <!-- Header -->
+    <header class="fixed top-0 w-full z-50 bg-[var(--bg-color)]/95 backdrop-blur-sm border-b border-[var(--border-color)]">
+        <div class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
+            <a href="#" class="font-bold tracking-tight text-lg hover:opacity-80 transition-opacity flex items-center gap-2">
+                <span class="w-6 h-6 flex items-center justify-center bg-[var(--text-main)] text-[var(--bg-color)] rounded-sm text-xs font-mono font-bold">Ω</span>
+                ISAAC HAYAB
+            </a>
+            
+            <nav class="hidden md:flex gap-6 text-sm font-medium items-center">
+                <a href="#about" class="text-[var(--text-muted)] hover:text-[var(--text-main)] transition-colors">About</a>
+                <a href="#stack" class="text-[var(--text-muted)] hover:text-[var(--text-main)] transition-colors">Stack</a>
+                <a href="#projects" class="text-[var(--text-muted)] hover:text-[var(--text-main)] transition-colors">Projects</a>
+                <a href="#contact" class="text-[var(--text-muted)] hover:text-[var(--text-main)] transition-colors">Contact</a>
+                <button id="theme-toggle" class="text-[var(--text-muted)] hover:text-[var(--text-main)] transition-colors ml-4" aria-label="Toggle Theme">
+                    <i class="fas fa-sun" id="theme-icon"></i>
                 </button>
-            </div>
+            </nav>
 
-            <button id="menu-toggle" class="md:hidden text-main text-2xl focus:outline-none focus-ring" aria-label="Open Navigation Menu">
-                <i class="fas fa-bars-staggered"></i>
+            <button id="mobile-menu-btn" class="md:hidden text-[var(--text-main)] p-2" aria-label="Menu">
+                <i class="fas fa-bars"></i>
             </button>
         </div>
-    </nav>
-
-    <!-- Mobile Menu -->
-    <div id="mobile-menu" class="fixed inset-0 z-[60] flex flex-col items-center justify-center space-y-8 md:hidden">
-        <button id="close-menu" class="absolute top-8 right-8 text-main text-3xl focus-ring" aria-label="Close Navigation Menu">
-            <i class="fas fa-times"></i>
-        </button>
-        <a href="#about" class="mobile-link text-3xl font-bold text-main hover:text-[#F25623] focus-ring uppercase flex items-center"><i class="fas fa-layer-group mr-4"></i>Stack</a>
-        <a href="#journey" class="mobile-link text-3xl font-bold text-main hover:text-[#F25623] focus-ring uppercase flex items-center"><i class="fas fa-route mr-4"></i>Journey</a>
-        <a href="#projects" class="mobile-link text-3xl font-bold text-main hover:text-[#F25623] focus-ring uppercase flex items-center"><i class="fas fa-briefcase mr-4"></i>Portfolio</a>
-        <a href="#contact" class="mobile-link text-3xl font-bold text-main hover:text-[#F25623] focus-ring uppercase flex items-center"><i class="fas fa-id-card mr-4"></i>Contact</a>
-        <button id="theme-toggle-mobile" class="theme-toggle-btn text-3xl text-main hover:text-[#F25623] focus-ring transition-colors" aria-label="Toggle Theme">
-            <i class="fas fa-sun"></i>
-        </button>
-    </div>
-
-    <!-- About Me Section -->
-    <section id="aboutme" class="pt-32 pb-20 px-6 relative overflow-hidden">
-        <div class="max-w-6xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-12 relative z-10">
-            <div class="lg:w-1/2">
-                <div class="inline-flex items-center space-x-3 px-3 py-1 rounded-full border border-main text-xs font-mono text-[#F25623] mb-6 glass-card">
-                    <span class="status-ping">
-                        <span class="status-ping-pulse"></span>
-                        <span class="status-ping-dot"></span>
-                    </span>
-                    <span>Available for Web3 & Node.js Projects</span>
-                </div>
-
-                <h1 class="text-4xl md:text-7xl font-bold text-main mb-6 leading-tight uppercase tracking-tight">
-                    Software Engineer <br />
-                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#F25623] to-amber-500">
-                        & Web3 Developer
-                    </span>
-                </h1>
-
-                <p class="max-w-2xl text-base md:text-lg text-muted mb-10 leading-relaxed">
-                    I build robust, highly concurrent Node.js backends and decentralized systems. 
-                    Computer Science undergraduate passionate about mathematics, building products, and shipping performant, clean code using Ubuntu & Helix.
-                </p>
-
-                <a href="Isaac Hayab CV.pdf" download class="inline-flex items-center bg-[#F25623] text-white font-bold py-3 px-6 rounded-lg text-base hover:bg-opacity-90 hover:scale-105 active:scale-95 transition-all focus-ring mb-10">
-                    Download Resume <i class="fas fa-download ml-2"></i>
-                </a>
-            </div>
-
-            <!-- Helix Terminal Simulator Mockup -->
-            <div class="w-full lg:w-1/2 flex justify-center">
-                <div class="bg-secondary border border-main rounded-xl overflow-hidden shadow-2xl w-full max-w-2xl relative z-10 glass-card">
-                    <!-- Top bar -->
-                    <div class="bg-tertiary px-4 py-3 flex items-center justify-between border-b border-main select-none">
-                        <div class="flex items-center space-x-2">
-                            <div class="w-3 h-3 rounded-full bg-[#ff5f56]"></div>
-                            <div class="w-3 h-3 rounded-full bg-[#ffbd2e]"></div>
-                            <div class="w-3 h-3 rounded-full bg-[#27c93f]"></div>
-                            <span id="terminal-window-title" class="ml-4 text-xs font-mono text-muted">zeke@ubuntu:~/dev/projects — zsh</span>
-                        </div>
-                        <div class="flex items-center space-x-1.5 font-mono text-[10px] text-muted">
-                            <span class="px-1.5 py-0.5 rounded bg-black/20">Go</span>
-                            <span class="px-1.5 py-0.5 rounded bg-black/20">Helix</span>
-                        </div>
-                    </div>
-                    
-                    <!-- Terminal Screen -->
-                    <div id="terminal-screen" class="p-6 font-mono text-xs sm:text-sm h-[320px] overflow-y-auto flex flex-col justify-between bg-black/35 select-text">
-                        <!-- Dynamic terminal contents will be rendered here by JS -->
-                        <div id="terminal-body" class="w-full flex-grow flex flex-col justify-between">
-                            <div>
-                                <div class="flex items-center mb-1 text-muted">
-                                    <span class="text-green-500 mr-2">zeke@ubuntu:~/dev$</span>
-                                    <span id="terminal-current-command" class="text-main"></span>
-                                    <span class="terminal-cursor bg-[#F25623] w-2 h-4 ml-0.5 inline-block animate-pulse"></span>
-                                </div>
-                                <div id="terminal-editor-view" class="hidden h-full flex flex-col justify-between">
-                                    <!-- Tabs -->
-                                    <div class="flex border-b border-main/50 text-[10px] uppercase text-muted mb-2 -mx-6 px-6 select-none">
-                                        <div class="px-3 py-1 border-b-2 border-[#F25623] bg-tertiary text-main font-bold">server.go</div>
-                                        <div class="px-3 py-1 opacity-50">main.ts</div>
-                                        <div class="px-3 py-1 opacity-50">schema.prisma</div>
-                                    </div>
-                                    <!-- Editor Workspace -->
-                                    <div class="flex flex-grow overflow-y-auto font-mono text-[11px] sm:text-xs">
-                                        <!-- Line Numbers -->
-                                        <div class="text-right text-[#4D4D4D] pr-4 select-none border-r border-main/30 w-8" id="terminal-line-numbers">
-                                            1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13
-                                        </div>
-                                        <!-- Content -->
-                                        <div class="pl-4 flex-grow text-main" id="terminal-editor-content">
-                                            <!-- Dynamic lines go here -->
-                                        </div>
-                                    </div>
-                                    <!-- Helix Status line -->
-                                    <div class="bg-tertiary -mx-6 px-6 py-1 border-t border-main/50 text-[10px] text-muted flex justify-between font-mono mt-2 select-none">
-                                        <div><span class="bg-[#F25623] text-black px-1.5 py-0.5 font-bold mr-2 uppercase">NOR</span> server.go</div>
-                                        <div>UTF-8  ●  Go  ●  13 lines</div>
-                                    </div>
-                                </div>
-                                <div id="terminal-logs" class="mt-4 space-y-1"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Stack Section -->
-    <section id="about" class="py-20 px-6 bg-tertiary relative overflow-hidden">
-        <div class="max-w-6xl mx-auto relative z-10">
-            <h2 class="text-3xl font-bold text-main text-center mb-4 uppercase tracking-wider">Technical Stack</h2>
-            <p class="text-center text-muted mb-16 font-mono text-sm">Languages, frameworks, and system infrastructure</p>
-            
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Column 1: Backend & Systems -->
-                <div class="glass-card rounded-2xl p-8 hover:-translate-y-2 duration-300">
-                    <div class="w-12 h-12 rounded-xl bg-[#F25623]/10 border border-[#F25623]/25 flex items-center justify-center mb-6">
-                        <i class="fas fa-terminal text-[#F25623] text-xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-main mb-6 uppercase tracking-wider border-b border-main pb-3">Backend & Systems</h3>
-                    <div class="space-y-6">
-                        <div>
-                            <h4 class="text-xs font-mono text-[#F25623] uppercase tracking-widest mb-3">Core Languages</h4>
-                            <ul class="space-y-2.5 text-sm text-muted">
-                                <li class="flex items-center space-x-3"><i class="fab fa-golang text-blue-400 w-5"></i><span>Go (Golang)</span></li>
-                                <li class="flex items-center space-x-3"><i class="fab fa-node-js text-green-500 w-5"></i><span>Node.js / TypeScript</span></li>
-                                <li class="flex items-center space-x-3"><i class="fas fa-code text-[#00599C] w-5"></i><span>C++ (C++17/20 Concurrency)</span></li>
-                                <li class="flex items-center space-x-3"><i class="fab fa-python text-yellow-500 w-5"></i><span>Python</span></li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h4 class="text-xs font-mono text-[#F25623] uppercase tracking-widest mb-3">Frameworks</h4>
-                            <ul class="space-y-2.5 text-sm text-muted">
-                                <li class="flex items-center space-x-3"><i class="fas fa-cubes text-indigo-400 w-5"></i><span>NestJS / Express.js</span></li>
-                                <li class="flex items-center space-x-3"><i class="fas fa-bolt text-cyan-400 w-5"></i><span>Gin Gonic / HTTP Servers</span></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Column 2: Frontend & Interface -->
-                <div class="glass-card rounded-2xl p-8 hover:-translate-y-2 duration-300">
-                    <div class="w-12 h-12 rounded-xl bg-[#F25623]/10 border border-[#F25623]/25 flex items-center justify-center mb-6">
-                        <i class="fas fa-laptop-code text-[#F25623] text-xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-main mb-6 uppercase tracking-wider border-b border-main pb-3">Frontend & UI</h3>
-                    <div class="space-y-6">
-                        <div>
-                            <h4 class="text-xs font-mono text-[#F25623] uppercase tracking-widest mb-3">Core Technologies</h4>
-                            <ul class="space-y-2.5 text-sm text-muted">
-                                <li class="flex items-center space-x-3"><i class="fab fa-js text-yellow-400 w-5"></i><span>JavaScript (ES6+)</span></li>
-                                <li class="flex items-center space-x-3"><i class="fab fa-html5 text-orange-500 w-5"></i><span>HTML5 / Semantic Web</span></li>
-                                <li class="flex items-center space-x-3"><i class="fab fa-css3-alt text-blue-500 w-5"></i><span>CSS3 / Custom Variables</span></li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h4 class="text-xs font-mono text-[#F25623] uppercase tracking-widest mb-3">UI Frameworks</h4>
-                            <ul class="space-y-2.5 text-sm text-muted">
-                                <li class="flex items-center space-x-3"><i class="fab fa-react text-sky-400 w-5"></i><span>React & Next.js</span></li>
-                                <li class="flex items-center space-x-3"><i class="fas fa-wind text-teal-400 w-5"></i><span>Tailwind CSS</span></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Column 3: Web3, Databases & DevOps -->
-                <div class="glass-card rounded-2xl p-8 hover:-translate-y-2 duration-300">
-                    <div class="w-12 h-12 rounded-xl bg-[#F25623]/10 border border-[#F25623]/25 flex items-center justify-center mb-6">
-                        <i class="fas fa-network-wired text-[#F25623] text-xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-main mb-6 uppercase tracking-wider border-b border-main pb-3">Web3 & Databases</h3>
-                    <div class="space-y-6">
-                        <div>
-                            <h4 class="text-xs font-mono text-[#F25623] uppercase tracking-widest mb-3">Databases & Cache</h4>
-                            <ul class="space-y-2.5 text-sm text-muted">
-                                <li class="flex items-center space-x-3"><i class="fas fa-database text-blue-400 w-5"></i><span>PostgreSQL / Prisma ORM</span></li>
-                                <li class="flex items-center space-x-3"><i class="fas fa-leaf text-green-500 w-5"></i><span>MongoDB</span></li>
-                                <li class="flex items-center space-x-3"><i class="fas fa-tachometer-alt text-red-500 w-5"></i><span>Redis Caching / BullMQ</span></li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h4 class="text-xs font-mono text-[#F25623] uppercase tracking-widest mb-3">Web3 & Infrastructure</h4>
-                            <ul class="space-y-2.5 text-sm text-muted">
-                                <li class="flex items-center space-x-3"><i class="fab fa-ethereum text-indigo-400 w-5"></i><span>Solidity / Web3.js</span></li>
-                                <li class="flex items-center space-x-3"><i class="fab fa-docker text-sky-500 w-5"></i><span>Docker Containerization</span></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Journey Timeline Section -->
-    <section id="journey" class="py-20 px-6 bg-primary relative overflow-hidden">
-        <div class="glow-spotlight-2"></div>
-        <div class="max-w-6xl mx-auto relative z-10">
-            <h2 class="text-3xl font-bold text-main text-center mb-4 uppercase tracking-wider">Coding Journey</h2>
-            <p class="text-center text-muted mb-16 font-mono text-sm">Chronology of my milestones and academic growth</p>
-            
-            <div class="timeline-track space-y-12">
-                <!-- Node 1 -->
-                <div class="timeline-node flex flex-col md:flex-row items-center md:justify-between">
-                    <div class="md:w-[45%] text-right pr-8 md:block hidden">
-                        <span class="text-xs font-mono text-[#F25623] uppercase tracking-widest">2024 - Present</span>
-                        <h4 class="text-lg font-bold text-main mt-1 uppercase">CS Undergraduate</h4>
-                    </div>
-                    <div class="timeline-dot"></div>
-                    <div class="md:w-[45%] glass-card p-6 rounded-2xl pl-8 md:pl-6 text-left w-full md:w-[45%]">
-                        <span class="text-xs font-mono text-[#F25623] uppercase tracking-widest md:hidden block mb-1">2024 - Present</span>
-                        <h3 class="text-xl font-bold text-main mb-2 uppercase md:hidden block">CS Undergraduate</h3>
-                        <h3 class="text-xl font-bold text-main mb-2 uppercase hidden md:block">Computer Science Studies</h3>
-                        <p class="text-muted text-sm leading-relaxed">Focusing on algorithms, discrete mathematics, and systems programming. Exploring Web3 architecture and database performance tuning.</p>
-                    </div>
-                </div>
-
-                <!-- Node 2 -->
-                <div class="timeline-node flex flex-col md:flex-row items-center md:justify-between md:flex-row-reverse">
-                    <div class="md:w-[45%] text-left pl-8 md:block hidden">
-                        <span class="text-xs font-mono text-[#F25623] uppercase tracking-widest">Late 2024</span>
-                        <h4 class="text-lg font-bold text-main mt-1 uppercase">Systems & Concurrency</h4>
-                    </div>
-                    <div class="timeline-dot"></div>
-                    <div class="md:w-[45%] glass-card p-6 rounded-2xl pr-8 md:pr-6 text-left w-full md:w-[45%]">
-                        <span class="text-xs font-mono text-[#F25623] uppercase tracking-widest md:hidden block mb-1">Late 2024</span>
-                        <h3 class="text-xl font-bold text-main mb-2 uppercase md:hidden block">Systems & Concurrency</h3>
-                        <h3 class="text-xl font-bold text-main mb-2 uppercase hidden md:block">Systems Programming</h3>
-                        <p class="text-muted text-sm leading-relaxed">Shipped multiple multi-threaded networking engines in C++ and Go, including concurrent TCP servers, pattern file searchers, and lock-free memory queues.</p>
-                    </div>
-                </div>
-
-                <!-- Node 3 -->
-                <div class="timeline-node flex flex-col md:flex-row items-center md:justify-between">
-                    <div class="md:w-[45%] text-right pr-8 md:block hidden">
-                        <span class="text-xs font-mono text-[#F25623] uppercase tracking-widest">2025 - Present</span>
-                        <h4 class="text-lg font-bold text-main mt-1 uppercase">Enterprise Backends & Web3</h4>
-                    </div>
-                    <div class="timeline-dot"></div>
-                    <div class="md:w-[45%] glass-card p-6 rounded-2xl pl-8 md:pl-6 text-left w-full md:w-[45%]">
-                        <span class="text-xs font-mono text-[#F25623] uppercase tracking-widest md:hidden block mb-1">2025 - Present</span>
-                        <h3 class="text-xl font-bold text-main mb-2 uppercase md:hidden block">Enterprise Backends & Web3</h3>
-                        <h3 class="text-xl font-bold text-main mb-2 uppercase hidden md:block">Web3 & Node.js Architecture</h3>
-                        <p class="text-muted text-sm leading-relaxed">Developed robust NestJS, Express, and Avalanche Web3 documentation modules. Integrated Redis, PostgreSQL, and background task queues (BullMQ) with Docker.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </sect    <!-- Projects Section -->
-    <section id="projects" class="py-20 px-6">
-        <div class="max-w-6xl mx-auto">
-            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
-                <div>
-                    <h2 class="text-3xl font-bold text-main mb-2 uppercase tracking-wider">Technical Portfolio</h2>
-                    <p class="text-muted text-sm font-mono">Major architectures first, followed by concurrent systems, APIs, and Web3 tools.</p>
-                </div>
-                <div id="filter-container" class="flex flex-wrap bg-tertiary p-1 rounded-lg border border-main font-mono text-xs gap-1 select-none">
-                    <button data-filter="featured" class="filter-btn px-4 py-2 rounded-md transition-all active-btn bg-[#F25623] text-black font-bold uppercase focus-ring">major</button>
-                    <button data-filter="all" class="filter-btn px-4 py-2 rounded-md transition-all text-muted hover:text-main uppercase focus-ring">all</button>
-                    <button data-filter="node" class="filter-btn px-4 py-2 rounded-md transition-all text-muted hover:text-main uppercase focus-ring">node.js</button>
-                    <button data-filter="web3" class="filter-btn px-4 py-2 rounded-md transition-all text-muted hover:text-main uppercase focus-ring">web3</button>
-                    <button data-filter="systems" class="filter-btn px-4 py-2 rounded-md transition-all text-muted hover:text-main uppercase focus-ring">systems</button>
-                </div>
-            </div>
-
-            <div id="projects-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Project: ProTask -->
-                <a href="https://github.com/naiih001/protask" target="_blank" rel="noopener noreferrer" class="project-card p-8 rounded-2xl flex flex-col justify-between focus-ring" data-category="featured node">
-                    <div>
-                        <div class="flex justify-between items-center mb-4">
-                            <div class="text-[#F25623]"><i class="fas fa-diagram-project text-2xl"></i></div>
-                            <span class="text-[9px] text-[#F25623] border border-[#F25623]/30 px-2 py-0.5 rounded font-mono uppercase bg-[#F25623]/5 font-bold">Major</span>
-                        </div>
-                        <h3 class="text-xl font-bold text-main mb-2 uppercase tracking-wide">ProTask</h3>
-                        <p class="text-muted text-sm mb-6 leading-relaxed">A NestJS 11 task management API built around organizations, projects, tasks, comments, invitations, and activity logs. It uses JWT auth, Prisma with PostgreSQL, Redis-backed BullMQ queues, Swagger docs, rate limiting, and Dockerized local setup for a production-minded backend architecture.</p>
-                    </div>
-                    <div class="flex flex-wrap gap-1.5 text-[9px] font-mono uppercase">
-                        <span class="px-2 py-0.5 rounded bg-tertiary border border-main text-muted">NestJS</span>
-                        <span class="px-2 py-0.5 rounded bg-tertiary border border-main text-muted">TypeScript</span>
-                        <span class="px-2 py-0.5 rounded bg-tertiary border border-main text-muted">Prisma</span>
-                        <span class="px-2 py-0.5 rounded bg-tertiary border border-main text-muted">Postgre</span>
-                        <span class="px-2 py-0.5 rounded bg-tertiary border border-main text-muted">Redis</span>
-                        <span class="px-2 py-0.5 rounded bg-tertiary border border-main text-muted">Docker</span>
-                    </div>
-                </a>
-
-                <!-- Project: EduTrackr Backend -->
-                <a href="https://github.com/naiih001/edutrackr-backend" target="_blank" rel="noopener noreferrer" class="project-card p-8 rounded-2xl flex flex-col justify-between focus-ring" data-category="featured node">
-                    <div>
-                        <div class="flex justify-between items-center mb-4">
-                            <div class="text-[#F25623]"><i class="fas fa-graduation-cap text-2xl"></i></div>
-                            <span class="text-[9px] text-[#F25623] border border-[#F25623]/30 px-2 py-0.5 rounded font-mono uppercase bg-[#F25623]/5 font-bold">Featured</span>
-                        </div>
-                        <h3 class="text-xl font-bold text-main mb-2 uppercase tracking-wide">EduTrackr Backend</h3>
-                        <p class="text-muted text-sm mb-6 leading-relaxed">A TypeScript and Express.js API for managing student grades, authentication, and records, with MongoDB for data storage and Swagger for API documentation. This full-featured educational tool with deployment focus can stand out as a real-world backend application, especially if you add metrics like user handling capacity.</p>
-                    </div>
-                    <div class="flex flex-wrap gap-1.5 text-[9px] font-mono uppercase">
-                        <span class="px-2 py-0.5 rounded bg-tertiary border border-main text-muted">TypeScript</span>
-                        <span class="px-2 py-0.5 rounded bg-tertiary border border-main text-muted">Express</span>
-                        <span class="px-2 py-0.5 rounded bg-tertiary border border-main text-muted">MongoDB</span>
-                        <span class="px-2 py-0.5 rounded bg-tertiary border border-main text-muted">Swagger</span>
-                        <span class="px-2 py-0.5 rounded bg-tertiary border border-main text-muted">REST API</span>
-                    </div>
-                </a>
-
-                <!-- Project: E-commerce Backend -->
-                <a href="https://github.com/naiih001/e-commerce-backend" target="_blank" rel="noopener noreferrer" class="project-card p-8 rounded-2xl flex flex-col justify-between focus-ring" data-category="featured systems">
-                    <div>
-                        <div class="flex justify-between items-center mb-4">
-                            <div class="text-[#F25623]"><i class="fas fa-shopping-cart text-2xl"></i></div>
-                            <span class="text-[9px] text-[#F25623] border border-[#F25623]/30 px-2 py-0.5 rounded font-mono uppercase bg-[#F25623]/5 font-bold">Featured</span>
-                        </div>
-                        <h3 class="text-xl font-bold text-main mb-2 uppercase tracking-wide">E-commerce Backend</h3>
-                        <p class="text-muted text-sm mb-6 leading-relaxed">A RESTful API built with Go and the Gin framework, handling user authentication, product management, orders, and integration with PostgreSQL for a performant and scalable online store backend. This project mimics industry-standard e-commerce systems, making it a strong feature for portfolios targeting web dev roles.</p>
-                    </div>
-                    <div class="flex flex-wrap gap-1.5 text-[9px] font-mono uppercase">
-                        <span class="px-2 py-0.5 rounded bg-tertiary border border-main text-muted">Go</span>
-                        <span class="px-2 py-0.5 rounded bg-tertiary border border-main text-muted">Gin</span>
-                        <span class="px-2 py-0.5 rounded bg-tertiary border border-main text-muted">Postgre</span>
-                        <span class="px-2 py-0.5 rounded bg-tertiary border border-main text-muted">Auth</span>
-                        <span class="px-2 py-0.5 rounded bg-tertiary border border-main text-muted">REST API</span>
-                    </div>
-                </a>
-
-                <!-- Project: CPP Notes API -->
-                <a href="https://github.com/naiih001/cpp-notes-api" target="_blank" rel="noopener noreferrer" class="project-card p-8 rounded-2xl flex flex-col justify-between focus-ring" data-category="systems">
-                    <div>
-                        <div class="flex justify-between items-center mb-4">
-                            <div class="text-[#F25623]"><i class="fas fa-sticky-note text-2xl"></i></div>
-                        </div>
-                        <h3 class="text-xl font-bold text-main mb-2 uppercase tracking-wide">CPP Notes API</h3>
-                        <p class="text-muted text-sm mb-6 leading-relaxed">A simple note-taking API developed using cpp-httplib in C++, focusing on HTTP request handling and basic CRUD functionality for notes storage and retrieval.</p>
-                    </div>
-                    <div class="flex flex-wrap gap-1.5 text-[9px] font-mono uppercase">
-                        <span class="px-2 py-0.5 rounded bg-tertiary border border-main text-muted">C++</span>
-                        <span class="px-2 py-0.5 rounded bg-tertiary border border-main text-muted">cpp-httplib</span>
-                        <span class="px-2 py-0.5 rounded bg-tertiary border border-main text-muted">HTTP Server</span>
-                        <span class="px-2 py-0.5 rounded bg-tertiary border border-main text-muted">CRUD</span>
-                    </div>
-                </a>
-
-                <!-- Project: Blogging Platform -->
-                <a href="https://github.com/naiih001/blogging-platform" target="_blank" rel="noopener noreferrer" class="project-card p-8 rounded-2xl flex flex-col justify-between focus-ring" data-category="systems">
-                    <div>
-                        <div class="flex justify-between items-center mb-4">
-                            <div class="text-[#F25623]"><i class="fas fa-blog text-2xl"></i></div>
-                        </div>
-                        <h3 class="text-xl font-bold text-main mb-2 uppercase tracking-wide">Blogging Platform</h3>
-                        <p class="text-muted text-sm mb-6 leading-relaxed">A backend service in Go for a blogging platform, managing user posts, comments, and content storage with database operations, emphasizing concurrency and efficient data handling.</p>
-                    </div>
-                    <div class="flex flex-wrap gap-1.5 text-[9px] font-mono uppercase">
-                        <span class="px-2 py-0.5 rounded bg-tertiary border border-main text-muted">Go</span>
-                        <span class="px-2 py-0.5 rounded bg-tertiary border border-main text-muted">Concurrency</span>
-                        <span class="px-2 py-0.5 rounded bg-tertiary border border-main text-muted">CMS</span>
-                        <span class="px-2 py-0.5 rounded bg-tertiary border border-main text-muted">SQL</span>
-                    </div>
-                </a>
-
-                <!-- Project: TCP Server -->
-                <a href="https://github.com/naiih001/tcp-server" target="_blank" rel="noopener noreferrer" class="project-card p-8 rounded-2xl flex flex-col justify-between focus-ring" data-category="featured systems">
-                    <div>
-                        <div class="flex justify-between items-center mb-4">
-                            <div class="text-[#F25623]"><i class="fas fa-server text-2xl"></i></div>
-                            <span class="text-[9px] text-[#F25623] border border-[#F25623]/30 px-2 py-0.5 rounded font-mono uppercase bg-[#F25623]/5 font-bold">Featured</span>
-                        </div>
-                        <h3 class="text-xl font-bold text-main mb-2 uppercase tracking-wide">TCP Server</h3>
-                        <p class="text-muted text-sm mb-6 leading-relaxed">A concurrent TCP server in C++ that handles multiple client connections using std::thread and mutexes, with features for request processing, thread synchronization, and resource management. It showcases networking fundamentals and multithreading, impressive for building scalable servers.</p>
-                    </div>
-                    <div class="flex flex-wrap gap-1.5 text-[9px] font-mono uppercase">
-                        <span class="px-2 py-0.5 rounded bg-tertiary border border-main text-muted">C++</span>
-                        <span class="px-2 py-0.5 rounded bg-tertiary border border-main text-muted">TCP sockets</span>
-                        <span class="px-2 py-0.5 rounded bg-tertiary border border-main text-muted">Threads</span>
-                        <span class="px-2 py-0.5 rounded bg-tertiary border border-main text-muted">Mutexes</span>
-                    </div>
-                </a>
-
-                <!-- Project: Trading Bot -->
-                <a href="https://github.com/naiih001/trading-bot" target="_blank" rel="noopener noreferrer" class="project-card p-8 rounded-2xl flex flex-col justify-between focus-ring" data-category="featured systems web3">
-                    <div>
-                        <div class="flex justify-between items-center mb-4">
-                            <div class="text-[#F25623]"><i class="fas fa-chart-line text-2xl"></i></div>
-                            <span class="text-[9px] text-[#F25623] border border-[#F25623]/30 px-2 py-0.5 rounded font-mono uppercase bg-[#F25623]/5 font-bold">Featured</span>
-                        </div>
-                        <h3 class="text-xl font-bold text-main mb-2 uppercase tracking-wide">Trading Bot</h3>
-                        <p class="text-muted text-sm mb-6 leading-relaxed">A Go-based trading bot for back-testing strategies on historical price data, featuring a simulated exchange, SMA crossover strategy, risk management, and trade logging. This project demonstrates algorithmic trading concepts and could stand out by showing practical application of backend logic.</p>
-                    </div>
-                    <div class="flex flex-wrap gap-1.5 text-[9px] font-mono uppercase">
-                        <span class="px-2 py-0.5 rounded bg-tertiary border border-main text-muted">Go</span>
-                        <span class="px-2 py-0.5 rounded bg-tertiary border border-main text-muted">Backtesting</span>
-                        <span class="px-2 py-0.5 rounded bg-tertiary border border-main text-muted">SMA Strategy</span>
-                        <span class="px-2 py-0.5 rounded bg-tertiary border border-main text-muted">Docker</span>
-                    </div>
-                </a>
-
-                <!-- Project: Expense Tracker -->
-                <a href="https://github.com/naiih001/expense-tracker" target="_blank" rel="noopener noreferrer" class="project-card p-8 rounded-2xl flex flex-col justify-between focus-ring" data-category="systems">
-                    <div>
-                        <div class="flex justify-between items-center mb-4">
-                            <div class="text-[#F25623]"><i class="fas fa-wallet text-2xl"></i></div>
-                        </div>
-                        <h3 class="text-xl font-bold text-main mb-2 uppercase tracking-wide">Expense Tracker</h3>
-                        <p class="text-muted text-sm mb-6 leading-relaxed">A RESTful API in Go using Gin for managing personal expenses, budgets, and categories, with JWT authentication, PostgreSQL integration via GORM, optional Redis caching, and full CRUD operations for secure, user-specific data handling.</p>
-                    </div>
-                    <div class="flex flex-wrap gap-1.5 text-[9px] font-mono uppercase">
-                        <span class="px-2 py-0.5 rounded bg-tertiary border border-main text-muted">Go</span>
-                        <span class="px-2 py-0.5 rounded bg-tertiary border border-main text-muted">Gin</span>
-                        <span class="px-2 py-0.5 rounded bg-tertiary border border-main text-muted">Postgre</span>
-                        <span class="px-2 py-0.5 rounded bg-tertiary border border-main text-muted">Redis</span>
-                    </div>
-                </a>
-
-                <!-- Project: File Searcher -->
-                <a href="https://github.com/naiih001/file-searcher" target="_blank" rel="noopener noreferrer" class="project-card p-8 rounded-2xl flex flex-col justify-between focus-ring" data-category="systems">
-                    <div>
-                        <div class="flex justify-between items-center mb-4">
-                            <div class="text-[#F25623]"><i class="fas fa-folder-open text-2xl"></i></div>
-                        </div>
-                        <h3 class="text-xl font-bold text-main mb-2 uppercase tracking-wide">File Searcher</h3>
-                        <p class="text-muted text-sm mb-6 leading-relaxed">A multi-threaded file search utility in C++ that recursively scans directories for patterns, utilizing std::thread for concurrency and std::filesystem for directory traversal to enable efficient local file searching.</p>
-                    </div>
-                    <div class="flex flex-wrap gap-1.5 text-[9px] font-mono uppercase">
-                        <span class="px-2 py-0.5 rounded bg-tertiary border border-main text-muted">C++</span>
-                        <span class="px-2 py-0.5 rounded bg-tertiary border border-main text-muted">Threads</span>
-                        <span class="px-2 py-0.5 rounded bg-tertiary border border-main text-muted">Filesystem</span>
-                    </div>
-                </a>
-
-                <!-- Project: Lock-Free Queue -->
-                <a href="https://github.com/naiih001/lock-free-queue" target="_blank" rel="noopener noreferrer" class="project-card p-8 rounded-2xl flex flex-col justify-between focus-ring" data-category="featured systems">
-                    <div>
-                        <div class="flex justify-between items-center mb-4">
-                            <div class="text-[#F25623]"><i class="fas fa-microchip text-2xl"></i></div>
-                            <span class="text-[9px] text-[#F25623] border border-[#F25623]/30 px-2 py-0.5 rounded font-mono uppercase bg-[#F25623]/5 font-bold">Featured</span>
-                        </div>
-                        <h3 class="text-xl font-bold text-main mb-2 uppercase tracking-wide">Lock-Free Queue</h3>
-                        <p class="text-muted text-sm mb-6 leading-relaxed">A basic implementation of a lock-free queue in C++, designed for high-performance concurrent data access without mutexes, demonstrating advanced synchronization techniques for thread-safe operations.</p>
-                    </div>
-                    <div class="flex flex-wrap gap-1.5 text-[9px] font-mono uppercase">
-                        <span class="px-2 py-0.5 rounded bg-tertiary border border-main text-muted">C++</span>
-                        <span class="px-2 py-0.5 rounded bg-tertiary border border-main text-muted">Lock-Free</span>
-                        <span class="px-2 py-0.5 rounded bg-tertiary border border-main text-muted">Concurrency</span>
-                        <span class="px-2 py-0.5 rounded bg-tertiary border border-main text-muted">Low Latency</span>
-                    </div>
-                </a>
-
-                <!-- Project: CPP Shell -->
-                <a href="https://github.com/naiih001/cpp-shell" target="_blank" rel="noopener noreferrer" class="project-card p-8 rounded-2xl flex flex-col justify-between focus-ring" data-category="systems">
-                    <div>
-                        <div class="flex justify-between items-center mb-4">
-                            <div class="text-[#F25623]"><i class="fas fa-terminal text-2xl"></i></div>
-                        </div>
-                        <h3 class="text-xl font-bold text-main mb-2 uppercase tracking-wide">CPP Shell</h3>
-                        <p class="text-muted text-sm mb-6 leading-relaxed">A custom shell implemented in C++, capable of executing commands, handling input/output, and managing processes, showcasing system-level programming and command parsing skills.</p>
-                    </div>
-                    <div class="flex flex-wrap gap-1.5 text-[9px] font-mono uppercase">
-                        <span class="px-2 py-0.5 rounded bg-tertiary border border-main text-muted">C++</span>
-                        <span class="px-2 py-0.5 rounded bg-tertiary border border-main text-muted">Processes</span>
-                        <span class="px-2 py-0.5 rounded bg-tertiary border border-main text-muted">Parser</span>
-                        <span class="px-2 py-0.5 rounded bg-tertiary border border-main text-muted">UNIX API</span>
-                    </div>
-                </a>
-
-                <!-- Project: YTD -->
-                <a href="https://github.com/naiih001/ytd" target="_blank" rel="noopener noreferrer" class="project-card p-8 rounded-2xl flex flex-col justify-between focus-ring" data-category="systems">
-                    <div>
-                        <div class="flex justify-between items-center mb-4">
-                            <div class="text-[#F25623]"><i class="fab fa-youtube text-2xl"></i></div>
-                        </div>
-                        <h3 class="text-xl font-bold text-main mb-2 uppercase tracking-wide">YTD</h3>
-                        <p class="text-muted text-sm mb-6 leading-relaxed">A simple CLI application in Go for downloading YouTube videos, focusing on command-line backend logic for URL handling, network operations, and file management using Go's standard library.</p>
-                    </div>
-                    <div class="flex flex-wrap gap-1.5 text-[9px] font-mono uppercase">
-                        <span class="px-2 py-0.5 rounded bg-tertiary border border-main text-muted">Go</span>
-                        <span class="px-2 py-0.5 rounded bg-tertiary border border-main text-muted">CLI</span>
-                        <span class="px-2 py-0.5 rounded bg-tertiary border border-main text-muted">HTTP Client</span>
-                        <span class="px-2 py-0.5 rounded bg-tertiary border border-main text-muted">IO Files</span>
-                    </div>
-                </a>
-
-                <!-- Project: Builders Hub -->
-                <a href="https://github.com/naiih001/builders-hub" target="_blank" rel="noopener noreferrer" class="project-card p-8 rounded-2xl flex flex-col justify-between focus-ring" data-category="web3">
-                    <div>
-                        <div class="flex justify-between items-center mb-4">
-                            <div class="text-[#F25623]"><i class="fab fa-ethereum text-2xl"></i></div>
-                        </div>
-                        <h3 class="text-xl font-bold text-main mb-2 uppercase tracking-wide">Builders Hub</h3>
-                        <p class="text-muted text-sm mb-6 leading-relaxed">Forked repository for the Avalanche Builders Hub, hosting documentation, the Avalanche Academy, and an integrations directory for blockchain developers. Supports static site generation and local Avalanche academy configs.</p>
-                    </div>
-                    <div class="flex flex-wrap gap-1.5 text-[9px] font-mono uppercase">
-                        <span class="px-2 py-0.5 rounded bg-tertiary border border-main text-muted">NextJS</span>
-                        <span class="px-2 py-0.5 rounded bg-tertiary border border-main text-muted">Solidity</span>
-                        <span class="px-2 py-0.5 rounded bg-tertiary border border-main text-muted">TypeScript</span>
-                        <span class="px-2 py-0.5 rounded bg-tertiary border border-main text-muted">Avalanche</span>
-                    </div>
-                </a>
-
-                <!-- Project: Roll Dice Web3 -->
-                <a href="https://github.com/naiih001/roll-dice-web3" target="_blank" rel="noopener noreferrer" class="project-card p-8 rounded-2xl flex flex-col justify-between focus-ring" data-category="web3">
-                    <div>
-                        <div class="flex justify-between items-center mb-4">
-                            <div class="text-[#F25623]"><i class="fas fa-dice text-2xl"></i></div>
-                        </div>
-                        <h3 class="text-xl font-bold text-main mb-2 uppercase tracking-wide">Roll Dice Web3</h3>
-                        <p class="text-muted text-sm mb-6 leading-relaxed">A web3-based dice rolling application, likely involving blockchain elements for decentralized randomness or gaming, built primarily with HTML for a simple interface.</p>
-                    </div>
-                    <div class="flex flex-wrap gap-1.5 text-[9px] font-mono uppercase">
-                        <span class="px-2 py-0.5 rounded bg-tertiary border border-main text-muted">HTML</span>
-                        <span class="px-2 py-0.5 rounded bg-tertiary border border-main text-muted">Web3.js</span>
-                        <span class="px-2 py-0.5 rounded bg-tertiary border border-main text-muted">Smart Contracts</span>
-                    </div>
-                </a>
-
-                <!-- Project: Crypto Currency App -->
-                <a href="https://github.com/naiih001/crypto-currency-app" target="_blank" rel="noopener noreferrer" class="project-card p-8 rounded-2xl flex flex-col justify-between focus-ring" data-category="web3">
-                    <div>
-                        <div class="flex justify-between items-center mb-4">
-                            <div class="text-[#F25623]"><i class="fas fa-coins text-2xl"></i></div>
-                        </div>
-                        <h3 class="text-xl font-bold text-main mb-2 uppercase tracking-wide">Crypto Currency App</h3>
-                        <p class="text-muted text-sm mb-6 leading-relaxed">An application focused on cryptocurrencies, potentially for tracking prices or displaying market data, developed using HTML as the primary technology.</p>
-                    </div>
-                    <div class="flex flex-wrap gap-1.5 text-[9px] font-mono uppercase">
-                        <span class="px-2 py-0.5 rounded bg-tertiary border border-main text-muted">HTML</span>
-                        <span class="px-2 py-0.5 rounded bg-tertiary border border-main text-muted">Web3 API</span>
-                        <span class="px-2 py-0.5 rounded bg-tertiary border border-main text-muted">Token trackers</span>
-                    </div>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact & Footer Section -->
-    <section id="contact" class="py-20 px-6 border-t border-main relative overflow-hidden bg-tertiary">
-        <div class="glow-spotlight-3"></div>
-        <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-start relative z-10">
-            <!-- Left Column: Info & Socials -->
-            <div class="space-y-6">
-                <h2 class="text-3xl font-bold text-main uppercase tracking-wider">Let's Collaborate</h2>
-                <p class="text-muted max-w-md leading-relaxed text-sm md:text-base">
-                    Open for backend architecture roles, systems engineering, and Web3 development. Reach out to discuss integrations, protocols, or consulting.
-                </p>
-                <div class="space-y-4 pt-4">
-                    <a href="mailto:isaachayab0@gmail.com" class="flex items-center space-x-3 text-muted hover:text-[#F25623] transition-colors group focus-ring">
-                        <div class="w-10 h-10 rounded-lg bg-secondary border border-main flex items-center justify-center group-hover:border-[#F25623]/30">
-                            <i class="far fa-envelope text-lg"></i>
-                        </div>
-                        <span class="font-mono text-sm">isaachayab0@gmail.com</span>
-                    </a>
-                    <a href="https://github.com/naiih001" target="_blank" rel="noopener noreferrer" class="flex items-center space-x-3 text-muted hover:text-[#F25623] transition-colors group focus-ring">
-                        <div class="w-10 h-10 rounded-lg bg-secondary border border-main flex items-center justify-center group-hover:border-[#F25623]/30">
-                            <i class="fab fa-github text-lg"></i>
-                        </div>
-                        <span class="font-mono text-sm">github.com/naiih001</span>
-                    </a>
-                    <a href="https://x.com/naiih001" target="_blank" rel="noopener noreferrer" class="flex items-center space-x-3 text-muted hover:text-[#F25623] transition-colors group focus-ring">
-                        <div class="w-10 h-10 rounded-lg bg-secondary border border-main flex items-center justify-center group-hover:border-[#F25623]/30">
-                            <i class="fab fa-twitter text-lg"></i>
-                        </div>
-                        <span class="font-mono text-sm">x.com/naiih001</span>
-                    </a>
-                </div>
-            </div>
-            
-            <!-- Right Column: Premium Contact Form -->
-            <div class="glass-card p-8 rounded-2xl w-full">
-                <form id="contact-form" class="space-y-5" novalidate>
-                    <div>
-                        <label for="form-name" class="block text-xs font-mono uppercase text-[#F25623] tracking-wider mb-2 font-bold">Your Name <span class="text-red-500">*</span></label>
-                        <input type="text" id="form-name" required class="w-full bg-secondary border border-main rounded-lg px-4 py-3 text-sm text-main placeholder-muted/40 focus:outline-none focus:border-[#F25623] focus-ring" placeholder="Zeke Yeager">
-                        <span id="error-name" class="text-red-500 text-[11px] mt-1 hidden block font-mono">Please enter your name</span>
-                    </div>
-                    <div>
-                        <label for="form-email" class="block text-xs font-mono uppercase text-[#F25623] tracking-wider mb-2 font-bold">Your Email <span class="text-red-500">*</span></label>
-                        <input type="email" id="form-email" required class="w-full bg-secondary border border-main rounded-lg px-4 py-3 text-sm text-main placeholder-muted/40 focus:outline-none focus:border-[#F25623] focus-ring" placeholder="zeke@ubuntu.com">
-                        <span id="error-email" class="text-red-500 text-[11px] mt-1 hidden block font-mono">Please enter a valid email address</span>
-                    </div>
-                    <div>
-                        <label for="form-message" class="block text-xs font-mono uppercase text-[#F25623] tracking-wider mb-2 font-bold">Message <span class="text-red-500">*</span></label>
-                        <textarea id="form-message" required rows="4" class="w-full bg-secondary border border-main rounded-lg px-4 py-3 text-sm text-main placeholder-muted/40 focus:outline-none focus:border-[#F25623] focus-ring resize-none" placeholder="Let's build something concurrent..."></textarea>
-                        <span id="error-message" class="text-red-500 text-[11px] mt-1 hidden block font-mono">Please enter your message</span>
-                    </div>
-                    <button type="submit" id="form-submit-btn" class="w-full bg-[#F25623] text-white font-bold py-3 px-6 rounded-lg text-sm hover:bg-opacity-95 hover:scale-[1.01] active:scale-95 transition-all focus-ring flex items-center justify-center space-x-2">
-                        <span>Send Message</span>
-                        <i class="fas fa-paper-plane text-xs"></i>
-                    </button>
-                </form>
-            </div>
-        </div>
         
-        <!-- Bottom copyright -->
-        <div class="max-w-6xl mx-auto mt-16 pt-8 border-t border-main text-center font-mono text-[10px] text-muted select-none">
-            &copy; <span id="current-year"></span> ISAAC HAYAB. ALL RIGHTS RESERVED. POWERED BY HELIX & UBUNTU.
-        </div>
-    </section>
+        <nav id="mobile-menu" class="hidden border-t border-[var(--border-color)] bg-[var(--bg-color)] px-6 py-4 flex-col gap-4 text-sm md:hidden">
+            <a href="#about" class="mobile-link text-[var(--text-muted)] hover:text-[var(--text-main)]">About</a>
+            <a href="#stack" class="mobile-link text-[var(--text-muted)] hover:text-[var(--text-main)]">Stack</a>
+            <a href="#projects" class="mobile-link text-[var(--text-muted)] hover:text-[var(--text-main)]">Projects</a>
+            <a href="#contact" class="mobile-link text-[var(--text-muted)] hover:text-[var(--text-main)]">Contact</a>
+            <button id="theme-toggle-mobile" class="text-left text-[var(--text-muted)] hover:text-[var(--text-main)] w-full py-2" aria-label="Toggle Theme">
+                Toggle Theme
+            </button>
+        </nav>
+    </header>
+
+    <main class="pt-24 pb-16">
+        
+        <!-- Hero Section -->
+        <section id="about" class="max-w-5xl mx-auto px-6 py-16 md:py-24 fade-in">
+            <div class="max-w-3xl">
+                <div class="inline-flex px-3 py-1 border border-[var(--border-color)] rounded-full text-xs font-mono mb-8 text-[var(--text-main)] items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-green-500 relative flex h-2 w-2">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                    </span>
+                    Systems Architecture & Web3 Integrations
+                </div>
+                <h1 class="text-4xl md:text-6xl font-bold tracking-tight mb-6 text-[var(--text-main)] leading-tight">
+                    Software Engineer <br>& Web3 Developer
+                </h1>
+                <p class="text-lg text-[var(--text-muted)] mb-8 max-w-2xl font-mono leading-relaxed">
+                    I build robust, highly concurrent Node.js backends and decentralized protocol integrations. 
+                    Specializing in systems optimization, algorithms, and clean geometric structures. Shipped using Ubuntu & Helix.
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    <a href="Isaac Hayab CV.pdf" download class="px-6 py-3 bg-[var(--text-main)] text-[var(--bg-color)] font-medium rounded-sm hover:opacity-90 transition-opacity text-sm">
+                        Download Resume
+                    </a>
+                    <a href="#projects" class="px-6 py-3 border border-[var(--border-color)] text-[var(--text-main)] font-medium rounded-sm hover:border-[var(--text-main)] transition-colors text-sm">
+                        View Portfolio
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stack Section -->
+        <section id="stack" class="max-w-5xl mx-auto px-6 py-16 border-t border-[var(--border-color)]">
+            <h2 class="text-2xl font-bold mb-10 text-[var(--text-main)]">Technical Stack</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="font-mono text-sm text-[var(--text-main)] mb-4 uppercase tracking-wider">Backend & Systems</h3>
+                    <ul class="space-y-3 text-[var(--text-muted)] text-sm">
+                        <li>Go (Golang)</li>
+                        <li>Node.js / TypeScript</li>
+                        <li>C++ (Multi-threading)</li>
+                        <li>NestJS / Express.js</li>
+                        <li>Gin Gonic</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-mono text-sm text-[var(--text-main)] mb-4 uppercase tracking-wider">Web3 & Databases</h3>
+                    <ul class="space-y-3 text-[var(--text-muted)] text-sm">
+                        <li>PostgreSQL / Prisma ORM</li>
+                        <li>MongoDB / Redis</li>
+                        <li>Solidity / Web3.js</li>
+                        <li>Docker Containers</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-mono text-sm text-[var(--text-main)] mb-4 uppercase tracking-wider">Frontend & UI</h3>
+                    <ul class="space-y-3 text-[var(--text-muted)] text-sm">
+                        <li>JavaScript (ES6+)</li>
+                        <li>React & Next.js</li>
+                        <li>Tailwind CSS</li>
+                        <li>HTML5 / Semantic Web</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Journey Section -->
+        <section id="journey" class="max-w-5xl mx-auto px-6 py-16 border-t border-[var(--border-color)]">
+            <h2 class="text-2xl font-bold mb-10 text-[var(--text-main)]">Journey</h2>
+            <div class="space-y-8 max-w-3xl">
+                <div class="flex flex-col md:flex-row gap-4 md:gap-8">
+                    <div class="md:w-32 flex-shrink-0 font-mono text-sm text-[var(--text-muted)] pt-1">2025 - Present</div>
+                    <div>
+                        <h3 class="text-lg font-medium text-[var(--text-main)]">Enterprise Backends & Web3</h3>
+                        <p class="text-[var(--text-muted)] text-sm mt-2 leading-relaxed">Developed robust NestJS, Express, and Avalanche Web3 modules. Integrated Redis, PostgreSQL, and BullMQ with Docker.</p>
+                    </div>
+                </div>
+                <div class="flex flex-col md:flex-row gap-4 md:gap-8">
+                    <div class="md:w-32 flex-shrink-0 font-mono text-sm text-[var(--text-muted)] pt-1">Late 2024</div>
+                    <div>
+                        <h3 class="text-lg font-medium text-[var(--text-main)]">Systems & Concurrency</h3>
+                        <p class="text-[var(--text-muted)] text-sm mt-2 leading-relaxed">Shipped multiple multi-threaded networking engines in C++ and Go, including TCP servers and lock-free memory queues.</p>
+                    </div>
+                </div>
+                <div class="flex flex-col md:flex-row gap-4 md:gap-8">
+                    <div class="md:w-32 flex-shrink-0 font-mono text-sm text-[var(--text-muted)] pt-1">2024 - Present</div>
+                    <div>
+                        <h3 class="text-lg font-medium text-[var(--text-main)]">Computer Science Studies</h3>
+                        <p class="text-[var(--text-muted)] text-sm mt-2 leading-relaxed">Focusing on algorithms, discrete mathematics, and systems programming. Exploring database performance tuning.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="max-w-5xl mx-auto px-6 py-16 border-t border-[var(--border-color)]">
+            <h2 class="text-2xl font-bold mb-10 text-[var(--text-main)]">Selected Projects</h2>
+            <div class="grid md:grid-cols-2 gap-6">
+
+                <a href="https://github.com/naiih001/protask" target="_blank" rel="noopener noreferrer" class="card p-6 rounded-sm flex flex-col justify-between group">
+                    <div>
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-lg font-medium text-[var(--text-main)] group-hover:underline underline-offset-4">ProTask</h3>
+                            <span class="text-[10px] uppercase font-mono px-2 py-0.5 border border-[var(--border-color)] rounded-sm">Featured</span>
+                        </div>
+                        <p class="text-[var(--text-muted)] text-sm mb-6 leading-relaxed">A NestJS 11 task management API. Uses JWT auth, Prisma, PostgreSQL, Redis-backed BullMQ queues, Swagger docs, rate limiting, and Docker.</p>
+                    </div>
+                    <div class="flex flex-wrap gap-y-2 mt-auto">
+                        <span class="text-[10px] font-mono text-[var(--text-muted)] mr-3">#nestjs</span><span class="text-[10px] font-mono text-[var(--text-muted)] mr-3">#typescript</span><span class="text-[10px] font-mono text-[var(--text-muted)] mr-3">#prisma</span><span class="text-[10px] font-mono text-[var(--text-muted)] mr-3">#postgre</span><span class="text-[10px] font-mono text-[var(--text-muted)] mr-3">#redis</span><span class="text-[10px] font-mono text-[var(--text-muted)] mr-3">#docker</span>
+                    </div>
+                </a>
     
-    <!-- Toast Notification Container -->
-    <div id="toast-container" class="fixed bottom-6 right-6 z-[100] flex flex-col gap-3 pointer-events-none"></div>
+                <a href="https://github.com/naiih001/edutrackr-backend" target="_blank" rel="noopener noreferrer" class="card p-6 rounded-sm flex flex-col justify-between group">
+                    <div>
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-lg font-medium text-[var(--text-main)] group-hover:underline underline-offset-4">EduTrackr Backend</h3>
+                            <span class="text-[10px] uppercase font-mono px-2 py-0.5 border border-[var(--border-color)] rounded-sm">Featured</span>
+                        </div>
+                        <p class="text-[var(--text-muted)] text-sm mb-6 leading-relaxed">A TypeScript and Express.js API for managing student grades, authentication, and records, with MongoDB.</p>
+                    </div>
+                    <div class="flex flex-wrap gap-y-2 mt-auto">
+                        <span class="text-[10px] font-mono text-[var(--text-muted)] mr-3">#typescript</span><span class="text-[10px] font-mono text-[var(--text-muted)] mr-3">#express</span><span class="text-[10px] font-mono text-[var(--text-muted)] mr-3">#mongodb</span><span class="text-[10px] font-mono text-[var(--text-muted)] mr-3">#swagger</span>
+                    </div>
+                </a>
+    
+                <a href="https://github.com/naiih001/e-commerce-backend" target="_blank" rel="noopener noreferrer" class="card p-6 rounded-sm flex flex-col justify-between group">
+                    <div>
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-lg font-medium text-[var(--text-main)] group-hover:underline underline-offset-4">E-commerce Backend</h3>
+                            <span class="text-[10px] uppercase font-mono px-2 py-0.5 border border-[var(--border-color)] rounded-sm">Featured</span>
+                        </div>
+                        <p class="text-[var(--text-muted)] text-sm mb-6 leading-relaxed">RESTful API built with Go and Gin, handling user auth, products, orders, and integration with PostgreSQL.</p>
+                    </div>
+                    <div class="flex flex-wrap gap-y-2 mt-auto">
+                        <span class="text-[10px] font-mono text-[var(--text-muted)] mr-3">#go</span><span class="text-[10px] font-mono text-[var(--text-muted)] mr-3">#gin</span><span class="text-[10px] font-mono text-[var(--text-muted)] mr-3">#postgre</span><span class="text-[10px] font-mono text-[var(--text-muted)] mr-3">#auth</span><span class="text-[10px] font-mono text-[var(--text-muted)] mr-3">#rest api</span>
+                    </div>
+                </a>
+    
+                <a href="https://github.com/naiih001/cpp-notes-api" target="_blank" rel="noopener noreferrer" class="card p-6 rounded-sm flex flex-col justify-between group">
+                    <div>
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-lg font-medium text-[var(--text-main)] group-hover:underline underline-offset-4">CPP Notes API</h3>
+                            
+                        </div>
+                        <p class="text-[var(--text-muted)] text-sm mb-6 leading-relaxed">A simple note-taking API developed using cpp-httplib in C++, focusing on HTTP request handling.</p>
+                    </div>
+                    <div class="flex flex-wrap gap-y-2 mt-auto">
+                        <span class="text-[10px] font-mono text-[var(--text-muted)] mr-3">#c++</span><span class="text-[10px] font-mono text-[var(--text-muted)] mr-3">#cpp-httplib</span><span class="text-[10px] font-mono text-[var(--text-muted)] mr-3">#http server</span>
+                    </div>
+                </a>
+    
+                <a href="https://github.com/naiih001/blogging-platform" target="_blank" rel="noopener noreferrer" class="card p-6 rounded-sm flex flex-col justify-between group">
+                    <div>
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-lg font-medium text-[var(--text-main)] group-hover:underline underline-offset-4">Blogging Platform</h3>
+                            
+                        </div>
+                        <p class="text-[var(--text-muted)] text-sm mb-6 leading-relaxed">Backend service in Go for a blogging platform, managing user posts, comments, and database operations.</p>
+                    </div>
+                    <div class="flex flex-wrap gap-y-2 mt-auto">
+                        <span class="text-[10px] font-mono text-[var(--text-muted)] mr-3">#go</span><span class="text-[10px] font-mono text-[var(--text-muted)] mr-3">#concurrency</span><span class="text-[10px] font-mono text-[var(--text-muted)] mr-3">#cms</span><span class="text-[10px] font-mono text-[var(--text-muted)] mr-3">#sql</span>
+                    </div>
+                </a>
+    
+                <a href="https://github.com/naiih001/tcp-server" target="_blank" rel="noopener noreferrer" class="card p-6 rounded-sm flex flex-col justify-between group">
+                    <div>
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-lg font-medium text-[var(--text-main)] group-hover:underline underline-offset-4">TCP Server</h3>
+                            <span class="text-[10px] uppercase font-mono px-2 py-0.5 border border-[var(--border-color)] rounded-sm">Featured</span>
+                        </div>
+                        <p class="text-[var(--text-muted)] text-sm mb-6 leading-relaxed">A concurrent TCP server in C++ that handles multiple client connections using std::thread and mutexes.</p>
+                    </div>
+                    <div class="flex flex-wrap gap-y-2 mt-auto">
+                        <span class="text-[10px] font-mono text-[var(--text-muted)] mr-3">#c++</span><span class="text-[10px] font-mono text-[var(--text-muted)] mr-3">#tcp sockets</span><span class="text-[10px] font-mono text-[var(--text-muted)] mr-3">#threads</span><span class="text-[10px] font-mono text-[var(--text-muted)] mr-3">#mutexes</span>
+                    </div>
+                </a>
+    
+                <a href="https://github.com/naiih001/trading-bot" target="_blank" rel="noopener noreferrer" class="card p-6 rounded-sm flex flex-col justify-between group">
+                    <div>
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-lg font-medium text-[var(--text-main)] group-hover:underline underline-offset-4">Trading Bot</h3>
+                            
+                        </div>
+                        <p class="text-[var(--text-muted)] text-sm mb-6 leading-relaxed">A Go-based trading bot for back-testing strategies on historical price data with a simulated exchange.</p>
+                    </div>
+                    <div class="flex flex-wrap gap-y-2 mt-auto">
+                        <span class="text-[10px] font-mono text-[var(--text-muted)] mr-3">#go</span><span class="text-[10px] font-mono text-[var(--text-muted)] mr-3">#backtesting</span><span class="text-[10px] font-mono text-[var(--text-muted)] mr-3">#sma strategy</span>
+                    </div>
+                </a>
+    
+                <a href="https://github.com/naiih001/expense-tracker" target="_blank" rel="noopener noreferrer" class="card p-6 rounded-sm flex flex-col justify-between group">
+                    <div>
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-lg font-medium text-[var(--text-main)] group-hover:underline underline-offset-4">Expense Tracker</h3>
+                            
+                        </div>
+                        <p class="text-[var(--text-muted)] text-sm mb-6 leading-relaxed">A RESTful API in Go using Gin for managing personal expenses, budgets, and categories with JWT.</p>
+                    </div>
+                    <div class="flex flex-wrap gap-y-2 mt-auto">
+                        <span class="text-[10px] font-mono text-[var(--text-muted)] mr-3">#go</span><span class="text-[10px] font-mono text-[var(--text-muted)] mr-3">#gin</span><span class="text-[10px] font-mono text-[var(--text-muted)] mr-3">#postgre</span><span class="text-[10px] font-mono text-[var(--text-muted)] mr-3">#redis</span>
+                    </div>
+                </a>
+    
+                <a href="https://github.com/naiih001/file-searcher" target="_blank" rel="noopener noreferrer" class="card p-6 rounded-sm flex flex-col justify-between group">
+                    <div>
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-lg font-medium text-[var(--text-main)] group-hover:underline underline-offset-4">File Searcher</h3>
+                            
+                        </div>
+                        <p class="text-[var(--text-muted)] text-sm mb-6 leading-relaxed">A multi-threaded file search utility in C++ that recursively scans directories for patterns.</p>
+                    </div>
+                    <div class="flex flex-wrap gap-y-2 mt-auto">
+                        <span class="text-[10px] font-mono text-[var(--text-muted)] mr-3">#c++</span><span class="text-[10px] font-mono text-[var(--text-muted)] mr-3">#threads</span><span class="text-[10px] font-mono text-[var(--text-muted)] mr-3">#filesystem</span>
+                    </div>
+                </a>
+    
+                <a href="https://github.com/naiih001/lock-free-queue" target="_blank" rel="noopener noreferrer" class="card p-6 rounded-sm flex flex-col justify-between group">
+                    <div>
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-lg font-medium text-[var(--text-main)] group-hover:underline underline-offset-4">Lock-Free Queue</h3>
+                            <span class="text-[10px] uppercase font-mono px-2 py-0.5 border border-[var(--border-color)] rounded-sm">Featured</span>
+                        </div>
+                        <p class="text-[var(--text-muted)] text-sm mb-6 leading-relaxed">Implementation of a lock-free queue in C++ for high-performance concurrent data access.</p>
+                    </div>
+                    <div class="flex flex-wrap gap-y-2 mt-auto">
+                        <span class="text-[10px] font-mono text-[var(--text-muted)] mr-3">#c++</span><span class="text-[10px] font-mono text-[var(--text-muted)] mr-3">#lock-free</span><span class="text-[10px] font-mono text-[var(--text-muted)] mr-3">#concurrency</span>
+                    </div>
+                </a>
+    
+                <a href="https://github.com/naiih001/cpp-shell" target="_blank" rel="noopener noreferrer" class="card p-6 rounded-sm flex flex-col justify-between group">
+                    <div>
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-lg font-medium text-[var(--text-main)] group-hover:underline underline-offset-4">CPP Shell</h3>
+                            
+                        </div>
+                        <p class="text-[var(--text-muted)] text-sm mb-6 leading-relaxed">A custom shell implemented in C++, capable of executing commands and managing processes.</p>
+                    </div>
+                    <div class="flex flex-wrap gap-y-2 mt-auto">
+                        <span class="text-[10px] font-mono text-[var(--text-muted)] mr-3">#c++</span><span class="text-[10px] font-mono text-[var(--text-muted)] mr-3">#processes</span><span class="text-[10px] font-mono text-[var(--text-muted)] mr-3">#parser</span><span class="text-[10px] font-mono text-[var(--text-muted)] mr-3">#unix api</span>
+                    </div>
+                </a>
+    
+                <a href="https://github.com/naiih001/ytd" target="_blank" rel="noopener noreferrer" class="card p-6 rounded-sm flex flex-col justify-between group">
+                    <div>
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-lg font-medium text-[var(--text-main)] group-hover:underline underline-offset-4">YTD</h3>
+                            
+                        </div>
+                        <p class="text-[var(--text-muted)] text-sm mb-6 leading-relaxed">A simple CLI application in Go for downloading YouTube videos.</p>
+                    </div>
+                    <div class="flex flex-wrap gap-y-2 mt-auto">
+                        <span class="text-[10px] font-mono text-[var(--text-muted)] mr-3">#go</span><span class="text-[10px] font-mono text-[var(--text-muted)] mr-3">#cli</span><span class="text-[10px] font-mono text-[var(--text-muted)] mr-3">#http client</span><span class="text-[10px] font-mono text-[var(--text-muted)] mr-3">#io files</span>
+                    </div>
+                </a>
+    
+                <a href="https://github.com/naiih001/builders-hub" target="_blank" rel="noopener noreferrer" class="card p-6 rounded-sm flex flex-col justify-between group">
+                    <div>
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-lg font-medium text-[var(--text-main)] group-hover:underline underline-offset-4">Builders Hub</h3>
+                            
+                        </div>
+                        <p class="text-[var(--text-muted)] text-sm mb-6 leading-relaxed">Avalanche Builders Hub fork hosting documentation, academy, and integrations directory.</p>
+                    </div>
+                    <div class="flex flex-wrap gap-y-2 mt-auto">
+                        <span class="text-[10px] font-mono text-[var(--text-muted)] mr-3">#nextjs</span><span class="text-[10px] font-mono text-[var(--text-muted)] mr-3">#solidity</span><span class="text-[10px] font-mono text-[var(--text-muted)] mr-3">#typescript</span><span class="text-[10px] font-mono text-[var(--text-muted)] mr-3">#avalanche</span>
+                    </div>
+                </a>
+    
+                <a href="https://github.com/naiih001/roll-dice-web3" target="_blank" rel="noopener noreferrer" class="card p-6 rounded-sm flex flex-col justify-between group">
+                    <div>
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-lg font-medium text-[var(--text-main)] group-hover:underline underline-offset-4">Roll Dice Web3</h3>
+                            
+                        </div>
+                        <p class="text-[var(--text-muted)] text-sm mb-6 leading-relaxed">A web3-based dice rolling application for decentralized randomness.</p>
+                    </div>
+                    <div class="flex flex-wrap gap-y-2 mt-auto">
+                        <span class="text-[10px] font-mono text-[var(--text-muted)] mr-3">#html</span><span class="text-[10px] font-mono text-[var(--text-muted)] mr-3">#web3.js</span><span class="text-[10px] font-mono text-[var(--text-muted)] mr-3">#smart contracts</span>
+                    </div>
+                </a>
+    
+                <a href="https://github.com/naiih001/crypto-currency-app" target="_blank" rel="noopener noreferrer" class="card p-6 rounded-sm flex flex-col justify-between group">
+                    <div>
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-lg font-medium text-[var(--text-main)] group-hover:underline underline-offset-4">Crypto Currency App</h3>
+                            
+                        </div>
+                        <p class="text-[var(--text-muted)] text-sm mb-6 leading-relaxed">An application focused on cryptocurrencies for tracking prices and market data.</p>
+                    </div>
+                    <div class="flex flex-wrap gap-y-2 mt-auto">
+                        <span class="text-[10px] font-mono text-[var(--text-muted)] mr-3">#html</span><span class="text-[10px] font-mono text-[var(--text-muted)] mr-3">#web3 api</span><span class="text-[10px] font-mono text-[var(--text-muted)] mr-3">#token trackers</span>
+                    </div>
+                </a>
+    
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="max-w-5xl mx-auto px-6 py-16 border-t border-[var(--border-color)]">
+            <div class="max-w-2xl">
+                <div class="flex gap-6 text-sm font-mono">
+                    <a href="mailto:isaachayab0@gmail.com" class="text-[var(--text-muted)] hover:text-[var(--text-main)] transition-colors">Email</a>
+                    <a href="https://github.com/naiih001" target="_blank" rel="noopener noreferrer" class="text-[var(--text-muted)] hover:text-[var(--text-main)] transition-colors">GitHub</a>
+                    <a href="https://x.com/naiih001" target="_blank" rel="noopener noreferrer" class="text-[var(--text-muted)] hover:text-[var(--text-main)] transition-colors">Twitter (X)</a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-[var(--border-color)]">
+        <div class="max-w-5xl mx-auto px-6 py-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-mono text-[var(--text-muted)]">
+            <div>&copy; <span id="year"></span> ISAAC HAYAB. ALL RIGHTS RESERVED.</div>
+            <div>POWERED BY HELIX & UBUNTU.</div>
+        </div>
+    </footer>
+
+
 
     <script>
-        // Terminal Mockup (Helix Simulator) Logic
-        const windowTitleEl = document.getElementById('terminal-window-title');
-        const currentCommandEl = document.getElementById('terminal-current-command');
-        const editorView = document.getElementById('terminal-editor-view');
-        const editorContentEl = document.getElementById('terminal-editor-content');
-        const logsEl = document.getElementById('terminal-logs');
+        // Set Year
+        document.getElementById('year').textContent = new Date().getFullYear();
 
-        const codeLines = [
-            '<span class="text-pink-500">package</span> <span class="text-blue-400">main</span>',
-            '',
-            '<span class="text-pink-500">import</span> <span class="text-gray-400">(</span>',
-            '    <span class="text-green-400">"fmt"</span>',
-            '    <span class="text-green-400">"net/http"</span>',
-            '<span class="text-gray-400">)</span>',
-            '',
-            '<span class="text-pink-500">func</span> <span class="text-yellow-400">main</span><span class="text-gray-400">() {</span>',
-            '    <span class="text-blue-400">http</span><span class="text-gray-400">.</span><span class="text-yellow-400">HandleFunc</span><span class="text-gray-400">(</span><span class="text-green-400">"/"</span><span class="text-gray-400">, func(w, r) {</span>',
-            '        <span class="text-blue-400">fmt</span><span class="text-gray-400">.</span><span class="text-yellow-400">Fprintf</span><span class="text-gray-400">(w, </span><span class="text-green-400">"Hello, Web3 World!"</span><span class="text-gray-400">)</span>',
-            '    <span class="text-gray-400">})</span>',
-            '    <span class="text-blue-400">http</span><span class="text-gray-400">.</span><span class="text-yellow-400">ListenAndServe</span><span class="text-gray-400">(</span><span class="text-green-400">":8080"</span><span class="text-gray-400">, </span><span class="text-purple-400">nil</span><span class="text-gray-400">)</span>',
-            '<span class="text-gray-400">}</span>'
-        ];
-
-        async function typeText(element, text, speed = 60) {
-            return new Promise(resolve => {
-                let i = 0;
-                element.textContent = '';
-                function type() {
-                    if (i < text.length) {
-                        element.textContent += text.charAt(i);
-                        i++;
-                        setTimeout(type, speed);
-                    } else {
-                        resolve();
-                    }
-                }
-                type();
-            });
-        }
-
-        async function runTerminalSimulation() {
-            while (true) {
-                // Step 1: Shell Mode - type command to open editor
-                windowTitleEl.textContent = 'zeke@ubuntu:~/dev/projects — zsh';
-                editorView.classList.add('hidden');
-                logsEl.innerHTML = '';
-                editorContentEl.innerHTML = '';
-                currentCommandEl.parentElement.classList.remove('hidden');
-                
-                await typeText(currentCommandEl, 'hx server.go', 80);
-                await new Promise(r => setTimeout(r, 1000));
-                
-                // Step 2: Open Editor Mode
-                windowTitleEl.textContent = 'zeke@ubuntu:~/dev/projects — hx server.go';
-                currentCommandEl.parentElement.classList.add('hidden');
-                editorView.classList.remove('hidden');
-                
-                // Type line by line
-                for (let i = 0; i < codeLines.length; i++) {
-                    const lineDiv = document.createElement('div');
-                    lineDiv.className = 'min-h-[1rem]';
-                    editorContentEl.appendChild(lineDiv);
-                    
-                    const lineContent = codeLines[i];
-                    if (lineContent === '') {
-                        await new Promise(r => setTimeout(r, 120));
-                        continue;
-                    }
-                    
-                    lineDiv.innerHTML = lineContent;
-                    editorContentEl.parentElement.scrollTop = editorContentEl.parentElement.scrollHeight;
-                    await new Promise(r => setTimeout(r, 220));
-                }
-                
-                await new Promise(r => setTimeout(r, 2000));
-                
-                // Step 3: Type command to save & exit
-                const statuslineRight = editorView.querySelector('.bg-tertiary.border-t');
-                const originalStatusHTML = statuslineRight.innerHTML;
-                statuslineRight.innerHTML = `<div><span class="bg-[#F25623] text-black px-1.5 py-0.5 font-bold mr-2 uppercase">CMD</span><span id="terminal-editor-cmd"></span><span class="terminal-cursor bg-[#F25623] w-2 h-3.5 ml-0.5 inline-block animate-pulse"></span></div>`;
-                
-                const cmdTextEl = document.getElementById('terminal-editor-cmd');
-                await typeText(cmdTextEl, ':wq', 120);
-                await new Promise(r => setTimeout(r, 800));
-                
-                // Restore statusline
-                statuslineRight.innerHTML = originalStatusHTML;
-                
-                // Step 4: Close Editor, Return to Shell
-                editorView.classList.add('hidden');
-                windowTitleEl.textContent = 'zeke@ubuntu:~/dev/projects — zsh';
-                currentCommandEl.parentElement.classList.remove('hidden');
-                currentCommandEl.textContent = 'hx server.go';
-                
-                // Create running command
-                const runLine = document.createElement('div');
-                runLine.className = 'flex items-center mt-2 text-muted';
-                runLine.innerHTML = `
-                    <span class="text-green-500 mr-2">zeke@ubuntu:~/dev$</span>
-                    <span id="terminal-run-command" class="text-main"></span>
-                    <span class="terminal-cursor bg-[#F25623] w-2 h-4 ml-0.5 inline-block animate-pulse"></span>
-                `;
-                logsEl.appendChild(runLine);
-                
-                const runCmdEl = document.getElementById('terminal-run-command');
-                await typeText(runCmdEl, 'go run server.go', 80);
-                await new Promise(r => setTimeout(r, 1000));
-                
-                // Hide cursor on run command
-                runLine.querySelector('.terminal-cursor').remove();
-                
-                // Step 5: Output compiler logs
-                const logLines = [
-                    { text: 'λ Compiling binaries & starting local server...', class: 'text-muted font-mono' },
-                    { text: '✔ Connect database: PostgreSQL (Port 5432) — OK', class: 'text-green-400 font-mono font-bold' },
-                    { text: '✔ Redis cache initialized in 12ms', class: 'text-green-400 font-mono font-bold' },
-                    { text: '[SUCCESS] Ready. Listening at http://localhost:8080', class: 'text-[#F25623] font-mono font-bold' }
-                ];
-                
-                for (const log of logLines) {
-                    const logEl = document.createElement('div');
-                    logEl.className = `${log.class} pl-4 text-xs transition-opacity duration-300 opacity-0`;
-                    logEl.textContent = log.text;
-                    logsEl.appendChild(logEl);
-                    setTimeout(() => logEl.classList.remove('opacity-0'), 50);
-                    await new Promise(r => setTimeout(r, 500));
-                }
-                
-                // Wait before looping again
-                await new Promise(r => setTimeout(r, 8000));
-            }
-        }
-
-        // Project Filtering Logic
-        const filterBtns = document.querySelectorAll('.filter-btn');
-        const projects = document.querySelectorAll('.project-card');
-
-        const applyFilter = (filter) => {
-            projects.forEach(card => {
-                const categories = card.getAttribute('data-category');
-                if (filter === 'all' || categories.includes(filter)) {
-                    card.classList.remove('hidden-project');
-                } else {
-                    card.classList.add('hidden-project');
-                }
-            });
-        };
-
-        filterBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                const filter = btn.getAttribute('data-filter');
-
-                // UI: Update button states
-                filterBtns.forEach(b => {
-                    b.classList.remove('bg-[#F25623]', 'text-black', 'font-bold');
-                    b.classList.add('text-muted', 'hover:text-main');
-                });
-                btn.classList.add('bg-[#F25623]', 'text-black', 'font-bold');
-                btn.classList.remove('text-muted', 'hover:text-main');
-
-                applyFilter(filter);
-            });
-        });
-
-        // Navigation Shrink on Scroll
-        const nav = document.getElementById('navbar');
-        window.onscroll = () => {
-            if (window.scrollY > 40) {
-                nav.classList.add('glass-nav', 'py-4');
-                nav.classList.remove('py-6');
-            } else {
-                nav.classList.remove('glass-nav', 'py-4');
-                nav.classList.add('py-6');
-            }
-        };
-
-        // Mobile Menu Toggling
-        const menuBtn = document.getElementById('menu-toggle');
-        const closeBtn = document.getElementById('close-menu');
-        const menu = document.getElementById('mobile-menu');
+        // Mobile Menu
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
         const mobileLinks = document.querySelectorAll('.mobile-link');
 
-        [menuBtn, closeBtn].forEach(el => el.addEventListener('click', () => menu.classList.toggle('active')));
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            mobileMenu.classList.toggle('flex');
+        });
 
         mobileLinks.forEach(link => {
             link.addEventListener('click', () => {
-                if (menu.classList.contains('active')) {
-                    menu.classList.remove('active');
-                }
+                mobileMenu.classList.add('hidden');
+                mobileMenu.classList.remove('flex');
             });
         });
 
-        // Close mobile menu on clicking outside or pressing ESC
-        window.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && menu.classList.contains('active')) {
-                menu.classList.remove('active');
-            }
-        });
-
-        // Scroll Reveal for Timeline Nodes
-        const timelineNodes = document.querySelectorAll('.timeline-node');
-        const revealNodes = () => {
-            const triggerBottom = window.innerHeight * 0.85;
-            timelineNodes.forEach(node => {
-                const nodeTop = node.getBoundingClientRect().top;
-                if (nodeTop < triggerBottom) {
-                    node.classList.add('visible');
-                } else {
-                    node.classList.remove('visible');
-                }
-            });
-        };
-        window.addEventListener('scroll', revealNodes);
-
-        // Theme Toggle Logic
-        const themeToggleBtns = document.querySelectorAll('.theme-toggle-btn');
+        // Theme Toggle
+        const themeBtn = document.getElementById('theme-toggle');
+        const themeBtnMobile = document.getElementById('theme-toggle-mobile');
+        const themeIcon = document.getElementById('theme-icon');
         const body = document.body;
 
-        const applyTheme = (theme) => {
-            if (theme === 'light') {
-                body.classList.add('light-mode');
-                themeToggleBtns.forEach(btn => btn.innerHTML = '<i class="fas fa-moon"></i>');
+        const updateThemeUI = (isLight) => {
+            if (isLight) {
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
             } else {
-                body.classList.remove('light-mode');
-                themeToggleBtns.forEach(btn => btn.innerHTML = '<i class="fas fa-sun"></i>');
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
             }
         };
 
-        const savedTheme = localStorage.getItem('theme') || 'dark';
-        applyTheme(savedTheme);
+        const toggleTheme = () => {
+            const isLight = body.classList.toggle('light-mode');
+            localStorage.setItem('theme', isLight ? 'light' : 'dark');
+            updateThemeUI(isLight);
+        };
 
-        themeToggleBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                const currentTheme = body.classList.contains('light-mode') ? 'light' : 'dark';
-                const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-                applyTheme(newTheme);
-                localStorage.setItem('theme', newTheme);
-            });
-        });
+        themeBtn.addEventListener('click', toggleTheme);
+        themeBtnMobile.addEventListener('click', toggleTheme);
 
-        // Toast Notification System
-        function showToast(message, type = 'success') {
-            const container = document.getElementById('toast-container');
-            const toast = document.createElement('div');
-            toast.className = `pointer-events-auto flex items-center p-4 rounded-xl border shadow-xl transition-all duration-300 transform translate-y-4 opacity-0 glass-card border-main max-w-md`;
-            toast.setAttribute('role', 'alert');
-            toast.setAttribute('aria-live', 'polite');
-            
-            const icon = type === 'success' 
-                ? '<i class="fas fa-check-circle text-green-500 mr-3 text-lg"></i>' 
-                : '<i class="fas fa-exclamation-circle text-red-500 mr-3 text-lg"></i>';
-                
-            toast.innerHTML = `
-                <div class="flex items-center">
-                    ${icon}
-                    <div class="text-sm font-medium text-main">${message}</div>
-                </div>
-                <button class="ml-4 text-muted hover:text-main focus-ring transition-colors" aria-label="Close message" onclick="this.parentElement.remove()">
-                    <i class="fas fa-times"></i>
-                </button>
-            `;
-            
-            container.appendChild(toast);
-            
-            // Trigger animation
-            setTimeout(() => {
-                toast.classList.remove('translate-y-4', 'opacity-0');
-            }, 10);
-            
-            // Auto dismiss
-            setTimeout(() => {
-                toast.classList.add('opacity-0', 'translate-y-2');
-                setTimeout(() => toast.remove(), 300);
-            }, 5000);
+        // Load saved theme
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'light') {
+            body.classList.add('light-mode');
+            updateThemeUI(true);
         }
 
-        // Contact Form Interactive Validation
-        const contactForm = document.getElementById('contact-form');
-        const submitBtn = document.getElementById('form-submit-btn');
 
-        const validateField = (field, errorEl, errorMessage) => {
-            if (!field.value.trim()) {
-                errorEl.textContent = errorMessage;
-                errorEl.classList.remove('hidden');
-                field.classList.add('border-red-500');
-                return false;
-            }
-            
-            if (field.type === 'email') {
-                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                if (!emailRegex.test(field.value.trim())) {
-                    errorEl.textContent = 'Please enter a valid email address';
-                    errorEl.classList.remove('hidden');
-                    field.classList.add('border-red-500');
-                    return false;
-                }
-            }
-
-            errorEl.classList.add('hidden');
-            field.classList.remove('border-red-500');
-            return true;
-        };
-
-        const fields = [
-            { el: document.getElementById('form-name'), err: document.getElementById('error-name'), msg: 'Please enter your name' },
-            { el: document.getElementById('form-email'), err: document.getElementById('error-email'), msg: 'Please enter your email' },
-            { el: document.getElementById('form-message'), err: document.getElementById('error-message'), msg: 'Please enter a message' }
-        ];
-
-        fields.forEach(field => {
-            field.el.addEventListener('blur', () => validateField(field.el, field.err, field.msg));
-            field.el.addEventListener('input', () => {
-                if (field.el.classList.contains('border-red-500')) {
-                    validateField(field.el, field.err, field.msg);
-                }
-            });
-        });
-
-        contactForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            
-            let isValid = true;
-            fields.forEach(field => {
-                const fieldValid = validateField(field.el, field.err, field.msg);
-                if (!fieldValid) isValid = false;
-            });
-
-            if (!isValid) {
-                showToast('Please correct the errors in the form.', 'error');
-                return;
-            }
-
-            // Animate submit button to loading state
-            const originalBtnHTML = submitBtn.innerHTML;
-            submitBtn.disabled = true;
-            submitBtn.innerHTML = `<i class="fas fa-circle-notch animate-spin text-sm mr-2"></i><span>Sending...</span>`;
-
-            // Simulate server network operation
-            setTimeout(() => {
-                submitBtn.disabled = false;
-                submitBtn.innerHTML = originalBtnHTML;
-                showToast('Your message has been sent successfully!');
-                contactForm.reset();
-            }, 1800);
-        });
-
-        // Initialize animations on load
-        window.addEventListener('DOMContentLoaded', () => {
-            // Apply current year
-            document.getElementById('current-year').textContent = new Date().getFullYear();
-            
-            // Set initial filter selection
-            applyFilter('featured');
-            
-            // Start Helix terminal loop
-            runTerminalSimulation();
-            
-            // Run timeline reveal check once
-            revealNodes();
-        });
     </script>
 </body>
 </html>
