@@ -102,7 +102,7 @@
             transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease, box-shadow 0.4s ease;
             position: relative;
             overflow: hidden;
-            border-radius: 12px;
+            border-radius: 0px;
         }
         
         .card::before {
@@ -210,12 +210,9 @@
                     Specializing in systems optimization, algorithms, and clean geometric structures. Shipped using Ubuntu & Helix.
                 </p>
                 <div class="flex flex-wrap gap-4">
-                    <a href="Isaac Hayab CV.pdf" download class="px-6 py-3 bg-[var(--text-main)] text-[var(--bg-color)] font-medium rounded-md hover:opacity-90 transition-opacity text-sm">
+                    <button onclick="window.location.href='Isaac Hayab CV.pdf'" class="cursor-pointer px-6 py-3 bg-[var(--text-main)] text-[var(--bg-color)] font-medium rounded-none hover:opacity-90 transition-opacity text-sm">
                         Download Resume
-                    </a>
-                    <a href="#projects" class="px-6 py-3 border border-[var(--border-color)] text-[var(--text-main)] font-medium rounded-md hover:border-[var(--text-main)] transition-colors text-sm">
-                        View Portfolio
-                    </a>
+                    </button>
                 </div>
             </div>
         </section>
@@ -258,27 +255,34 @@
         <!-- Journey Section -->
         <section id="journey" class="max-w-5xl mx-auto px-6 py-16 border-t border-[var(--border-color)]">
             <h2 class="text-2xl font-bold mb-10 text-[var(--text-main)]">Journey</h2>
-            <div class="space-y-8 max-w-3xl">
-                <div class="flex flex-col md:flex-row gap-4 md:gap-8">
-                    <div class="md:w-32 flex-shrink-0 font-mono text-sm text-[var(--text-muted)] pt-1">2025 - Present</div>
-                    <div>
-                        <h3 class="text-lg font-medium text-[var(--text-main)]">Enterprise Backends & Web3</h3>
-                        <p class="text-[var(--text-muted)] text-sm mt-2 leading-relaxed">Developed robust NestJS, Express, and Avalanche Web3 modules. Integrated Redis, PostgreSQL, and BullMQ with Docker.</p>
-                    </div>
+            <!-- Straight line container with left alignment -->
+            <div class="relative ml-2 border-l border-[var(--border-color)] space-y-12">
+                
+                <!-- Timeline Item 1 -->
+                <div class="relative pl-8">
+                    <!-- Bullet point -->
+                    <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-[var(--text-main)] border-2 border-[var(--bg-color)]"></div>
+                    <div class="font-mono text-sm text-[var(--text-muted)] mb-1">2025 - Present</div>
+                    <h3 class="text-lg font-medium text-[var(--text-main)]">Enterprise Backends & Web3</h3>
+                    <p class="text-[var(--text-muted)] text-sm mt-1 leading-relaxed">Developed robust NestJS, Express, and Avalanche Web3 modules. Integrated Redis, PostgreSQL, and BullMQ with Docker.</p>
                 </div>
-                <div class="flex flex-col md:flex-row gap-4 md:gap-8">
-                    <div class="md:w-32 flex-shrink-0 font-mono text-sm text-[var(--text-muted)] pt-1">Late 2024</div>
-                    <div>
-                        <h3 class="text-lg font-medium text-[var(--text-main)]">Systems & Concurrency</h3>
-                        <p class="text-[var(--text-muted)] text-sm mt-2 leading-relaxed">Shipped multiple multi-threaded networking engines in C++ and Go, including TCP servers and lock-free memory queues.</p>
-                    </div>
+
+                <!-- Timeline Item 2 -->
+                <div class="relative pl-8">
+                    <!-- Bullet point -->
+                    <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-[var(--text-main)] border-2 border-[var(--bg-color)]"></div>
+                    <div class="font-mono text-sm text-[var(--text-muted)] mb-1">Late 2024</div>
+                    <h3 class="text-lg font-medium text-[var(--text-main)]">Systems & Concurrency</h3>
+                    <p class="text-[var(--text-muted)] text-sm mt-1 leading-relaxed">Shipped multiple multi-threaded networking engines in C++ and Go, including TCP servers and lock-free memory queues.</p>
                 </div>
-                <div class="flex flex-col md:flex-row gap-4 md:gap-8">
-                    <div class="md:w-32 flex-shrink-0 font-mono text-sm text-[var(--text-muted)] pt-1">2024 - Present</div>
-                    <div>
-                        <h3 class="text-lg font-medium text-[var(--text-main)]">Computer Science Studies</h3>
-                        <p class="text-[var(--text-muted)] text-sm mt-2 leading-relaxed">Focusing on algorithms, discrete mathematics, and systems programming. Exploring database performance tuning.</p>
-                    </div>
+
+                <!-- Timeline Item 3 -->
+                <div class="relative pl-8">
+                    <!-- Bullet point -->
+                    <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-[var(--text-main)] border-2 border-[var(--bg-color)]"></div>
+                    <div class="font-mono text-sm text-[var(--text-muted)] mb-1">2024 - Present</div>
+                    <h3 class="text-lg font-medium text-[var(--text-main)]">Computer Science Studies</h3>
+                    <p class="text-[var(--text-muted)] text-sm mt-1 leading-relaxed">Focusing on algorithms, discrete mathematics, and systems programming. Exploring database performance tuning.</p>
                 </div>
             </div>
         </section>
@@ -288,11 +292,11 @@
             <h2 class="text-2xl font-bold mb-10 text-[var(--text-main)]">Selected Projects</h2>
             <div class="grid md:grid-cols-2 gap-6">
 
-                <a href="https://github.com/naiih001/protask" target="_blank" rel="noopener noreferrer" class="card p-6 rounded-md flex flex-col justify-between group">
+                <a href="https://github.com/naiih001/protask" target="_blank" rel="noopener noreferrer" class="card p-6 flex flex-col justify-between group">
                     <div>
                         <div class="flex justify-between items-start mb-4">
                             <h3 class="text-lg font-medium text-[var(--text-main)] group-hover:underline underline-offset-4">ProTask</h3>
-                            <span class="text-[10px] uppercase font-mono px-2 py-0.5 border border-[var(--border-color)] rounded-sm">Featured</span>
+                            <span class="text-[10px] uppercase font-mono px-2 py-0.5 border border-[var(--border-color)] rounded-none">Featured</span>
                         </div>
                         <p class="text-[var(--text-muted)] text-sm mb-6 leading-relaxed">A NestJS 11 task management API. Uses JWT auth, Prisma, PostgreSQL, Redis-backed BullMQ queues, Swagger docs, rate limiting, and Docker.</p>
                     </div>
@@ -301,11 +305,11 @@
                     </div>
                 </a>
     
-                <a href="https://github.com/naiih001/edutrackr-backend" target="_blank" rel="noopener noreferrer" class="card p-6 rounded-md flex flex-col justify-between group">
+                <a href="https://github.com/naiih001/edutrackr-backend" target="_blank" rel="noopener noreferrer" class="card p-6 flex flex-col justify-between group">
                     <div>
                         <div class="flex justify-between items-start mb-4">
                             <h3 class="text-lg font-medium text-[var(--text-main)] group-hover:underline underline-offset-4">EduTrackr Backend</h3>
-                            <span class="text-[10px] uppercase font-mono px-2 py-0.5 border border-[var(--border-color)] rounded-sm">Featured</span>
+                            <span class="text-[10px] uppercase font-mono px-2 py-0.5 border border-[var(--border-color)] rounded-none">Featured</span>
                         </div>
                         <p class="text-[var(--text-muted)] text-sm mb-6 leading-relaxed">A TypeScript and Express.js API for managing student grades, authentication, and records, with MongoDB.</p>
                     </div>
@@ -314,11 +318,11 @@
                     </div>
                 </a>
     
-                <a href="https://github.com/naiih001/e-commerce-backend" target="_blank" rel="noopener noreferrer" class="card p-6 rounded-md flex flex-col justify-between group">
+                <a href="https://github.com/naiih001/e-commerce-backend" target="_blank" rel="noopener noreferrer" class="card p-6 flex flex-col justify-between group">
                     <div>
                         <div class="flex justify-between items-start mb-4">
                             <h3 class="text-lg font-medium text-[var(--text-main)] group-hover:underline underline-offset-4">E-commerce Backend</h3>
-                            <span class="text-[10px] uppercase font-mono px-2 py-0.5 border border-[var(--border-color)] rounded-sm">Featured</span>
+                            <span class="text-[10px] uppercase font-mono px-2 py-0.5 border border-[var(--border-color)] rounded-none">Featured</span>
                         </div>
                         <p class="text-[var(--text-muted)] text-sm mb-6 leading-relaxed">RESTful API built with Go and Gin, handling user auth, products, orders, and integration with PostgreSQL.</p>
                     </div>
@@ -327,7 +331,7 @@
                     </div>
                 </a>
     
-                <a href="https://github.com/naiih001/cpp-notes-api" target="_blank" rel="noopener noreferrer" class="card p-6 rounded-md flex flex-col justify-between group">
+                <a href="https://github.com/naiih001/cpp-notes-api" target="_blank" rel="noopener noreferrer" class="card p-6 flex flex-col justify-between group">
                     <div>
                         <div class="flex justify-between items-start mb-4">
                             <h3 class="text-lg font-medium text-[var(--text-main)] group-hover:underline underline-offset-4">CPP Notes API</h3>
@@ -339,7 +343,7 @@
                     </div>
                 </a>
     
-                <a href="https://github.com/naiih001/blogging-platform" target="_blank" rel="noopener noreferrer" class="card p-6 rounded-md flex flex-col justify-between group">
+                <a href="https://github.com/naiih001/blogging-platform" target="_blank" rel="noopener noreferrer" class="card p-6 flex flex-col justify-between group">
                     <div>
                         <div class="flex justify-between items-start mb-4">
                             <h3 class="text-lg font-medium text-[var(--text-main)] group-hover:underline underline-offset-4">Blogging Platform</h3>
@@ -351,11 +355,11 @@
                     </div>
                 </a>
     
-                <a href="https://github.com/naiih001/tcp-server" target="_blank" rel="noopener noreferrer" class="card p-6 rounded-md flex flex-col justify-between group">
+                <a href="https://github.com/naiih001/tcp-server" target="_blank" rel="noopener noreferrer" class="card p-6 flex flex-col justify-between group">
                     <div>
                         <div class="flex justify-between items-start mb-4">
                             <h3 class="text-lg font-medium text-[var(--text-main)] group-hover:underline underline-offset-4">TCP Server</h3>
-                            <span class="text-[10px] uppercase font-mono px-2 py-0.5 border border-[var(--border-color)] rounded-sm">Featured</span>
+                            <span class="text-[10px] uppercase font-mono px-2 py-0.5 border border-[var(--border-color)] rounded-none">Featured</span>
                         </div>
                         <p class="text-[var(--text-muted)] text-sm mb-6 leading-relaxed">A concurrent TCP server in C++ that handles multiple client connections using std::thread and mutexes.</p>
                     </div>
@@ -364,7 +368,7 @@
                     </div>
                 </a>
     
-                <a href="https://github.com/naiih001/trading-bot" target="_blank" rel="noopener noreferrer" class="card p-6 rounded-md flex flex-col justify-between group">
+                <a href="https://github.com/naiih001/trading-bot" target="_blank" rel="noopener noreferrer" class="card p-6 flex flex-col justify-between group">
                     <div>
                         <div class="flex justify-between items-start mb-4">
                             <h3 class="text-lg font-medium text-[var(--text-main)] group-hover:underline underline-offset-4">Trading Bot</h3>
@@ -376,7 +380,7 @@
                     </div>
                 </a>
     
-                <a href="https://github.com/naiih001/expense-tracker" target="_blank" rel="noopener noreferrer" class="card p-6 rounded-md flex flex-col justify-between group">
+                <a href="https://github.com/naiih001/expense-tracker" target="_blank" rel="noopener noreferrer" class="card p-6 flex flex-col justify-between group">
                     <div>
                         <div class="flex justify-between items-start mb-4">
                             <h3 class="text-lg font-medium text-[var(--text-main)] group-hover:underline underline-offset-4">Expense Tracker</h3>
@@ -388,7 +392,7 @@
                     </div>
                 </a>
     
-                <a href="https://github.com/naiih001/file-searcher" target="_blank" rel="noopener noreferrer" class="card p-6 rounded-md flex flex-col justify-between group">
+                <a href="https://github.com/naiih001/file-searcher" target="_blank" rel="noopener noreferrer" class="card p-6 flex flex-col justify-between group">
                     <div>
                         <div class="flex justify-between items-start mb-4">
                             <h3 class="text-lg font-medium text-[var(--text-main)] group-hover:underline underline-offset-4">File Searcher</h3>
@@ -400,11 +404,11 @@
                     </div>
                 </a>
     
-                <a href="https://github.com/naiih001/lock-free-queue" target="_blank" rel="noopener noreferrer" class="card p-6 rounded-md flex flex-col justify-between group">
+                <a href="https://github.com/naiih001/lock-free-queue" target="_blank" rel="noopener noreferrer" class="card p-6 flex flex-col justify-between group">
                     <div>
                         <div class="flex justify-between items-start mb-4">
                             <h3 class="text-lg font-medium text-[var(--text-main)] group-hover:underline underline-offset-4">Lock-Free Queue</h3>
-                            <span class="text-[10px] uppercase font-mono px-2 py-0.5 border border-[var(--border-color)] rounded-sm">Featured</span>
+                            <span class="text-[10px] uppercase font-mono px-2 py-0.5 border border-[var(--border-color)] rounded-none">Featured</span>
                         </div>
                         <p class="text-[var(--text-muted)] text-sm mb-6 leading-relaxed">Implementation of a lock-free queue in C++ for high-performance concurrent data access.</p>
                     </div>
@@ -413,7 +417,7 @@
                     </div>
                 </a>
     
-                <a href="https://github.com/naiih001/cpp-shell" target="_blank" rel="noopener noreferrer" class="card p-6 rounded-md flex flex-col justify-between group">
+                <a href="https://github.com/naiih001/cpp-shell" target="_blank" rel="noopener noreferrer" class="card p-6 flex flex-col justify-between group">
                     <div>
                         <div class="flex justify-between items-start mb-4">
                             <h3 class="text-lg font-medium text-[var(--text-main)] group-hover:underline underline-offset-4">CPP Shell</h3>
@@ -425,7 +429,7 @@
                     </div>
                 </a>
     
-                <a href="https://github.com/naiih001/ytd" target="_blank" rel="noopener noreferrer" class="card p-6 rounded-md flex flex-col justify-between group">
+                <a href="https://github.com/naiih001/ytd" target="_blank" rel="noopener noreferrer" class="card p-6 flex flex-col justify-between group">
                     <div>
                         <div class="flex justify-between items-start mb-4">
                             <h3 class="text-lg font-medium text-[var(--text-main)] group-hover:underline underline-offset-4">YTD</h3>
@@ -437,7 +441,7 @@
                     </div>
                 </a>
     
-                <a href="https://github.com/naiih001/builders-hub" target="_blank" rel="noopener noreferrer" class="card p-6 rounded-md flex flex-col justify-between group">
+                <a href="https://github.com/naiih001/builders-hub" target="_blank" rel="noopener noreferrer" class="card p-6 flex flex-col justify-between group">
                     <div>
                         <div class="flex justify-between items-start mb-4">
                             <h3 class="text-lg font-medium text-[var(--text-main)] group-hover:underline underline-offset-4">Builders Hub</h3>
@@ -449,7 +453,7 @@
                     </div>
                 </a>
     
-                <a href="https://github.com/naiih001/roll-dice-web3" target="_blank" rel="noopener noreferrer" class="card p-6 rounded-md flex flex-col justify-between group">
+                <a href="https://github.com/naiih001/roll-dice-web3" target="_blank" rel="noopener noreferrer" class="card p-6 flex flex-col justify-between group">
                     <div>
                         <div class="flex justify-between items-start mb-4">
                             <h3 class="text-lg font-medium text-[var(--text-main)] group-hover:underline underline-offset-4">Roll Dice Web3</h3>
@@ -461,7 +465,7 @@
                     </div>
                 </a>
     
-                <a href="https://github.com/naiih001/crypto-currency-app" target="_blank" rel="noopener noreferrer" class="card p-6 rounded-md flex flex-col justify-between group">
+                <a href="https://github.com/naiih001/crypto-currency-app" target="_blank" rel="noopener noreferrer" class="card p-6 flex flex-col justify-between group">
                     <div>
                         <div class="flex justify-between items-start mb-4">
                             <h3 class="text-lg font-medium text-[var(--text-main)] group-hover:underline underline-offset-4">Crypto Currency App</h3>
@@ -688,7 +692,7 @@
         });
 
         // Journey Timeline
-        gsap.from("#journey .flex", {
+        gsap.from("#journey .relative.pl-8", {
             scrollTrigger: {
                 trigger: "#journey",
                 start: "top 80%",
