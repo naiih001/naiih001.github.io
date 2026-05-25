@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,62 +16,148 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
+
+    <!-- GSAP & Lenis -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
     
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
 
         :root {
-            --bg-color: #050505;
-            --text-main: #f5f5f5;
+            --bg-color: #030303;
+            --text-main: #f8f8f8;
             --text-muted: #888888;
-            --border-color: #222222;
+            --border-color: rgba(255, 255, 255, 0.1);
+            --accent: #ffffff;
+            --card-bg: rgba(20, 20, 20, 0.4);
+            --glow: rgba(255, 255, 255, 0.06);
         }
 
-        /* Default to dark, but support light mode toggle */
         body.light-mode {
             --bg-color: #fafafa;
             --text-main: #111111;
             --text-muted: #666666;
-            --border-color: #e5e5e5;
+            --border-color: rgba(0, 0, 0, 0.1);
+            --accent: #000000;
+            --card-bg: rgba(255, 255, 255, 0.6);
+            --glow: rgba(0, 0, 0, 0.04);
         }
 
         body {
             font-family: 'Inter', sans-serif;
             background-color: var(--bg-color);
             color: var(--text-main);
-            transition: background-color 0.3s, color 0.3s;
+            transition: background-color 0.5s ease, color 0.5s ease;
             line-height: 1.6;
+            cursor: none;
+            overflow-x: hidden;
         }
 
         .font-mono { font-family: 'JetBrains Mono', monospace; }
+
+        /* Noise Background overlay */
+        .noise-bg {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        /* Custom Cursor */
+        #cursor-dot, #cursor-outline {
+            position: fixed;
+            top: 0; left: 0;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+        }
+        #cursor-dot {
+            width: 8px; height: 8px;
+            background-color: var(--text-main);
+            transition: background-color 0.3s;
+        }
+        #cursor-outline {
+            width: 40px; height: 40px;
+            border: 1px solid var(--text-main);
+            transition: width 0.2s, height 0.2s, background-color 0.2s, border-color 0.3s;
+        }
+        body:hover #cursor-outline { opacity: 1; }
 
         *:focus-visible {
             outline: 2px solid var(--text-muted);
             outline-offset: 2px;
         }
 
+        /* Card styles with Glassmorphism and Hover Glow */
         .card {
             border: 1px solid var(--border-color);
-            background: transparent;
-            transition: border-color 0.2s ease;
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease, box-shadow 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
         }
-        .card:hover {
-            border-color: var(--text-main);
+        
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(600px circle at var(--mouse-x) var(--mouse-y), var(--glow), transparent 40%);
+            z-index: 0;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            pointer-events: none;
         }
 
-        .fade-in {
-            animation: fadeIn 0.8s ease-out forwards;
+        .card:hover::before {
+            opacity: 1;
         }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+
+        .card:hover {
+            transform: translateY(-6px) scale(1.01);
+            border-color: var(--text-muted);
+            box-shadow: 0 20px 40px -15px rgba(0,0,0,0.6);
+        }
+        body.light-mode .card:hover {
+            box-shadow: 0 20px 40px -15px rgba(0,0,0,0.1);
+        }
+
+        .card > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Lenis required styles */
+        html.lenis { height: auto; }
+        .lenis.lenis-smooth { scroll-behavior: auto !important; }
+        .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+        .lenis.lenis-stopped { overflow: hidden; }
+        .lenis.lenis-scrolling iframe { pointer-events: none; }
+        
+        /* Content z-index fix to sit above noise */
+        main, header, footer { position: relative; z-index: 10; }
+        
+        /* Interactive Nav Links */
+        header a, header button {
+            display: inline-block;
         }
     </style>
 </head>
 <body class="antialiased">
 
+    <div class="noise-bg"></div>
+    <div id="cursor-dot"></div>
+    <div id="cursor-outline"></div>
+
     <!-- Header -->
-    <header class="fixed top-0 w-full z-50 bg-[var(--bg-color)]/95 backdrop-blur-sm border-b border-[var(--border-color)]">
+    <header class="fixed top-0 w-full z-50 bg-[var(--bg-color)]/80 backdrop-blur-md border-b border-[var(--border-color)]">
         <div class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
             <a href="#" class="font-bold tracking-tight text-lg hover:opacity-80 transition-opacity flex items-center gap-2">
                 <span class="w-6 h-6 flex items-center justify-center bg-[var(--text-main)] text-[var(--bg-color)] rounded-sm text-xs font-mono font-bold">Ω</span>
@@ -107,10 +193,10 @@
     <main class="pt-24 pb-16">
         
         <!-- Hero Section -->
-        <section id="about" class="max-w-5xl mx-auto px-6 py-16 md:py-24 fade-in">
+        <section id="about" class="max-w-5xl mx-auto px-6 py-16 md:py-24">
             <div class="max-w-3xl">
                 <div class="inline-flex px-3 py-1 border border-[var(--border-color)] rounded-full text-xs font-mono mb-8 text-[var(--text-main)] items-center gap-2">
-                    <span class="w-2 h-2 rounded-full bg-green-500 relative flex h-2 w-2">
+                    <span class="w-2 h-2 rounded-full bg-green-500 relative flex">
                         <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
                         <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
                     </span>
@@ -124,10 +210,10 @@
                     Specializing in systems optimization, algorithms, and clean geometric structures. Shipped using Ubuntu & Helix.
                 </p>
                 <div class="flex flex-wrap gap-4">
-                    <a href="Isaac Hayab CV.pdf" download class="px-6 py-3 bg-[var(--text-main)] text-[var(--bg-color)] font-medium rounded-sm hover:opacity-90 transition-opacity text-sm">
+                    <a href="Isaac Hayab CV.pdf" download class="px-6 py-3 bg-[var(--text-main)] text-[var(--bg-color)] font-medium rounded-md hover:opacity-90 transition-opacity text-sm">
                         Download Resume
                     </a>
-                    <a href="#projects" class="px-6 py-3 border border-[var(--border-color)] text-[var(--text-main)] font-medium rounded-sm hover:border-[var(--text-main)] transition-colors text-sm">
+                    <a href="#projects" class="px-6 py-3 border border-[var(--border-color)] text-[var(--text-main)] font-medium rounded-md hover:border-[var(--text-main)] transition-colors text-sm">
                         View Portfolio
                     </a>
                 </div>
@@ -202,7 +288,7 @@
             <h2 class="text-2xl font-bold mb-10 text-[var(--text-main)]">Selected Projects</h2>
             <div class="grid md:grid-cols-2 gap-6">
 
-                <a href="https://github.com/naiih001/protask" target="_blank" rel="noopener noreferrer" class="card p-6 rounded-sm flex flex-col justify-between group">
+                <a href="https://github.com/naiih001/protask" target="_blank" rel="noopener noreferrer" class="card p-6 rounded-md flex flex-col justify-between group">
                     <div>
                         <div class="flex justify-between items-start mb-4">
                             <h3 class="text-lg font-medium text-[var(--text-main)] group-hover:underline underline-offset-4">ProTask</h3>
@@ -215,7 +301,7 @@
                     </div>
                 </a>
     
-                <a href="https://github.com/naiih001/edutrackr-backend" target="_blank" rel="noopener noreferrer" class="card p-6 rounded-sm flex flex-col justify-between group">
+                <a href="https://github.com/naiih001/edutrackr-backend" target="_blank" rel="noopener noreferrer" class="card p-6 rounded-md flex flex-col justify-between group">
                     <div>
                         <div class="flex justify-between items-start mb-4">
                             <h3 class="text-lg font-medium text-[var(--text-main)] group-hover:underline underline-offset-4">EduTrackr Backend</h3>
@@ -228,7 +314,7 @@
                     </div>
                 </a>
     
-                <a href="https://github.com/naiih001/e-commerce-backend" target="_blank" rel="noopener noreferrer" class="card p-6 rounded-sm flex flex-col justify-between group">
+                <a href="https://github.com/naiih001/e-commerce-backend" target="_blank" rel="noopener noreferrer" class="card p-6 rounded-md flex flex-col justify-between group">
                     <div>
                         <div class="flex justify-between items-start mb-4">
                             <h3 class="text-lg font-medium text-[var(--text-main)] group-hover:underline underline-offset-4">E-commerce Backend</h3>
@@ -241,11 +327,10 @@
                     </div>
                 </a>
     
-                <a href="https://github.com/naiih001/cpp-notes-api" target="_blank" rel="noopener noreferrer" class="card p-6 rounded-sm flex flex-col justify-between group">
+                <a href="https://github.com/naiih001/cpp-notes-api" target="_blank" rel="noopener noreferrer" class="card p-6 rounded-md flex flex-col justify-between group">
                     <div>
                         <div class="flex justify-between items-start mb-4">
                             <h3 class="text-lg font-medium text-[var(--text-main)] group-hover:underline underline-offset-4">CPP Notes API</h3>
-                            
                         </div>
                         <p class="text-[var(--text-muted)] text-sm mb-6 leading-relaxed">A simple note-taking API developed using cpp-httplib in C++, focusing on HTTP request handling.</p>
                     </div>
@@ -254,11 +339,10 @@
                     </div>
                 </a>
     
-                <a href="https://github.com/naiih001/blogging-platform" target="_blank" rel="noopener noreferrer" class="card p-6 rounded-sm flex flex-col justify-between group">
+                <a href="https://github.com/naiih001/blogging-platform" target="_blank" rel="noopener noreferrer" class="card p-6 rounded-md flex flex-col justify-between group">
                     <div>
                         <div class="flex justify-between items-start mb-4">
                             <h3 class="text-lg font-medium text-[var(--text-main)] group-hover:underline underline-offset-4">Blogging Platform</h3>
-                            
                         </div>
                         <p class="text-[var(--text-muted)] text-sm mb-6 leading-relaxed">Backend service in Go for a blogging platform, managing user posts, comments, and database operations.</p>
                     </div>
@@ -267,7 +351,7 @@
                     </div>
                 </a>
     
-                <a href="https://github.com/naiih001/tcp-server" target="_blank" rel="noopener noreferrer" class="card p-6 rounded-sm flex flex-col justify-between group">
+                <a href="https://github.com/naiih001/tcp-server" target="_blank" rel="noopener noreferrer" class="card p-6 rounded-md flex flex-col justify-between group">
                     <div>
                         <div class="flex justify-between items-start mb-4">
                             <h3 class="text-lg font-medium text-[var(--text-main)] group-hover:underline underline-offset-4">TCP Server</h3>
@@ -280,11 +364,10 @@
                     </div>
                 </a>
     
-                <a href="https://github.com/naiih001/trading-bot" target="_blank" rel="noopener noreferrer" class="card p-6 rounded-sm flex flex-col justify-between group">
+                <a href="https://github.com/naiih001/trading-bot" target="_blank" rel="noopener noreferrer" class="card p-6 rounded-md flex flex-col justify-between group">
                     <div>
                         <div class="flex justify-between items-start mb-4">
                             <h3 class="text-lg font-medium text-[var(--text-main)] group-hover:underline underline-offset-4">Trading Bot</h3>
-                            
                         </div>
                         <p class="text-[var(--text-muted)] text-sm mb-6 leading-relaxed">A Go-based trading bot for back-testing strategies on historical price data with a simulated exchange.</p>
                     </div>
@@ -293,11 +376,10 @@
                     </div>
                 </a>
     
-                <a href="https://github.com/naiih001/expense-tracker" target="_blank" rel="noopener noreferrer" class="card p-6 rounded-sm flex flex-col justify-between group">
+                <a href="https://github.com/naiih001/expense-tracker" target="_blank" rel="noopener noreferrer" class="card p-6 rounded-md flex flex-col justify-between group">
                     <div>
                         <div class="flex justify-between items-start mb-4">
                             <h3 class="text-lg font-medium text-[var(--text-main)] group-hover:underline underline-offset-4">Expense Tracker</h3>
-                            
                         </div>
                         <p class="text-[var(--text-muted)] text-sm mb-6 leading-relaxed">A RESTful API in Go using Gin for managing personal expenses, budgets, and categories with JWT.</p>
                     </div>
@@ -306,11 +388,10 @@
                     </div>
                 </a>
     
-                <a href="https://github.com/naiih001/file-searcher" target="_blank" rel="noopener noreferrer" class="card p-6 rounded-sm flex flex-col justify-between group">
+                <a href="https://github.com/naiih001/file-searcher" target="_blank" rel="noopener noreferrer" class="card p-6 rounded-md flex flex-col justify-between group">
                     <div>
                         <div class="flex justify-between items-start mb-4">
                             <h3 class="text-lg font-medium text-[var(--text-main)] group-hover:underline underline-offset-4">File Searcher</h3>
-                            
                         </div>
                         <p class="text-[var(--text-muted)] text-sm mb-6 leading-relaxed">A multi-threaded file search utility in C++ that recursively scans directories for patterns.</p>
                     </div>
@@ -319,7 +400,7 @@
                     </div>
                 </a>
     
-                <a href="https://github.com/naiih001/lock-free-queue" target="_blank" rel="noopener noreferrer" class="card p-6 rounded-sm flex flex-col justify-between group">
+                <a href="https://github.com/naiih001/lock-free-queue" target="_blank" rel="noopener noreferrer" class="card p-6 rounded-md flex flex-col justify-between group">
                     <div>
                         <div class="flex justify-between items-start mb-4">
                             <h3 class="text-lg font-medium text-[var(--text-main)] group-hover:underline underline-offset-4">Lock-Free Queue</h3>
@@ -332,11 +413,10 @@
                     </div>
                 </a>
     
-                <a href="https://github.com/naiih001/cpp-shell" target="_blank" rel="noopener noreferrer" class="card p-6 rounded-sm flex flex-col justify-between group">
+                <a href="https://github.com/naiih001/cpp-shell" target="_blank" rel="noopener noreferrer" class="card p-6 rounded-md flex flex-col justify-between group">
                     <div>
                         <div class="flex justify-between items-start mb-4">
                             <h3 class="text-lg font-medium text-[var(--text-main)] group-hover:underline underline-offset-4">CPP Shell</h3>
-                            
                         </div>
                         <p class="text-[var(--text-muted)] text-sm mb-6 leading-relaxed">A custom shell implemented in C++, capable of executing commands and managing processes.</p>
                     </div>
@@ -345,11 +425,10 @@
                     </div>
                 </a>
     
-                <a href="https://github.com/naiih001/ytd" target="_blank" rel="noopener noreferrer" class="card p-6 rounded-sm flex flex-col justify-between group">
+                <a href="https://github.com/naiih001/ytd" target="_blank" rel="noopener noreferrer" class="card p-6 rounded-md flex flex-col justify-between group">
                     <div>
                         <div class="flex justify-between items-start mb-4">
                             <h3 class="text-lg font-medium text-[var(--text-main)] group-hover:underline underline-offset-4">YTD</h3>
-                            
                         </div>
                         <p class="text-[var(--text-muted)] text-sm mb-6 leading-relaxed">A simple CLI application in Go for downloading YouTube videos.</p>
                     </div>
@@ -358,11 +437,10 @@
                     </div>
                 </a>
     
-                <a href="https://github.com/naiih001/builders-hub" target="_blank" rel="noopener noreferrer" class="card p-6 rounded-sm flex flex-col justify-between group">
+                <a href="https://github.com/naiih001/builders-hub" target="_blank" rel="noopener noreferrer" class="card p-6 rounded-md flex flex-col justify-between group">
                     <div>
                         <div class="flex justify-between items-start mb-4">
                             <h3 class="text-lg font-medium text-[var(--text-main)] group-hover:underline underline-offset-4">Builders Hub</h3>
-                            
                         </div>
                         <p class="text-[var(--text-muted)] text-sm mb-6 leading-relaxed">Avalanche Builders Hub fork hosting documentation, academy, and integrations directory.</p>
                     </div>
@@ -371,11 +449,10 @@
                     </div>
                 </a>
     
-                <a href="https://github.com/naiih001/roll-dice-web3" target="_blank" rel="noopener noreferrer" class="card p-6 rounded-sm flex flex-col justify-between group">
+                <a href="https://github.com/naiih001/roll-dice-web3" target="_blank" rel="noopener noreferrer" class="card p-6 rounded-md flex flex-col justify-between group">
                     <div>
                         <div class="flex justify-between items-start mb-4">
                             <h3 class="text-lg font-medium text-[var(--text-main)] group-hover:underline underline-offset-4">Roll Dice Web3</h3>
-                            
                         </div>
                         <p class="text-[var(--text-muted)] text-sm mb-6 leading-relaxed">A web3-based dice rolling application for decentralized randomness.</p>
                     </div>
@@ -384,11 +461,10 @@
                     </div>
                 </a>
     
-                <a href="https://github.com/naiih001/crypto-currency-app" target="_blank" rel="noopener noreferrer" class="card p-6 rounded-sm flex flex-col justify-between group">
+                <a href="https://github.com/naiih001/crypto-currency-app" target="_blank" rel="noopener noreferrer" class="card p-6 rounded-md flex flex-col justify-between group">
                     <div>
                         <div class="flex justify-between items-start mb-4">
                             <h3 class="text-lg font-medium text-[var(--text-main)] group-hover:underline underline-offset-4">Crypto Currency App</h3>
-                            
                         </div>
                         <p class="text-[var(--text-muted)] text-sm mb-6 leading-relaxed">An application focused on cryptocurrencies for tracking prices and market data.</p>
                     </div>
@@ -420,8 +496,6 @@
             <div>POWERED BY HELIX & UBUNTU.</div>
         </div>
     </footer>
-
-
 
     <script>
         // Set Year
@@ -466,16 +540,190 @@
             updateThemeUI(isLight);
         };
 
-        themeBtn.addEventListener('click', toggleTheme);
-        themeBtnMobile.addEventListener('click', toggleTheme);
+        if(themeBtn) themeBtn.addEventListener('click', toggleTheme);
+        if(themeBtnMobile) themeBtnMobile.addEventListener('click', toggleTheme);
 
-        // Load saved theme
         const savedTheme = localStorage.getItem('theme');
         if (savedTheme === 'light') {
             body.classList.add('light-mode');
             updateThemeUI(true);
         }
 
+        // ==========================================
+        // GOD TIER ANIMATIONS & INTERACTIONS
+        // ==========================================
+
+        // 1. Lenis Smooth Scroll Setup
+        const lenis = new Lenis({
+            duration: 1.2,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            direction: 'vertical',
+            gestureDirection: 'vertical',
+            smooth: true,
+            mouseMultiplier: 1,
+            smoothTouch: false,
+            touchMultiplier: 2,
+            infinite: false,
+        });
+
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+
+        // Integrate GSAP ScrollTrigger with Lenis
+        gsap.registerPlugin(ScrollTrigger);
+        lenis.on('scroll', ScrollTrigger.update);
+        gsap.ticker.add((time) => { lenis.raf(time * 1000); });
+        gsap.ticker.lagSmoothing(0, 0);
+
+        // 2. Custom Cursor Logic
+        const cursorDot = document.getElementById('cursor-dot');
+        const cursorOutline = document.getElementById('cursor-outline');
+        let mouseX = window.innerWidth / 2;
+        let mouseY = window.innerHeight / 2;
+        let outlineX = mouseX;
+        let outlineY = mouseY;
+        
+        window.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            
+            // Move dot instantly
+            gsap.set(cursorDot, { x: mouseX, y: mouseY });
+            
+            // Card Glow Effect (Radial Gradient Follower)
+            document.querySelectorAll('.card').forEach(card => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.setProperty('--mouse-x', `${x}px`);
+                card.style.setProperty('--mouse-y', `${y}px`);
+            });
+        });
+
+        // Smooth outline trailing the dot
+        gsap.ticker.add(() => {
+            outlineX += (mouseX - outlineX) * 0.15;
+            outlineY += (mouseY - outlineY) * 0.15;
+            gsap.set(cursorOutline, { x: outlineX, y: outlineY });
+        });
+
+        // Custom Cursor Hover States
+        const interactiveElements = document.querySelectorAll('a, button, .card');
+        interactiveElements.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                gsap.to(cursorOutline, { 
+                    width: 60, height: 60, 
+                    backgroundColor: 'rgba(150, 150, 150, 0.1)', 
+                    borderColor: 'transparent',
+                    duration: 0.3 
+                });
+            });
+            el.addEventListener('mouseleave', () => {
+                gsap.to(cursorOutline, { 
+                    width: 40, height: 40, 
+                    backgroundColor: 'transparent', 
+                    borderColor: 'var(--text-main)',
+                    duration: 0.3 
+                });
+            });
+        });
+
+        // 3. Magnetic Links Effect
+        const magnetics = document.querySelectorAll('header a, header button');
+        magnetics.forEach(btn => {
+            btn.addEventListener('mousemove', (e) => {
+                const rect = btn.getBoundingClientRect();
+                const h = rect.width / 2;
+                const w = rect.height / 2;
+                const x = e.clientX - rect.left - h;
+                const y = e.clientY - rect.top - w;
+                gsap.to(btn, { x: x * 0.4, y: y * 0.4, duration: 0.4, ease: "power2.out" });
+            });
+            btn.addEventListener('mouseleave', () => {
+                gsap.to(btn, { x: 0, y: 0, duration: 0.7, ease: "elastic.out(1, 0.3)" });
+            });
+        });
+
+        // 4. Initial Entrance Animations (Hero)
+        const heroTl = gsap.timeline();
+        heroTl.from("header", { y: -20, opacity: 0, duration: 1, ease: "power3.out", delay: 0.2 })
+              .from("#about .inline-flex", { y: 20, opacity: 0, duration: 0.8, ease: "power3.out" }, "-=0.6")
+              .from("#about h1", { y: 30, opacity: 0, duration: 1, ease: "power3.out" }, "-=0.6")
+              .from("#about p", { y: 20, opacity: 0, duration: 0.8, ease: "power3.out" }, "-=0.8")
+              .from("#about .flex-wrap a", { y: 20, opacity: 0, duration: 0.8, stagger: 0.1, ease: "power3.out" }, "-=0.6");
+
+        // 5. Scroll Reveal Animations
+        // Section Headers
+        gsap.utils.toArray('section').forEach(section => {
+            if (section.id === 'about') return; 
+            const h2 = section.querySelector('h2');
+            if(h2) {
+                gsap.from(h2, {
+                    scrollTrigger: {
+                        trigger: section,
+                        start: "top 85%",
+                    },
+                    y: 30,
+                    opacity: 0,
+                    duration: 0.8,
+                    ease: "power3.out"
+                });
+            }
+        });
+
+        // Tech Stack Columns
+        gsap.from("#stack .grid > div", {
+            scrollTrigger: {
+                trigger: "#stack",
+                start: "top 80%",
+            },
+            y: 40,
+            opacity: 0,
+            duration: 0.8,
+            stagger: 0.15,
+            ease: "power3.out"
+        });
+
+        // Journey Timeline
+        gsap.from("#journey .flex", {
+            scrollTrigger: {
+                trigger: "#journey",
+                start: "top 80%",
+            },
+            x: -20,
+            opacity: 0,
+            duration: 0.8,
+            stagger: 0.2,
+            ease: "power3.out"
+        });
+
+        // Project Cards
+        gsap.from(".card", {
+            scrollTrigger: {
+                trigger: "#projects",
+                start: "top 85%",
+            },
+            y: 50,
+            opacity: 0,
+            duration: 0.8,
+            stagger: 0.1,
+            ease: "power3.out"
+        });
+        
+        // Footer Reveal
+        gsap.from("footer div", {
+            scrollTrigger: {
+                trigger: "footer",
+                start: "top 95%",
+            },
+            y: 20,
+            opacity: 0,
+            duration: 0.8,
+            ease: "power3.out"
+        });
 
     </script>
 </body>
