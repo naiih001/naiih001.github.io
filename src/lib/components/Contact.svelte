@@ -1,109 +1,68 @@
 <script lang="ts">
 	import { site, socials } from '$lib/data';
-
-	let name = $state('');
-	let email = $state('');
-	let message = $state('');
-	let error = $state('');
-	let success = $state(false);
-
-	function validateEmail(v: string) {
-		return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
-	}
-
-	function onSubmit(e: Event) {
-		e.preventDefault();
-		error = '';
-		success = false;
-		if (!name.trim() || !email.trim() || !message.trim()) {
-			error = 'Please fill in all fields.';
-			return;
-		}
-		if (!validateEmail(email)) {
-			error = 'Please enter a valid email address.';
-			return;
-		}
-		success = true;
-		name = '';
-		email = '';
-		message = '';
-	}
 </script>
 
-<section id="contact" class="mx-auto max-w-6xl px-6 py-16 md:py-24">
-	<div class="grid gap-10 md:grid-cols-2">
-		<div>
-			<h2 class="text-3xl font-semibold tracking-tight text-[var(--color-text)]">Contact</h2>
-			<p class="mt-2 text-base leading-7 text-[var(--color-muted)]">
-				Reach out — dummy form below. No backend yet; submit shows a success state. Replace with a
-				SvelteKit action or email service when ready. Direct email also works.
-			</p>
-			<a href="mailto:{site.email}" class="mt-4 inline-block text-base font-medium text-[var(--color-text)] underline decoration-[var(--color-muted)] underline-offset-4 hover:decoration-[var(--color-text)]"
-				>{site.email}</a
-			>
-			<div class="mt-6 flex flex-wrap gap-2">
-				{#each socials as s (s.label)}
+<section id="contact" class="bg-[#fbf8f2] text-[#172033]">
+	<div class="mx-auto max-w-6xl px-6 py-20 md:py-28">
+		<div class="overflow-hidden rounded-[2rem] bg-[#172033] text-white shadow-[0_28px_90px_rgba(23,32,51,0.22)]">
+			<div class="grid gap-0 lg:grid-cols-[1.1fr_0.9fr]">
+				<div class="p-6 md:p-10 lg:p-12">
+					<h2 class="max-w-2xl text-4xl font-semibold leading-none tracking-tight md:text-6xl">
+						Have a backend-heavy role that needs product sense?
+					</h2>
+					<p class="mt-6 max-w-2xl text-lg leading-8 text-white/72">
+						Send the role, the team context, or the problem area. I read direct email first, and the links below are the fastest way to verify code and work history.
+					</p>
+					<div class="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
+						<a
+							href="mailto:{site.email}?subject=Backend%20Engineer%20Opportunity"
+							class="inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-base font-semibold text-[#172033] transition hover:bg-[#edf3f1]"
+							>Email Isaac</a
+						>
+						<a
+							href="#projects"
+							class="inline-flex items-center justify-center rounded-full border border-white/18 px-6 py-3 text-base font-semibold text-white transition hover:bg-white/10"
+							>Review projects</a
+						>
+					</div>
 					<a
-						href={s.href}
-						class="rounded-full border border-[var(--color-text)]/10 bg-[var(--color-surface)] px-3 py-1.5 text-sm font-medium text-[var(--color-text)] hover:bg-[var(--color-surface)]/80"
-						target={s.href.startsWith('http') ? '_blank' : undefined}
-						rel={s.href.startsWith('http') ? 'noreferrer' : undefined}>{s.label}</a
+						href="mailto:{site.email}"
+						class="mt-8 inline-block text-xl font-semibold text-white underline decoration-[#d17857]/60 underline-offset-8 transition hover:decoration-[#d17857] md:text-2xl"
+						>{site.email}</a
 					>
-				{/each}
+				</div>
+
+				<aside class="bg-white p-6 text-[#172033] md:p-10 lg:p-12">
+					<p class="text-sm font-semibold uppercase tracking-[0.18em] text-[#d17857]">Verify</p>
+					<h3 class="mt-4 text-3xl font-semibold leading-tight">Links recruiters usually need.</h3>
+					<div class="mt-8 grid gap-3">
+						{#each socials as s (s.label)}
+							<a
+								href={s.href}
+								class="group flex items-center justify-between rounded-2xl bg-[#f4efe7] px-4 py-3 text-base font-semibold text-[#172033] ring-1 ring-[#172033]/8 transition hover:bg-[#edf3f1]"
+								target={s.href.startsWith('http') ? '_blank' : undefined}
+								rel={s.href.startsWith('http') ? 'noreferrer' : undefined}
+							>
+								<span class="flex items-center gap-3">
+									<span class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white text-[#172033] ring-1 ring-[#172033]/10">
+										{#if s.label === 'GitHub'}
+											<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.77.6-3.36-1.18-3.36-1.18-.45-1.14-1.1-1.44-1.1-1.44-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.08-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.1.4-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02A9.5 9.5 0 0 1 12 6.8a9.5 9.5 0 0 1 2.5.33c1.9-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.63.71 1.03 1.61 1.03 2.71 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85v2.74c0 .27.16.59.67.49A10 10 0 0 0 12 2z"/></svg>
+										{:else if s.label === 'LinkedIn'}
+											<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.48-2.24-1.67-2.24-.91 0-1.45.61-1.69 1.2-.09.21-.11.5-.11.79v5.82H10V9h3.42v1.56a3.42 3.42 0 0 1 3.1-1.68c2.23 0 3.93 1.45 3.93 4.58zM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56z"/></svg>
+										{:else if s.label === 'X'}
+											<svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M18.9 2.25h2.74l-6 6.86L22.5 21.75h-5.6l-4.38-5.73L7.5 21.75H4.77l6.42-7.34L4.5 2.25h5.74l3.96 5.24zM17.04 19.58h1.52L7.08 4.12H5.39z"/></svg>
+										{:else}
+											<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
+										{/if}
+									</span>
+									{s.label}
+								</span>
+								<span class="text-[#d17857] transition group-hover:translate-x-0.5" aria-hidden="true">→</span>
+							</a>
+						{/each}
+					</div>
+				</aside>
 			</div>
 		</div>
-
-		<form
-			onsubmit={onSubmit}
-			class="rounded-xl border border-[var(--color-text)]/10 bg-[var(--color-surface)] p-5 md:p-6"
-			aria-label="Contact form"
-			novalidate
-		>
-			{#if error}
-				<p class="mb-4 rounded-lg border border-[var(--color-muted)]/30 bg-[var(--color-bg)] px-3 py-2 text-base text-[var(--color-text)]" role="alert"><span class="font-medium">Error:</span> {error}</p>
-			{/if}
-			{#if success}
-				<p class="mb-4 rounded-lg border border-[var(--color-text)]/15 bg-[var(--color-bg)]/50 px-3 py-2 text-base text-[var(--color-text)]" role="status">
-					<span class="font-medium">Success:</span> Demo — message not sent. Replace this handler with a real action/API. ✓
-				</p>
-			{/if}
-
-			<label class="block text-sm font-medium text-[var(--color-text)]" for="contact-name">Name</label>
-			<input
-				id="contact-name"
-				bind:value={name}
-				placeholder="Jane Doe"
-				autocomplete="name"
-				class="mt-1 w-full rounded-lg border border-[var(--color-text)]/15 bg-[var(--color-bg)] px-3 py-2 text-base text-[var(--color-text)] placeholder:text-[var(--color-muted)] outline-none focus:border-[var(--color-muted)] focus:ring-1 focus:ring-[var(--color-muted)]"
-			/>
-
-			<label class="mt-4 block text-sm font-medium text-[var(--color-text)]" for="contact-email">Email</label>
-			<input
-				id="contact-email"
-				bind:value={email}
-				placeholder="jane@example.com"
-				autocomplete="email"
-				class="mt-1 w-full rounded-lg border border-[var(--color-text)]/15 bg-[var(--color-bg)] px-3 py-2 text-base text-[var(--color-text)] placeholder:text-[var(--color-muted)] outline-none focus:border-[var(--color-muted)] focus:ring-1 focus:ring-[var(--color-muted)]"
-			/>
-
-			<label class="mt-4 block text-sm font-medium text-[var(--color-text)]" for="contact-message">Message</label>
-			<textarea
-				id="contact-message"
-				bind:value={message}
-				rows="4"
-				placeholder="Hi — I'd like to talk about..."
-				class="mt-1 w-full rounded-lg border border-[var(--color-text)]/15 bg-[var(--color-bg)] px-3 py-2 text-base text-[var(--color-text)] placeholder:text-[var(--color-muted)] outline-none focus:border-[var(--color-muted)] focus:ring-1 focus:ring-[var(--color-muted)]"
-			></textarea>
-
-			<button
-				type="submit"
-				class="mt-6 w-full rounded-full bg-[var(--color-text)] px-5 py-2.5 text-base font-medium text-[var(--color-bg)] hover:opacity-90"
-			>
-				Send message
-			</button>
-			<p class="mt-2 text-center text-sm text-[var(--color-muted)]">
-				Or <a href="mailto:{site.email}" class="text-[var(--color-text)] underline decoration-[var(--color-muted)] underline-offset-4 hover:decoration-[var(--color-text)]">email directly</a>
-			</p>
-		</form>
 	</div>
 </section>

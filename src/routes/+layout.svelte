@@ -16,8 +16,8 @@
 
 <svelte:head>
 	<link rel="icon" href={favicon} />
-	<title>Portfolio — Dummy Starter</title>
-	<meta name="description" content="Dummy portfolio starter — Hero, Experience, Stack, Projects, Contact. Replace data in $lib/data.ts." />
+	<title>Isaac Hayab — Backend Engineer</title>
+	<meta name="description" content="Backend engineer portfolio for Isaac Hayab, focused on Rust, TypeScript, reliable systems, and product-minded delivery." />
 </svelte:head>
 
 <Header />

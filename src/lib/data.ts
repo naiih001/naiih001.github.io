@@ -13,6 +13,7 @@ export type Experience = {
 	role: string;
 	period: string;
 	location: string;
+	summary: string;
 	bullets: string[];
 	tags: string[];
 };
@@ -23,6 +24,7 @@ export const experiences: Experience[] = [
 		role: 'Backend Engineer',
 		period: 'April / 2026 - September / 2026',
 		location: 'Remote · Berlin',
+		summary: 'Backend ownership across product dashboards, APIs, and cloud deployment paths.',
 		bullets: [
 			'Shipped customer-facing dashboard used by 40k+ MAU with SvelteKit and TypeScript.',
 			'Led migration from legacy REST to type-safe API layer, cutting fetch bugs by 60%.',
@@ -35,6 +37,7 @@ export const experiences: Experience[] = [
 		role: 'Full-Stack Developer',
 		period: '2021 — 2023',
 		location: 'Stockholm · Hybrid',
+		summary: 'Product delivery across commerce surfaces, CMS integration, and shared UI systems.',
 		bullets: [
 			'Built e-commerce storefront and CMS integration handling €2M monthly GMV.',
 			'Designed component library adopted across 3 product teams.',
@@ -47,6 +50,7 @@ export const experiences: Experience[] = [
 		role: 'Web Developer',
 		period: '2019 — 2021',
 		location: 'Remote',
+		summary: 'Client-facing web builds with a focus on accessible, performant delivery.',
 		bullets: [
 			'Delivered 20+ marketing sites and prototypes for startups and agencies.',
 			'Focused on accessibility and performance — 100% a11y audits on shipped projects.'
@@ -56,11 +60,12 @@ export const experiences: Experience[] = [
 ];
 
 export type StackItem = { name: string };
-export type StackCategory = { label: string; items: StackItem[] };
+export type StackCategory = { label: string; description: string; items: StackItem[] };
 
 export const stack: StackCategory[] = [
 	{
 		label: 'Frontend',
+		description: 'Readable product surfaces, typed routing, and interface systems that stay maintainable.',
 		items: [
 			{ name: 'TypeScript' },
 			{ name: 'Svelte / SvelteKit' },
@@ -71,6 +76,7 @@ export const stack: StackCategory[] = [
 	},
 	{
 		label: 'Backend',
+		description: 'APIs, persistence, validation, and service boundaries for production web products.',
 		items: [
 			{ name: 'Node.js' },
 			{ name: 'PostgreSQL' },
@@ -80,6 +86,7 @@ export const stack: StackCategory[] = [
 	},
 	{
 		label: 'Tooling',
+		description: 'The checks and delivery tools that keep releases boring in the best way.',
 		items: [
 			{ name: 'Git / GitHub' },
 			{ name: 'Playwright' },
@@ -92,6 +99,8 @@ export const stack: StackCategory[] = [
 export type Project = {
 	title: string;
 	description: string;
+	focus: string;
+	outcome: string;
 	tags: string[];
 	links: { github?: string; demo?: string };
 	featured?: boolean;
@@ -101,7 +110,9 @@ export const projects: Project[] = [
 	{
 		title: 'Pulse — Analytics Dashboard',
 		description:
-			'Real-time analytics UI with drag-and-drop widgets, role-based access, and CSV exports. Dummy data, real patterns.',
+			'Real-time analytics UI with drag-and-drop widgets, role-based access, and CSV exports for data-heavy teams.',
+		focus: 'Data-heavy product UI',
+		outcome: 'Dashboard architecture, access boundaries, and export flows.',
 		tags: ['SvelteKit', 'Tailwind', 'Charts'],
 		links: { github: 'https://github.com', demo: 'https://example.com' },
 		featured: true
@@ -109,7 +120,9 @@ export const projects: Project[] = [
 	{
 		title: 'Shelf — Minimal Storefront',
 		description:
-			'Headless commerce starter with cart, checkout, and CMS-driven content. Built to be swapped for any backend.',
+			'Headless commerce storefront with cart, checkout, and CMS-driven content. Built to be swapped for any backend.',
+		focus: 'Commerce workflow',
+		outcome: 'Composable storefront patterns with checkout-ready state.',
 		tags: ['SvelteKit', 'Stripe', 'CMS'],
 		links: { github: 'https://github.com', demo: 'https://example.com' }
 	},
@@ -117,6 +130,8 @@ export const projects: Project[] = [
 		title: 'Atlas — Docs Template',
 		description:
 			'Opinionated docs template with search, dark mode-ready tokens, and MDX pipeline. Replace content and ship.',
+		focus: 'Developer experience',
+		outcome: 'Searchable content structure and reusable documentation shell.',
 		tags: ['SvelteKit', 'MDX', 'Search'],
 		links: { github: 'https://github.com' }
 	},
@@ -124,6 +139,8 @@ export const projects: Project[] = [
 		title: 'Courier — Form Service',
 		description:
 			'Lightweight form handler with validation, spam protection, and webhook forwarding. Pair with any email service.',
+		focus: 'Backend utility',
+		outcome: 'Validation, spam filtering, and webhook delivery boundaries.',
 		tags: ['Node.js', 'Validation', 'Webhooks'],
 		links: { github: 'https://github.com' }
 	}
@@ -142,7 +159,7 @@ export const site = {
 	name: 'Isaac Hayab',
 	role: 'Backend Engineer - Rust & TypeScript',
 	tagline:
-		'I build fast, accessible web apps with clean design and solid engineering. This is a dummy starter — replace the copy and ship your own.',
+		'I build reliable backend systems and the product surfaces around them — fast, accessible, and engineered for handoff.',
 	location: 'Nigeria · Remote',
 	email: 'nommohhayab@outlook.com'
 };
