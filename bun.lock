@@ -6,6 +6,7 @@
       "name": "portfolio",
       "dependencies": {
         "@fontsource/climate-crisis": "^5.3.0",
+        "@fontsource/cormorant-garamond": "^5.3.0",
       },
       "devDependencies": {
         "@sveltejs/adapter-auto": "^7.0.1",
@@ -22,6 +23,8 @@
   },
   "packages": {
     "@fontsource/climate-crisis": ["@fontsource/climate-crisis@5.3.0", "", {}, "sha512-T2zI056z18qa+W4C7gMVO8ZkwGZ3cGbnexcx32jkX0PQO9kDt+rispAHH20NBZCvwP82ulU6T0tnqZ1sdpIAJQ=="],
+
+    "@fontsource/cormorant-garamond": ["@fontsource/cormorant-garamond@5.3.0", "", {}, "sha512-weuGsCirGVWBWqpt6YUp0yLThTe4G8YO45noq8wxeJCRvEpq5lFrxNMFSTxcyOyV5k5otzJ8guDzYegdYlcLMQ=="],
 
     "@jridgewell/gen-mapping": ["@jridgewell/gen-mapping@0.3.13", "", { "dependencies": { "@jridgewell/sourcemap-codec": "^1.5.0", "@jridgewell/trace-mapping": "^0.3.24" } }, "sha512-2kkt/7niJ6MgEPxF0bYdQ6etZaA+fQvDcLKckhy1yIQOzaoKjBBjSj63/aLVjYE3qhRt5dvM+uUyfCg6UKCBbA=="],
 

@@ -32,15 +32,15 @@ export const experiences: Experience[] = [
 	},
 	{
 		company: 'Kat\'s & Co Web3 LTD',
-		role: 'Web3 Backend Engineer',
-		period: 'April / 2026 - September / 2026',
+		role: 'Full-Stack Developer',
+		period: '2021 — 2023',
 		location: 'Stockholm · Hybrid',
 		bullets: [
 			'Built e-commerce storefront and CMS integration handling €2M monthly GMV.',
 			'Designed component library adopted across 3 product teams.',
 			'Improved Lighthouse performance score from 71 to 96.'
 		],
-		tags: ['React.js', 'Node.js', 'PostgreSQL', 'Figma']
+		tags: ['Next.js', 'Node.js', 'PostgreSQL', 'Figma']
 	},
 	{
 		company: 'Freelance',

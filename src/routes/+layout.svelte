@@ -1,6 +1,12 @@
 <script lang="ts">
 	import '../app.css';
 	import '@fontsource/climate-crisis';
+	import '@fontsource/cormorant-garamond/400.css';
+	import '@fontsource/cormorant-garamond/600.css';
+	import '@fontsource/cormorant-garamond/700.css';
+	import '@fontsource/cormorant-garamond/400-italic.css';
+	import '@fontsource/cormorant-garamond/600-italic.css';
+	import '@fontsource/cormorant-garamond/700-italic.css';
 	import favicon from '$lib/assets/favicon.svg';
 	import Footer from '$lib/components/Footer.svelte';
 	import Header from '$lib/components/Header.svelte';
