@@ -19,28 +19,28 @@ export type Experience = {
 
 export const experiences: Experience[] = [
 	{
-		company: 'Acme Inc.',
-		role: 'Frontend Engineer',
-		period: '2023 — Present',
+		company: 'Uptime Tech LTD',
+		role: 'Backend Engineer',
+		period: 'April / 2026 - September / 2026',
 		location: 'Remote · Berlin',
 		bullets: [
 			'Shipped customer-facing dashboard used by 40k+ MAU with SvelteKit and TypeScript.',
 			'Led migration from legacy REST to type-safe API layer, cutting fetch bugs by 60%.',
 			'Mentored 4 engineers and introduced visual regression testing into CI.'
 		],
-		tags: ['SvelteKit', 'TypeScript', 'Tailwind', 'Playwright']
+		tags: ['Next.js', 'TypeScript', 'AWS', 'Express.js']
 	},
 	{
-		company: 'North Studio',
-		role: 'Full-Stack Developer',
-		period: '2021 — 2023',
+		company: 'Kat\'s & Co Web3 LTD',
+		role: 'Web3 Backend Engineer',
+		period: 'April / 2026 - September / 2026',
 		location: 'Stockholm · Hybrid',
 		bullets: [
 			'Built e-commerce storefront and CMS integration handling €2M monthly GMV.',
 			'Designed component library adopted across 3 product teams.',
 			'Improved Lighthouse performance score from 71 to 96.'
 		],
-		tags: ['Next.js', 'Node.js', 'PostgreSQL', 'Figma']
+		tags: ['React.js', 'Node.js', 'PostgreSQL', 'Figma']
 	},
 	{
 		company: 'Freelance',
@@ -132,17 +132,17 @@ export const projects: Project[] = [
 export type SocialLink = { label: string; href: string };
 
 export const socials: SocialLink[] = [
-	{ label: 'GitHub', href: 'https://github.com' },
-	{ label: 'LinkedIn', href: 'https://linkedin.com' },
-	{ label: 'X', href: 'https://x.com' },
-	{ label: 'Email', href: 'mailto:hello@example.com' }
+	{ label: 'GitHub', href: 'https://github.com/naiih001' },
+	{ label: 'LinkedIn', href: 'https://linkedin.com/isaac_hayab' },
+	{ label: 'X', href: 'https://x.com/naet001' },
+	{ label: 'Email', href: 'mailto:nommohhayab@outlook.com' }
 ];
 
 export const site = {
-	name: 'Alex Rivera',
-	role: 'Frontend Engineer — Svelte & TypeScript',
+	name: 'Isaac Hayab',
+	role: 'Backend Engineer - Rust & TypeScript',
 	tagline:
 		'I build fast, accessible web apps with clean design and solid engineering. This is a dummy starter — replace the copy and ship your own.',
-	location: 'Berlin · Remote',
-	email: 'hello@example.com'
+	location: 'Nigeria · Remote',
+	email: 'nommohhayab@outlook.com'
 };

@@ -15,7 +15,7 @@
 		{#each experiences as exp (exp.company + exp.period)}
 			<div class="relative pb-10 last:pb-0">
 				<span
-					class="absolute -left-[29px] top-1.5 h-3 w-3 rounded-full border-2 border-white bg-zinc-900 ring-1 ring-zinc-200"
+					class="absolute -left-[29px] top-1.5 h-3 w-3 rounded-full border-2 border-zinc-50 bg-zinc-900 ring-1 ring-zinc-200"
 					aria-hidden="true"
 				></span>
 				<div class="flex flex-wrap items-baseline justify-between gap-2">
@@ -32,7 +32,7 @@
 				<div class="mt-3 flex flex-wrap gap-2">
 					{#each exp.tags as tag (tag)}
 						<span
-							class="rounded-full border border-zinc-200 bg-white px-2.5 py-1 text-xs text-zinc-700"
+							class="rounded-full border border-zinc-200 bg-zinc-50 px-2.5 py-1 text-xs text-zinc-700"
 							>{tag}</span
 						>
 					{/each}

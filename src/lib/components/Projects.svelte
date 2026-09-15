@@ -11,11 +11,11 @@
 	<div class="grid gap-6 md:grid-cols-2">
 		{#each projects as p (p.title)}
 			<article
-				class="flex flex-col overflow-hidden rounded-xl border border-zinc-200 bg-white transition hover:border-zinc-300"
+				class="flex flex-col overflow-hidden rounded-xl border border-zinc-200 bg-zinc-50 transition hover:border-zinc-300"
 			>
 				<div class="aspect-[16/9] bg-zinc-100 p-6">
 					<div
-						class="flex h-full items-center justify-center rounded-lg border border-dashed border-zinc-300 bg-white text-xs text-zinc-500"
+						class="flex h-full items-center justify-center rounded-lg border border-dashed border-zinc-300 bg-zinc-50 text-xs text-zinc-500"
 					>
 						Thumbnail placeholder
 					</div>

@@ -45,7 +45,7 @@
 				{#each socials as s (s.label)}
 					<a
 						href={s.href}
-						class="rounded-full border border-zinc-200 px-3 py-1.5 text-xs font-medium text-zinc-700 hover:bg-zinc-50"
+						class="rounded-full border border-zinc-200 px-3 py-1.5 text-xs font-medium text-zinc-700 hover:bg-zinc-100"
 						target={s.href.startsWith('http') ? '_blank' : undefined}
 						rel={s.href.startsWith('http') ? 'noreferrer' : undefined}>{s.label}</a
 					>
@@ -55,7 +55,7 @@
 
 		<form
 			onsubmit={onSubmit}
-			class="rounded-xl border border-zinc-200 bg-white p-5 md:p-6"
+			class="rounded-xl border border-zinc-200 bg-zinc-50 p-5 md:p-6"
 			aria-label="Contact form"
 			novalidate
 		>
