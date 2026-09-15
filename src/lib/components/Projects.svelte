@@ -11,11 +11,11 @@
 	<div class="grid gap-6 md:grid-cols-2">
 		{#each projects as p (p.title)}
 			<article
-				class="flex flex-col overflow-hidden rounded-xl border border-zinc-200 bg-zinc-50 transition hover:border-zinc-300"
+				class="flex flex-col overflow-hidden rounded border border-zinc-200 bg-zinc-50 transition hover:border-zinc-300"
 			>
 				<div class="aspect-[16/9] bg-zinc-100 p-6">
 					<div
-						class="flex h-full items-center justify-center rounded-lg border border-dashed border-zinc-300 bg-zinc-50 text-sm"
+						class="flex h-full items-center justify-center rounded border border-dashed border-zinc-300 bg-zinc-50 text-sm"
 					>
 						Thumbnail placeholder
 					</div>
@@ -24,7 +24,7 @@
 					<div class="flex items-start justify-between gap-3">
 						<h3 class="text-base font-semibold">{p.title}</h3>
 						{#if p.featured}
-							<span class="rounded-full bg-zinc-900 px-2 py-1 text-xs font-medium text-white"
+							<span class="rounded bg-zinc-900 px-2 py-1 text-xs font-medium text-white"
 								>Featured</span
 							>
 						{/if}
@@ -32,7 +32,7 @@
 					<p class="mt-2 line-clamp-3 text-base leading-6">{p.description}</p>
 					<div class="mt-3 flex flex-wrap gap-2">
 						{#each p.tags as tag (tag)}
-							<span class="rounded-full border border-zinc-200 bg-zinc-50 px-2.5 py-1 text-sm"
+							<span class="rounded border border-zinc-200 bg-zinc-50 px-2.5 py-1 text-sm"
 								>{tag}</span
 							>
 						{/each}

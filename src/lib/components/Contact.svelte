@@ -45,7 +45,7 @@
 				{#each socials as s (s.label)}
 					<a
 						href={s.href}
-						class="rounded-full border border-zinc-200 px-3 py-1.5 text-sm font-medium hover:bg-zinc-100"
+						class="rounded border border-zinc-200 px-3 py-1.5 text-sm font-medium hover:bg-zinc-100"
 						target={s.href.startsWith('http') ? '_blank' : undefined}
 						rel={s.href.startsWith('http') ? 'noreferrer' : undefined}>{s.label}</a
 					>
@@ -55,15 +55,15 @@
 
 		<form
 			onsubmit={onSubmit}
-			class="rounded-xl border border-zinc-200 bg-zinc-50 p-5 md:p-6"
+			class="rounded border border-zinc-200 bg-zinc-50 p-5 md:p-6"
 			aria-label="Contact form"
 			novalidate
 		>
 			{#if error}
-				<p class="mb-4 rounded-lg bg-red-50 px-3 py-2 text-base text-red-700" role="alert">{error}</p>
+				<p class="mb-4 rounded bg-red-50 px-3 py-2 text-base text-red-700" role="alert">{error}</p>
 			{/if}
 			{#if success}
-				<p class="mb-4 rounded-lg bg-green-50 px-3 py-2 text-base text-green-800" role="status">
+				<p class="mb-4 rounded bg-green-50 px-3 py-2 text-base text-green-800" role="status">
 					Demo — message not sent. Replace this handler with a real action/API. ✓
 				</p>
 			{/if}
@@ -74,7 +74,7 @@
 				bind:value={name}
 				placeholder="Jane Doe"
 				autocomplete="name"
-				class="mt-1 w-full rounded-lg border border-zinc-300 px-3 py-2 text-base outline-none focus:border-zinc-900 focus:ring-1 focus:ring-zinc-900"
+				class="mt-1 w-full rounded border border-zinc-300 px-3 py-2 text-base outline-none focus:border-zinc-900 focus:ring-1 focus:ring-zinc-900"
 			/>
 
 			<label class="mt-4 block text-sm font-medium" for="contact-email">Email</label>
@@ -83,7 +83,7 @@
 				bind:value={email}
 				placeholder="jane@example.com"
 				autocomplete="email"
-				class="mt-1 w-full rounded-lg border border-zinc-300 px-3 py-2 text-base outline-none focus:border-zinc-900 focus:ring-1 focus:ring-zinc-900"
+				class="mt-1 w-full rounded border border-zinc-300 px-3 py-2 text-base outline-none focus:border-zinc-900 focus:ring-1 focus:ring-zinc-900"
 			/>
 
 			<label class="mt-4 block text-sm font-medium" for="contact-message">Message</label>
@@ -92,12 +92,12 @@
 				bind:value={message}
 				rows="4"
 				placeholder="Hi — I'd like to talk about..."
-				class="mt-1 w-full rounded-lg border border-zinc-300 px-3 py-2 text-base outline-none focus:border-zinc-900 focus:ring-1 focus:ring-zinc-900"
+				class="mt-1 w-full rounded border border-zinc-300 px-3 py-2 text-base outline-none focus:border-zinc-900 focus:ring-1 focus:ring-zinc-900"
 			></textarea>
 
 			<button
 				type="submit"
-				class="mt-6 w-full rounded-full bg-zinc-900 px-5 py-2.5 text-base font-medium text-white hover:bg-zinc-800"
+				class="mt-6 w-full rounded bg-zinc-900 px-5 py-2.5 text-base font-medium text-white hover:bg-zinc-800"
 			>
 				Send message
 			</button>

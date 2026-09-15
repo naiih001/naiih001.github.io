@@ -11,12 +11,12 @@
 
 	<div class="mt-8 grid gap-6 md:grid-cols-3">
 		{#each stack as cat (cat.label)}
-			<div class="rounded-xl border border-zinc-200 bg-zinc-50 p-5">
+			<div class="rounded border border-zinc-200 bg-zinc-50 p-5">
 				<h3 class="text-base font-semibold">{cat.label}</h3>
 				<div class="mt-3 flex flex-wrap gap-2">
 					{#each cat.items as item (item.name)}
 						<span
-							class="rounded-full bg-zinc-900 px-3 py-1.5 text-sm font-medium text-white"
+							class="rounded bg-zinc-900 px-3 py-1.5 text-sm font-medium text-white"
 							>{item.name}</span
 						>
 					{/each}

@@ -22,10 +22,10 @@
 >
 	<div
 		class="pointer-events-auto relative flex items-center justify-center transition-all duration-500 ease-out {scrolled
-			? 'h-14 w-[calc(100%-2rem)] max-w-3xl rounded-full border border-white/40 bg-white/70 px-5 shadow-[0_8px_32px_rgba(0,0,0,0.12),0_2px_8px_rgba(0,0,0,0.08)] backdrop-blur-xl supports-[backdrop-filter]:bg-white/65 md:h-14 md:px-6'
+			? 'h-14 w-[calc(100%-2rem)] max-w-3xl rounded-2xl border border-[var(--color-text)]/15 bg-[var(--color-surface)]/85 px-5 shadow-[0_8px_32px_rgba(7,25,52,0.35)] backdrop-blur-xl md:h-14 md:px-6'
 			: 'h-16 w-full max-w-6xl border border-transparent bg-transparent px-6'}"
 		style={scrolled
-			? 'backdrop-filter: blur(20px) saturate(180%); -webkit-backdrop-filter: blur(20px) saturate(180%); box-shadow: inset 0 1px 0 rgba(255,255,255,0.6), 0 8px 32px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.08);'
+			? 'backdrop-filter: blur(20px) saturate(160%); -webkit-backdrop-filter: blur(20px) saturate(160%); box-shadow: inset 0 1px 0 rgba(146,150,156,0.12), 0 8px 32px rgba(7,25,52,0.35);'
 			: undefined}
 	>
 		<nav class="hidden items-center gap-6 md:flex" aria-label="Primary">
@@ -33,23 +33,21 @@
 				<a
 					href={item.href}
 					class="text-base transition-colors {scrolled
-						? 'text-[#92969C] hover:text-zinc-900'
-						: 'text-white/90 hover:text-white'}">{item.label}</a
+						? 'text-[var(--color-muted)] hover:text-[var(--color-text)]'
+						: 'text-[var(--color-text)]/80 hover:text-[var(--color-text)]'}">{item.label}</a
 				>
 			{/each}
 			<a
 				href="#contact"
-				class="rounded-full px-4 py-2 text-base font-medium transition-colors {scrolled
-					? 'bg-zinc-900 text-white hover:bg-zinc-800'
-					: 'bg-white text-zinc-900 hover:bg-zinc-100'}"
+				class="rounded-full px-4 py-2 text-base font-medium transition-colors bg-[var(--color-text)] text-[var(--color-bg)] hover:opacity-90"
 				>Contact</a
 			>
 		</nav>
 
 		<button
 			class="rounded-full border px-3 py-2 text-base transition-colors md:hidden {scrolled
-				? 'border-zinc-200/60 bg-white/60 text-[#92969C] backdrop-blur hover:bg-white/80'
-				: 'border-white/30 text-white hover:bg-white/10'}"
+				? 'border-[var(--color-text)]/15 bg-[var(--color-surface)] text-[var(--color-muted)] backdrop-blur hover:bg-[var(--color-surface)]/80 hover:text-[var(--color-text)]'
+				: 'border-[var(--color-text)]/20 bg-[var(--color-surface)]/60 text-[var(--color-text)] hover:bg-[var(--color-surface)]'}"
 			onclick={() => (open = !open)}
 			aria-expanded={open}
 			aria-controls="mobile-nav"
@@ -62,10 +60,10 @@
 			<nav
 				id="mobile-nav"
 				class="absolute left-0 right-0 top-[calc(100%+12px)] px-4 py-4 md:hidden {scrolled
-					? 'rounded-2xl border border-white/30 bg-white/80 shadow-lg backdrop-blur-xl supports-[backdrop-filter]:bg-white/75'
-					: 'rounded-2xl border border-white/15 bg-zinc-900/85 backdrop-blur-xl'}"
+					? 'rounded-2xl border border-[var(--color-text)]/15 bg-[var(--color-surface)] shadow-lg backdrop-blur-xl'
+					: 'rounded-2xl border border-[var(--color-text)]/15 bg-[var(--color-surface)]/95 backdrop-blur-xl'}"
 				style={scrolled
-					? 'backdrop-filter: blur(20px) saturate(180%); -webkit-backdrop-filter: blur(20px) saturate(180%);'
+					? 'backdrop-filter: blur(20px) saturate(160%); -webkit-backdrop-filter: blur(20px) saturate(160%);'
 					: undefined}
 				aria-label="Mobile"
 			>
@@ -74,17 +72,13 @@
 						<a
 							href={item.href}
 							onclick={() => (open = false)}
-							class="py-1 text-base transition-colors {scrolled
-								? 'text-[#92969C] hover:text-zinc-900'
-								: 'text-white/90 hover:text-white'}">{item.label}</a
+							class="py-1 text-base transition-colors text-[var(--color-muted)] hover:text-[var(--color-text)]">{item.label}</a
 						>
 					{/each}
 					<a
 						href="#contact"
 						onclick={() => (open = false)}
-						class="mt-2 rounded-full px-4 py-2 text-center text-base font-medium transition-colors {scrolled
-							? 'bg-zinc-900 text-white'
-							: 'bg-white text-zinc-900'}"
+						class="mt-2 rounded-full px-4 py-2 text-center text-base font-medium transition-colors bg-[var(--color-text)] text-[var(--color-bg)] hover:opacity-90"
 						>Contact</a
 					>
 				</div>
