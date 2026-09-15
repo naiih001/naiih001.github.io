@@ -32,14 +32,14 @@
 			{#each navItems as item (item.href)}
 				<a
 					href={item.href}
-					class="text-sm transition-colors {scrolled
+					class="text-base transition-colors {scrolled
 						? 'text-zinc-600 hover:text-zinc-900'
 						: 'text-white/90 hover:text-white'}">{item.label}</a
 				>
 			{/each}
 			<a
 				href="#contact"
-				class="rounded-full px-4 py-2 text-sm font-medium transition-colors {scrolled
+				class="rounded-full px-4 py-2 text-base font-medium transition-colors {scrolled
 					? 'bg-zinc-900 text-white hover:bg-zinc-800'
 					: 'bg-white text-zinc-900 hover:bg-zinc-100'}"
 				>Contact</a
@@ -47,7 +47,7 @@
 		</nav>
 
 		<button
-			class="rounded-full border px-3 py-2 text-sm transition-colors md:hidden {scrolled
+			class="rounded-full border px-3 py-2 text-base transition-colors md:hidden {scrolled
 				? 'border-zinc-200/60 bg-white/60 text-zinc-700 backdrop-blur hover:bg-white/80'
 				: 'border-white/30 text-white hover:bg-white/10'}"
 			onclick={() => (open = !open)}
@@ -74,7 +74,7 @@
 						<a
 							href={item.href}
 							onclick={() => (open = false)}
-							class="py-1 text-sm transition-colors {scrolled
+							class="py-1 text-base transition-colors {scrolled
 								? 'text-zinc-700 hover:text-zinc-900'
 								: 'text-white/90 hover:text-white'}">{item.label}</a
 						>
@@ -82,7 +82,7 @@
 					<a
 						href="#contact"
 						onclick={() => (open = false)}
-						class="mt-2 rounded-full px-4 py-2 text-center text-sm font-medium transition-colors {scrolled
+						class="mt-2 rounded-full px-4 py-2 text-center text-base font-medium transition-colors {scrolled
 							? 'bg-zinc-900 text-white'
 							: 'bg-white text-zinc-900'}"
 						>Contact</a
