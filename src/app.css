@@ -16,6 +16,7 @@ body {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	background-color: rgb(250 250 250);
+	color: #92969c; /* #92969C requested — muted grey; hero keeps white via explicit classes */
 }
 
 @media (prefers-reduced-motion: reduce) {

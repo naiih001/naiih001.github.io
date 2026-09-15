@@ -33,19 +33,19 @@
 <section id="contact" class="mx-auto max-w-6xl px-6 py-16 md:py-24">
 	<div class="grid gap-10 md:grid-cols-2">
 		<div>
-			<h2 class="text-3xl font-semibold tracking-tight text-zinc-900">Contact</h2>
-			<p class="mt-2 text-base leading-7 text-zinc-600">
+			<h2 class="text-3xl font-semibold tracking-tight">Contact</h2>
+			<p class="mt-2 text-base leading-7">
 				Reach out — dummy form below. No backend yet; submit shows a success state. Replace with a
 				SvelteKit action or email service when ready. Direct email also works.
 			</p>
-			<a href="mailto:{site.email}" class="mt-4 inline-block text-base font-medium text-zinc-900 underline"
+			<a href="mailto:{site.email}" class="mt-4 inline-block text-base font-medium underline"
 				>{site.email}</a
 			>
 			<div class="mt-6 flex flex-wrap gap-2">
 				{#each socials as s (s.label)}
 					<a
 						href={s.href}
-						class="rounded-full border border-zinc-200 px-3 py-1.5 text-sm font-medium text-zinc-700 hover:bg-zinc-100"
+						class="rounded-full border border-zinc-200 px-3 py-1.5 text-sm font-medium hover:bg-zinc-100"
 						target={s.href.startsWith('http') ? '_blank' : undefined}
 						rel={s.href.startsWith('http') ? 'noreferrer' : undefined}>{s.label}</a
 					>
@@ -68,7 +68,7 @@
 				</p>
 			{/if}
 
-			<label class="block text-sm font-medium text-zinc-700" for="contact-name">Name</label>
+			<label class="block text-sm font-medium" for="contact-name">Name</label>
 			<input
 				id="contact-name"
 				bind:value={name}
@@ -77,7 +77,7 @@
 				class="mt-1 w-full rounded-lg border border-zinc-300 px-3 py-2 text-base outline-none focus:border-zinc-900 focus:ring-1 focus:ring-zinc-900"
 			/>
 
-			<label class="mt-4 block text-sm font-medium text-zinc-700" for="contact-email">Email</label>
+			<label class="mt-4 block text-sm font-medium" for="contact-email">Email</label>
 			<input
 				id="contact-email"
 				bind:value={email}
@@ -86,7 +86,7 @@
 				class="mt-1 w-full rounded-lg border border-zinc-300 px-3 py-2 text-base outline-none focus:border-zinc-900 focus:ring-1 focus:ring-zinc-900"
 			/>
 
-			<label class="mt-4 block text-sm font-medium text-zinc-700" for="contact-message">Message</label>
+			<label class="mt-4 block text-sm font-medium" for="contact-message">Message</label>
 			<textarea
 				id="contact-message"
 				bind:value={message}
@@ -101,7 +101,7 @@
 			>
 				Send message
 			</button>
-			<p class="mt-2 text-center text-sm text-zinc-500">
+			<p class="mt-2 text-center text-sm">
 				Or <a href="mailto:{site.email}" class="underline">email directly</a>
 			</p>
 		</form>

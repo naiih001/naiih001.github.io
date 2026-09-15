@@ -5,10 +5,10 @@
 <section id="experience" class="mx-auto max-w-6xl px-6 py-16 md:py-24">
 	<div class="mb-8 flex items-end justify-between gap-4">
 		<div>
-			<h2 class="text-3xl font-semibold tracking-tight text-zinc-900">Experience</h2>
-			<p class="mt-1 text-base text-zinc-500">Dummy timeline — replace with your real roles.</p>
+			<h2 class="text-3xl font-semibold tracking-tight">Experience</h2>
+			<p class="mt-1 text-base">Dummy timeline — replace with your real roles.</p>
 		</div>
-		<span class="hidden text-sm text-zinc-400 md:block">3 roles · edit in $lib/data.ts</span>
+		<span class="hidden text-sm md:block">3 roles · edit in $lib/data.ts</span>
 	</div>
 
 	<div class="relative border-l border-zinc-200 pl-6">
@@ -19,20 +19,19 @@
 					aria-hidden="true"
 				></span>
 				<div class="flex flex-wrap items-baseline justify-between gap-2">
-					<h3 class="text-base font-semibold text-zinc-900">
-						{exp.role} <span class="font-normal text-zinc-500">@ {exp.company}</span>
+					<h3 class="text-base font-semibold">
+						{exp.role} <span class="font-normal">@ {exp.company}</span>
 					</h3>
-					<span class="text-sm text-zinc-500">{exp.period} · {exp.location}</span>
+					<span class="text-sm">{exp.period} · {exp.location}</span>
 				</div>
-				<ul class="mt-3 list-disc space-y-1 pl-5 text-base leading-7 text-zinc-600">
+				<ul class="mt-3 list-disc space-y-1 pl-5 text-base leading-7">
 					{#each exp.bullets as b (b)}
 						<li>{b}</li>
 					{/each}
 				</ul>
 				<div class="mt-3 flex flex-wrap gap-2">
 					{#each exp.tags as tag (tag)}
-						<span
-							class="rounded-full border border-zinc-200 bg-zinc-50 px-2.5 py-1 text-sm text-zinc-700"
+						<span class="rounded-full border border-zinc-200 bg-zinc-50 px-2.5 py-1 text-sm"
 							>{tag}</span
 						>
 					{/each}

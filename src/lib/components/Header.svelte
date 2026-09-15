@@ -33,7 +33,7 @@
 				<a
 					href={item.href}
 					class="text-base transition-colors {scrolled
-						? 'text-zinc-600 hover:text-zinc-900'
+						? 'text-[#92969C] hover:text-zinc-900'
 						: 'text-white/90 hover:text-white'}">{item.label}</a
 				>
 			{/each}
@@ -48,7 +48,7 @@
 
 		<button
 			class="rounded-full border px-3 py-2 text-base transition-colors md:hidden {scrolled
-				? 'border-zinc-200/60 bg-white/60 text-zinc-700 backdrop-blur hover:bg-white/80'
+				? 'border-zinc-200/60 bg-white/60 text-[#92969C] backdrop-blur hover:bg-white/80'
 				: 'border-white/30 text-white hover:bg-white/10'}"
 			onclick={() => (open = !open)}
 			aria-expanded={open}
@@ -75,7 +75,7 @@
 							href={item.href}
 							onclick={() => (open = false)}
 							class="py-1 text-base transition-colors {scrolled
-								? 'text-zinc-700 hover:text-zinc-900'
+								? 'text-[#92969C] hover:text-zinc-900'
 								: 'text-white/90 hover:text-white'}">{item.label}</a
 						>
 					{/each}
