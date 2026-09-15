@@ -7,11 +7,11 @@
 </script>
 
 <Hero />
-<div class="mx-auto max-w-6xl px-6"><hr class="border-zinc-200" /></div>
+<div class="mx-auto max-w-6xl px-6"><hr class="border-[var(--color-text)]/10" /></div>
 <Experience />
-<div class="mx-auto max-w-6xl px-6"><hr class="border-zinc-200" /></div>
+<div class="mx-auto max-w-6xl px-6"><hr class="border-[var(--color-text)]/10" /></div>
 <Stack />
-<div class="mx-auto max-w-6xl px-6"><hr class="border-zinc-200" /></div>
+<div class="mx-auto max-w-6xl px-6"><hr class="border-[var(--color-text)]/10" /></div>
 <Projects />
-<div class="mx-auto max-w-6xl px-6"><hr class="border-zinc-200" /></div>
+<div class="mx-auto max-w-6xl px-6"><hr class="border-[var(--color-text)]/10" /></div>
 <Contact />

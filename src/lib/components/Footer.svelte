@@ -3,18 +3,16 @@
 </script>
 
 <footer
-	class="relative isolate flex min-h-[45vh] flex-col overflow-hidden border-t border-white/10 bg-zinc-900 md:min-h-[50vh]"
+	class="relative isolate flex min-h-[45vh] flex-col overflow-hidden border-t border-[var(--color-text)]/10 bg-[var(--color-bg)] md:min-h-[50vh]"
 >
-	<!-- Latest ~/Downloads image copied to static/footer-bg.jpg → served as /footer-bg.jpg -->
 	<div
 		class="absolute inset-0 -z-10 bg-cover bg-center"
 		style="background-image: url('/footer-bg.jpg')"
 		aria-hidden="true"
 	></div>
-	<div class="absolute inset-0 -z-10 bg-black/60" aria-hidden="true"></div>
+	<div class="absolute inset-0 -z-10 bg-[var(--color-bg)]/70" aria-hidden="true"></div>
 
 	<div class="relative z-10 mx-auto flex w-full max-w-6xl flex-1 flex-col px-6">
-		<!-- Statement / CTA zone — intentionally fills the half-page -->
 		<div class="flex flex-1 flex-col justify-center gap-6 py-12 md:py-16">
 			<p class="text-sm font-medium uppercase tracking-[0.2em] text-white/60">
 				Available for new projects — Let's work together
@@ -48,7 +46,6 @@
 			</div>
 		</div>
 
-		<!-- Bottom bar — fine print stays pinned to bottom -->
 		<div
 			class="flex flex-col gap-4 border-t border-white/10 py-6 md:flex-row md:items-center md:justify-between"
 		>
