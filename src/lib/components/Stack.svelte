@@ -3,14 +3,17 @@
 </script>
 
 <section id="stack" class="relative overflow-hidden bg-[#fbf8f2] text-[#172033]">
-	<img
-		src="/stack-bg.jpeg"
-		alt=""
-		aria-hidden="true"
-		loading="lazy"
-		decoding="async"
-		class="pointer-events-none absolute inset-0 h-full w-full object-cover"
-	/>
+	<picture aria-hidden="true" class="pointer-events-none absolute inset-0">
+		<source media="(max-width: 640px)" srcset="/stack-bg-mobile.webp" type="image/webp" />
+		<source media="(max-width: 640px)" srcset="/stack-bg-mobile.jpeg" />
+		<img
+			src="/stack-bg.jpeg"
+			alt=""
+			loading="lazy"
+			decoding="async"
+			class="h-full w-full object-cover max-sm:object-[center_38%] sm:object-center"
+		/>
+	</picture>
 	<div class="pointer-events-none absolute inset-0 bg-[#fbf8f2]/32" aria-hidden="true"></div>
 	<div class="relative mx-auto max-w-6xl px-6 py-20 md:py-28">
 		<div class="grid gap-8 md:grid-cols-[0.9fr_1.1fr] md:items-end">

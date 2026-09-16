@@ -15,9 +15,6 @@
 
 	<div class="relative z-10 mx-auto flex w-full max-w-6xl flex-1 flex-col px-6">
 		<div class="flex flex-1 flex-col justify-center gap-6 py-12 md:py-16">
-			<p class="text-sm font-medium uppercase tracking-[0.2em] text-white/60">
-				Available for new projects — Let's work together
-			</p>
 			<h2
 				class="max-w-4xl text-balance text-5xl font-semibold leading-[0.85] tracking-tight text-white md:text-7xl lg:text-8xl"
 			>
@@ -53,7 +50,7 @@
 		>
 			<p class="text-sm text-white/60">
 				© {new Date().getFullYear()}
-				{site.name} · {site.location} · Built with SvelteKit & Tailwind · Built with <a
+				{site.name} · Built with <a
 					href="https://github.com/naiih001/lean"
 					target="_blank"
 					rel="noreferrer"

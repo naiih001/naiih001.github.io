@@ -73,7 +73,7 @@
 		class="relative mx-auto flex w-full max-w-6xl px-6 pt-16 pb-20 md:pt-28 md:pb-28 lg:pt-32 lg:pb-32"
 	>
 		<div class="max-w-2xl mr-auto text-left [text-shadow:0_1px_12px_rgba(7,25,52,0.9)]">
-			<p data-hero-item class="mb-3 text-base font-medium tracking-wide text-white/70">
+			<p data-hero-item class="mb-3 text-xs font-medium tracking-wide text-white/70">
 				{site.location} · Available for new projects
 			</p>
 			<h1 data-hero-item class="text-left text-4xl tracking-tight text-white md:text-5xl">
