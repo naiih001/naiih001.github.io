@@ -3,6 +3,7 @@
 	import gsap from 'gsap';
 	import { ScrollTrigger } from 'gsap/ScrollTrigger';
 	import { site, socials } from '$lib/data';
+	import SocialIcon from '$lib/components/SocialIcon.svelte';
 
 	gsap.registerPlugin(ScrollTrigger);
 
@@ -94,13 +95,14 @@
 					>Get in touch</a
 				>
 			</div>
-			<div data-hero-item class="mt-8 flex flex-wrap justify-start gap-3">
+			<div data-hero-item class="mt-8 flex flex-wrap justify-start gap-2">
 				{#each socials as s (s.label)}
 					<a
 						href={s.href}
-						class="rounded-full border border-white/20 bg-white/10 px-3 py-1.5 text-sm font-medium text-white/90 backdrop-blur hover:bg-white/20"
+						aria-label={s.label}
+						class="inline-flex size-9 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white/90 backdrop-blur hover:bg-white/20 hover:text-white"
 						target={s.href.startsWith('http') ? '_blank' : undefined}
-						rel={s.href.startsWith('http') ? 'noreferrer' : undefined}>{s.label}</a
+						rel={s.href.startsWith('http') ? 'noreferrer' : undefined}><SocialIcon label={s.label} /></a
 					>
 				{/each}
 			</div>

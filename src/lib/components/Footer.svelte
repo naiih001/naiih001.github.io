@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { site, socials } from '$lib/data';
+	import SocialIcon from '$lib/components/SocialIcon.svelte';
 </script>
 
 <footer
@@ -33,9 +34,10 @@
 				{#each socials as s (s.label)}
 					<a
 						href={s.href}
-						class="rounded-full border border-white/20 px-4 py-1.5 text-sm font-medium text-zinc-100 hover:bg-white/10 hover:text-white"
+						aria-label={s.label}
+						class="inline-flex size-9 items-center justify-center rounded-full border border-white/20 text-zinc-100 hover:bg-white/10 hover:text-white"
 						target={s.href.startsWith('http') ? '_blank' : undefined}
-						rel={s.href.startsWith('http') ? 'noreferrer' : undefined}>{s.label}</a
+						rel={s.href.startsWith('http') ? 'noreferrer' : undefined}><SocialIcon label={s.label} /></a
 					>
 				{/each}
 				<a
