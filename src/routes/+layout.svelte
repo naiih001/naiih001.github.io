@@ -14,32 +14,67 @@
 	let { children } = $props();
 
 	onMount(() => {
-		const centerContact = () => {
-			const card =
-				(document.getElementById('contact-card') as HTMLElement | null) ??
-				(document.getElementById('contact') as HTMLElement | null);
-			if (!card) return;
-			const rect = card.getBoundingClientRect();
-			const top = window.scrollY + rect.top - (window.innerHeight - rect.height) / 2;
+		const isMobile = () => window.matchMedia('(max-width: 767px)').matches;
+		const getHeaderH = () => document.querySelector('header')?.getBoundingClientRect().height ?? 64;
+
+		const centerTarget = (id: string) => {
+			if (!id) return;
+			if (id === 'hero') {
+				const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+				window.scrollTo({ top: 0, behavior: reduced ? ('instant' as ScrollBehavior) : 'smooth' });
+				history.pushState(null, '', '#hero');
+				return;
+			}
+			let el: HTMLElement | null = null;
+			if (id === 'contact') {
+				el =
+					(document.getElementById('contact-card') as HTMLElement | null) ??
+					(document.getElementById('contact') as HTMLElement | null);
+			} else {
+				el = document.getElementById(id) as HTMLElement | null;
+			}
+			if (!el) return;
+
+			// Desktop: keep native scroll-padding behavior, don't override
+			if (!isMobile()) return;
+
+			const headerH = getHeaderH();
+			const vh = window.visualViewport?.height ?? window.innerHeight;
+			const avail = vh - headerH;
+			const rect = el.getBoundingClientRect();
+			const h = rect.height;
+			let top: number;
+			if (h >= avail) {
+				top = window.scrollY + rect.top - headerH - 12;
+			} else {
+				top = window.scrollY + rect.top - headerH - (avail - h) / 2;
+			}
 			const maxTop = document.documentElement.scrollHeight - window.innerHeight;
 			const clamped = Math.max(0, Math.min(top, maxTop));
 			const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-			window.scrollTo({ top: clamped, behavior: reduced ? 'instant' as ScrollBehavior : 'smooth' });
-			history.pushState(null, '', '#contact');
+			window.scrollTo({ top: clamped, behavior: reduced ? ('instant' as ScrollBehavior) : 'smooth' });
+			history.pushState(null, '', `#${id}`);
 		};
 
 		const onClick = (e: MouseEvent) => {
 			const target = e.target as HTMLElement;
-			const anchor = target.closest('a[href="#contact"]') as HTMLAnchorElement | null;
+			const anchor = target.closest('a[href^="#"]') as HTMLAnchorElement | null;
 			if (!anchor) return;
+			const href = anchor.getAttribute('href') ?? '';
+			if (!href.startsWith('#') || href.length < 2) return;
+			const id = href.slice(1);
+			if (!document.getElementById(id) && !(id === 'contact' && (document.getElementById('contact-card') || document.getElementById('contact')))) return;
+			if (!isMobile()) return;
 			e.preventDefault();
-			centerContact();
+			// Wait for mobile sheet to close/unmount before measuring
+			requestAnimationFrame(() => setTimeout(() => centerTarget(id), 70));
 		};
 		document.addEventListener('click', onClick);
 
-		// If landing directly on #contact, center after layout
-		if (location.hash === '#contact') {
-			requestAnimationFrame(() => setTimeout(centerContact, 80));
+		// If landing directly on a hash, center after layout (mobile only)
+		if (location.hash && location.hash.length > 1) {
+			const hashId = location.hash.slice(1);
+			requestAnimationFrame(() => setTimeout(() => centerTarget(hashId), 80));
 		}
 
 		return () => document.removeEventListener('click', onClick);

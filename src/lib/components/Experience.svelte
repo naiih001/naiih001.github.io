@@ -35,7 +35,7 @@
 						<div class="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
 							<div>
 								<h3 class="text-2xl font-semibold leading-tight text-[#172033]">{exp.role}</h3>
-								<p class="mt-1 text-base font-medium text-[#536070]">{#if exp.companyUrl}<a href={exp.companyUrl} target="_blank" rel="noopener noreferrer" class="underline decoration-[#172033]/20 underline-offset-4 hover:text-[#172033] hover:decoration-[#172033]/40" aria-label="{exp.company} — external site">{exp.company}<span aria-hidden="true"> ↗︎</span></a>{:else}{exp.company}{/if} · {exp.location}</p>
+								<p class="mt-1 text-base font-medium text-[#536070]">{#if exp.companyUrl}<a href={exp.companyUrl} target="_blank" rel="noopener noreferrer" class="underline decoration-[#172033]/20 underline-offset-4 hover:text-[#172033] hover:decoration-[#172033]/40" aria-label="{exp.company} — external site">{exp.company}<span aria-hidden="true" class="hidden sm:inline"> ↗︎</span></a>{:else}{exp.company}{/if} · {exp.location}</p>
 							</div>
 							<p class="shrink-0 rounded-full bg-[#edf3f1] px-3 py-1.5 text-sm font-medium text-[#2f5f57]">{exp.period}</p>
 						</div>
