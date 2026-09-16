@@ -311,21 +311,7 @@
 					class="flex w-full items-center justify-center gap-2 rounded-full bg-[#172033] px-6 py-4 text-base font-semibold text-white shadow-[0_12px_32px_rgba(23,32,51,0.18)] hover:bg-[#1e2a44]"
 					>Get in touch <span aria-hidden="true">→</span></a
 				>
-				<div
-					class="flex items-center justify-between rounded-2xl bg-white px-4 py-3 ring-1 ring-[#172033]/10"
-				>
-					<div class="flex flex-col">
-						<span class="text-sm font-semibold text-[#172033]">{site.name}</span>
-						<span class="text-xs font-medium tracking-[0.12em] uppercase text-[#536070]"
-							>{site.location}</span
-						>
-					</div>
-					<a
-						href="mailto:{site.email}"
-						class="rounded-full bg-[#edf3f1] px-4 py-2 text-sm font-semibold text-[#2f5f57] ring-1 ring-[#2f5f57]/10"
-						>{site.email}</a
-					>
-				</div>
+
 				<p class="text-center text-xs font-medium tracking-[0.14em] uppercase text-[#536070]">
 					Available for new projects
 				</p>
