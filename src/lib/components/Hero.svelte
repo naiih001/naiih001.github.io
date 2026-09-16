@@ -119,6 +119,12 @@
 					>
 				{/each}
 			</div>
+			<p data-hero-item class="mt-4 text-left text-sm text-white/60 md:hidden">
+				Built with <a href="https://github.com/naiih001/lean" target="_blank" rel="noreferrer" class="italic text-white/90 underline decoration-white/25 underline-offset-4 hover:text-white hover:decoration-white/50">lean</a>
+			</p>
 		</div>
 	</div>
+	<p data-hero-item class="hidden md:block absolute bottom-6 right-6 text-sm text-white/60 md:bottom-8 md:right-8 lg:bottom-8 lg:right-8">
+		Built with <a href="https://github.com/naiih001/lean" target="_blank" rel="noreferrer" class="italic text-white/90 underline decoration-white/25 underline-offset-4 hover:text-white hover:decoration-white/50">lean</a>
+	</p>
 </section>

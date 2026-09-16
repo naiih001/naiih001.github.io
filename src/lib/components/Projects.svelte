@@ -4,6 +4,13 @@
 
 	let parchIndex = $state(0);
 	let failed = $state<Record<string, boolean>>({});
+	let activeTag = $state('All');
+
+	let allTags = $derived([...new Set(projects.flatMap((p) => p.tags))].sort((a, b) => a.localeCompare(b)));
+	let tagCounts = $derived(
+		Object.fromEntries(allTags.map((t) => [t, projects.filter((p) => p.tags.includes(t)).length]))
+	);
+	let filtered = $derived(activeTag === 'All' ? projects : projects.filter((p) => p.tags.includes(activeTag)));
 
 	function webpOf(png: string) {
 		return png.replace(/\.png$/i, '.webp');
@@ -24,8 +31,45 @@
 			</p>
 		</div>
 
-		<div class="grid gap-5 md:grid-cols-2">
-			{#each projects as p, index (p.title)}
+		<div class="mb-6 flex flex-wrap gap-1.5" role="group" aria-label="Filter projects by tag">
+			<button
+				type="button"
+				aria-pressed={activeTag === 'All'}
+				onclick={() => (activeTag = 'All')}
+				class="rounded-full px-3 py-1 text-xs font-medium ring-1 transition {activeTag === 'All'
+					? 'bg-[#172033] text-white ring-[#172033]'
+					: 'bg-[#fbf8f2] text-[#536070] ring-[#172033]/[0.06] hover:bg-white hover:ring-[#172033]/10'}"
+			>
+				All <span class="opacity-60 font-normal">({projects.length})</span>
+			</button>
+			{#each allTags as t (t)}
+				<button
+					type="button"
+					aria-pressed={activeTag === t}
+					onclick={() => (activeTag = t)}
+					class="rounded-full px-3 py-1 text-xs font-medium ring-1 transition {activeTag === t
+						? 'bg-[#172033] text-white ring-[#172033]'
+						: 'bg-[#fbf8f2] text-[#536070] ring-[#172033]/[0.06] hover:bg-white hover:ring-[#172033]/10'}"
+				>
+					{t} <span class="opacity-60 font-normal">({tagCounts[t]})</span>
+				</button>
+			{/each}
+		</div>
+
+		{#if filtered.length === 0}
+			<div class="rounded-2xl bg-white p-10 text-center ring-1 ring-[#172033]/10">
+				<p class="text-base font-medium text-[#172033]">No projects match "{activeTag}".</p>
+				<button
+					type="button"
+					onclick={() => (activeTag = 'All')}
+					class="mt-4 rounded-full bg-[#172033] px-5 py-2 text-sm font-semibold text-white transition hover:bg-[#1e2b47]"
+				>
+					Clear filter
+				</button>
+			</div>
+		{:else}
+			<div class="grid gap-5 md:grid-cols-2">
+				{#each filtered as p, index (p.title)}
 				{@const imgs = p.images ?? (p.image ? [p.image] : [])}
 				{@const hasImage = imgs.length > 0}
 				{@const isCarousel = (p.images?.length ?? 0) > 1}
@@ -116,10 +160,17 @@
 							<p class="text-sm font-semibold uppercase tracking-[0.14em] text-[#d17857]">Outcome</p>
 							<p class="mt-2 text-base leading-7 text-[#2c3648]">{p.outcome}</p>
 						</div>
-						<div class="mt-5 flex flex-wrap items-center gap-2">
-							{#each p.tags as tag (tag)}
+						<div class="mt-4 flex flex-wrap items-center gap-1.5">
+							{#each p.tags.slice(0, 4) as tag (tag)}
 								<TechIcon label={tag} />
 							{/each}
+							{#if p.tags.length > 4}
+								<span
+									title={p.tags.slice(4).join(', ')}
+									class="rounded-full bg-[#f6f1ea] px-2.5 py-1 text-xs font-medium leading-none text-[#536070] ring-1 ring-[#172033]/[0.06]"
+									>+{p.tags.length - 4}</span
+								>
+							{/if}
 						</div>
 						<div class="mt-auto flex gap-4 pt-6">
 							{#if p.links.github}
@@ -144,6 +195,7 @@
 					</div>
 				</article>
 			{/each}
-		</div>
+			</div>
+		{/if}
 	</div>
 </section>

@@ -53,7 +53,13 @@
 		>
 			<p class="text-sm text-white/60">
 				© {new Date().getFullYear()}
-				{site.name} · {site.location} · Built with SvelteKit & Tailwind · Dummy starter.
+				{site.name} · {site.location} · Built with SvelteKit & Tailwind · Built with <a
+					href="https://github.com/naiih001/lean"
+					target="_blank"
+					rel="noreferrer"
+					class="italic underline decoration-white/20 underline-offset-4 hover:text-white hover:decoration-white/40"
+					>lean</a
+				>
 			</p>
 			<a href="#hero" class="shrink-0 text-sm text-white/60 hover:text-white">Back to top ↑</a>
 		</div>
