@@ -77,8 +77,8 @@
 				{site.location} · Available for new projects
 			</p>
 			<h1 data-hero-item class="text-left text-4xl tracking-tight text-white md:text-5xl">
-				<span class="font-display font-normal">{site.name}</span>
-				<span class="block text-left text-2xl font-normal text-white/85 md:text-3xl">{site.role}</span>
+				<span class="font-semibold tracking-[-0.03em]">{site.name}</span>
+				<span class="block text-left text-2xl font-normal tracking-[-0.01em] text-white/85 md:text-3xl">{site.role}</span>
 			</h1>
 			<p data-hero-item class="mt-4 max-w-xl text-left text-base md:text-lg leading-7 text-white/80">
 				{site.tagline}

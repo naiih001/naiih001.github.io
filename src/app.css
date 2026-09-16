@@ -1,8 +1,9 @@
 @import 'tailwindcss';
 
 @theme {
-	--font-sans: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
-	--font-display: 'Climate Crisis', system-ui, sans-serif;
+	--font-sans: 'Instrument Sans', system-ui, -apple-system, sans-serif;
+	--font-display: 'Instrument Sans', system-ui, sans-serif;
+	--font-mono: 'Geist Mono', 'JetBrains Mono', monospace;
 	--color-bg: #071934;
 	--color-surface: #2a3345;
 	--color-muted: #898887;

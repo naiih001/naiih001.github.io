@@ -28,7 +28,7 @@
 									<span class="rounded-full bg-white px-3 py-1 text-xs font-semibold text-[#172033]">Featured</span>
 								{/if}
 							</div>
-							<p class="font-display text-5xl leading-none text-white/92 md:text-6xl">{String(index + 1).padStart(2, '0')}</p>
+							<p class="font-mono text-5xl font-medium leading-none tracking-tighter text-white/92 md:text-6xl">{String(index + 1).padStart(2, '0')}</p>
 						</div>
 					</div>
 
