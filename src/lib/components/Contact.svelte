@@ -4,7 +4,7 @@
 
 <section id="contact" class="bg-[#fbf8f2] text-[#172033]">
 	<div class="mx-auto max-w-6xl px-6 py-20 md:py-28">
-		<div class="overflow-hidden rounded-[2rem] shadow-[0_28px_90px_rgba(23,32,51,0.22)]">
+		<div id="contact-card" class="overflow-hidden rounded-[2rem] shadow-[0_28px_90px_rgba(23,32,51,0.22)] scroll-mt-8">
 			<div class="grid gap-0 lg:grid-cols-[1.1fr_0.9fr]">
 				<div class="relative overflow-hidden p-6 text-white md:p-10 lg:p-12">
 					<img

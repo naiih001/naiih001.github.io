@@ -9,8 +9,41 @@
 	import '@fontsource/prata/400.css';
 	import Footer from '$lib/components/Footer.svelte';
 	import Header from '$lib/components/Header.svelte';
+	import { onMount } from 'svelte';
 
 	let { children } = $props();
+
+	onMount(() => {
+		const centerContact = () => {
+			const card =
+				(document.getElementById('contact-card') as HTMLElement | null) ??
+				(document.getElementById('contact') as HTMLElement | null);
+			if (!card) return;
+			const rect = card.getBoundingClientRect();
+			const top = window.scrollY + rect.top - (window.innerHeight - rect.height) / 2;
+			const maxTop = document.documentElement.scrollHeight - window.innerHeight;
+			const clamped = Math.max(0, Math.min(top, maxTop));
+			const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+			window.scrollTo({ top: clamped, behavior: reduced ? 'instant' as ScrollBehavior : 'smooth' });
+			history.pushState(null, '', '#contact');
+		};
+
+		const onClick = (e: MouseEvent) => {
+			const target = e.target as HTMLElement;
+			const anchor = target.closest('a[href="#contact"]') as HTMLAnchorElement | null;
+			if (!anchor) return;
+			e.preventDefault();
+			centerContact();
+		};
+		document.addEventListener('click', onClick);
+
+		// If landing directly on #contact, center after layout
+		if (location.hash === '#contact') {
+			requestAnimationFrame(() => setTimeout(centerContact, 80));
+		}
+
+		return () => document.removeEventListener('click', onClick);
+	});
 </script>
 
 <svelte:head>
