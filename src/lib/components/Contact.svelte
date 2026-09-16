@@ -4,9 +4,20 @@
 
 <section id="contact" class="bg-[#fbf8f2] text-[#172033]">
 	<div class="mx-auto max-w-6xl px-6 py-20 md:py-28">
-		<div class="overflow-hidden rounded-[2rem] bg-[#172033] text-white shadow-[0_28px_90px_rgba(23,32,51,0.22)]">
+		<div class="overflow-hidden rounded-[2rem] shadow-[0_28px_90px_rgba(23,32,51,0.22)]">
 			<div class="grid gap-0 lg:grid-cols-[1.1fr_0.9fr]">
-				<div class="p-6 md:p-10 lg:p-12">
+				<div class="relative overflow-hidden p-6 text-white md:p-10 lg:p-12">
+					<img
+						src="/contact-bg.jpg"
+						alt=""
+						aria-hidden="true"
+						loading="lazy"
+						decoding="async"
+						class="pointer-events-none absolute inset-0 h-full w-full object-cover"
+					/>
+					<div class="pointer-events-none absolute inset-0 bg-[#172033]/70" aria-hidden="true"></div>
+					<div class="pointer-events-none absolute inset-0 bg-gradient-to-br from-[#172033]/45 via-transparent to-[#172033]/35" aria-hidden="true"></div>
+					<div class="relative">
 					<h2 class="max-w-2xl text-4xl font-semibold leading-none tracking-tight md:text-6xl">
 						Have a backend-heavy role that needs product sense?
 					</h2>
@@ -30,6 +41,7 @@
 						class="mt-8 inline-block text-xl font-semibold text-white underline decoration-[#d17857]/60 underline-offset-8 transition hover:decoration-[#d17857] md:text-2xl"
 						>{site.email}</a
 					>
+					</div>
 				</div>
 
 				<aside class="bg-white p-6 text-[#172033] md:p-10 lg:p-12">
