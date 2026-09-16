@@ -1,4 +1,5 @@
 <script lang="ts">
+	import TechIcon from '$lib/components/TechIcon.svelte';
 	import { experiences } from '$lib/data';
 </script>
 
@@ -47,9 +48,9 @@
 								</li>
 							{/each}
 						</ul>
-						<div class="mt-5 flex flex-wrap gap-2">
+						<div class="mt-5 flex flex-wrap items-center gap-2">
 							{#each exp.tags as tag (tag)}
-								<span class="rounded-full bg-[#f6f1ea] px-3 py-1.5 text-sm font-medium text-[#536070] ring-1 ring-[#172033]/8">{tag}</span>
+								<TechIcon label={tag} />
 							{/each}
 						</div>
 					</article>

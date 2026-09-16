@@ -1,4 +1,5 @@
 <script lang="ts">
+	import TechIcon from '$lib/components/TechIcon.svelte';
 	import { projects } from '$lib/data';
 </script>
 
@@ -39,9 +40,9 @@
 							<p class="text-sm font-semibold uppercase tracking-[0.14em] text-[#d17857]">Outcome</p>
 							<p class="mt-2 text-base leading-7 text-[#2c3648]">{p.outcome}</p>
 						</div>
-						<div class="mt-5 flex flex-wrap gap-2">
+						<div class="mt-5 flex flex-wrap items-center gap-2">
 							{#each p.tags as tag (tag)}
-								<span class="rounded-full bg-[#edf3f1] px-3 py-1.5 text-sm font-medium text-[#2f5f57] ring-1 ring-[#2f5f57]/10">{tag}</span>
+								<TechIcon label={tag} />
 							{/each}
 						</div>
 						<div class="mt-auto flex gap-4 pt-6">
