@@ -9,6 +9,8 @@
 
 	let video: HTMLVideoElement | undefined = $state();
 	let section: HTMLElement | undefined = $state();
+	let cvOpen = $state(false);
+	let cvWrap: HTMLDivElement | undefined = $state();
 
 	onMount(() => {
 		const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -39,8 +41,19 @@
 			}, sectionEl);
 		}
 
+		const onDocClick = (e: MouseEvent) => {
+			if (cvOpen && cvWrap && !cvWrap.contains(e.target as Node)) cvOpen = false;
+		};
+		const onKey = (e: KeyboardEvent) => {
+			if (e.key === 'Escape') cvOpen = false;
+		};
+			document.addEventListener('click', onDocClick);
+			document.addEventListener('keydown', onKey);
+
 		return () => {
 			ctx?.revert();
+			document.removeEventListener('click', onDocClick);
+			document.removeEventListener('keydown', onKey);
 		};
 	});
 </script>
@@ -94,6 +107,51 @@
 					class="rounded-full border border-white/25 bg-white/10 px-5 py-2.5 text-base font-medium text-white backdrop-blur hover:bg-white/20"
 					>Get in touch</a
 				>
+				<div bind:this={cvWrap} class="relative">
+					<button
+						type="button"
+						class="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-5 py-2.5 text-base font-medium text-white backdrop-blur hover:bg-white/20"
+						aria-haspopup="menu"
+						aria-expanded={cvOpen}
+						onclick={(e) => { e.stopPropagation(); cvOpen = !cvOpen; }}
+					>
+						<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v13"/><path d="M7 12l5 5 5-5"/><path d="M3 17v2a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-2"/></svg>
+						Download CV
+						<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="transition-transform duration-200 {cvOpen ? 'rotate-180' : ''}"><path d="m6 9 6 6 6-6"/></svg>
+					</button>
+					<div
+							role="menu"
+							hidden={!cvOpen}
+							class="absolute left-0 top-[calc(100%+10px)] z-20 min-w-[220px] overflow-hidden rounded-[20px] border border-white/30 bg-white/70 p-1.5 shadow-[0_16px_48px_rgba(7,25,52,0.28),inset_0_1px_0_rgba(255,255,255,0.65)] backdrop-blur-2xl supports-[backdrop-filter]:bg-white/55 {cvOpen ? 'block' : 'hidden'}"
+							style="backdrop-filter: blur(20px) saturate(180%); -webkit-backdrop-filter: blur(20px) saturate(180%);"
+						>
+							<a
+								role="menuitem"
+								href="/CV.pdf"
+								download="Isaac-Hayab-CV.pdf"
+								class="group flex items-center justify-between rounded-[14px] px-3.5 py-2.5 text-sm font-medium text-[#172033] hover:bg-[#172033]/90 hover:text-white hover:backdrop-blur transition-all"
+								onclick={() => (cvOpen = false)}
+							>
+								<span class="flex items-center gap-2"><span class="grid h-7 w-7 place-items-center rounded-full bg-[#d17857]/15 text-[#d17857]"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M10 13H8"/><path d="M12 13v6"/><path d="M10 19h4"/></svg></span> PDF</span><span class="text-xs tracking-wide text-[#536070] group-hover:text-white/70">31 KB</span>
+							</a>
+							<a
+								role="menuitem"
+								href="/CV.docx"
+								download="Isaac-Hayab-CV.docx"
+								class="group flex items-center justify-between rounded-[14px] px-3.5 py-2.5 text-sm font-medium text-[#172033] hover:bg-[#172033]/90 hover:text-white hover:backdrop-blur transition-all"
+								onclick={() => (cvOpen = false)}
+							>
+								<span class="flex items-center gap-2"><span class="grid h-7 w-7 place-items-center rounded-full bg-[#2f5f57]/12 text-[#2f5f57]"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h3a2 2 0 0 1 0 4H8z"/><path d="M8 17h2"/></svg></span> DOCX</span><span class="text-xs tracking-wide text-[#536070]">39 KB</span>
+							</a>
+						</div>
+				</div>
+			</div>
+			<!-- Agent/bot fallback: always in DOM and visible to crawlers/LLMs that don't run JS -->
+			<div class="sr-only" aria-hidden="false">
+				<a href="/cv.pdf" download="Isaac-Hayab-CV.pdf" type="application/pdf">Download CV — PDF</a>
+				<a href="/cv.docx" download="Isaac-Hayab-CV.docx" type="application/vnd.openxmlformats-officedocument.wordprocessingml.document">Download CV — DOCX</a>
+				<a href="/CV.pdf" type="application/pdf">CV PDF (alternate case)</a>
+				<a href="/CV.docx" type="application/vnd.openxmlformats-officedocument.wordprocessingml.document">CV DOCX (alternate case)</a>
 			</div>
 			<div data-hero-item class="mt-8 flex flex-wrap justify-start gap-2">
 				{#each socials as s (s.label)}

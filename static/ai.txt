@@ -1,0 +1,5 @@
+# Isaac Hayab — CV access for AI agents
+PDF: /cv.pdf
+DOCX: /cv.docx
+Also: /CV.pdf and /CV.docx (case-insensitive alias)
+See /llms.txt for full context.

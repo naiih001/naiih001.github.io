@@ -23,16 +23,18 @@ export const experiences: Experience[] = [
 		company: 'Uptime Tech',
 		companyUrl: 'https://www.useuptime.site/',
 		role: 'Backend Engineer',
-		period: 'Apr 2026 – Jul 2026',
+		period: 'Apr 2026 – Sep 2026',
 		location: 'Lagos, Nigeria',
 		summary:
-			'Built and maintained NestJS/Express TypeScript REST APIs and PostgreSQL + Prisma data layers for core platform features and predictive maintenance routes.',
+			'Shipped features across NestJS/Express + PostgreSQL/Prisma APIs and React frontend — owned predictive maintenance, employee management and inventory features with performance and reliability hardening on a production ops platform.',
 		bullets: [
-			'Built and maintained NestJS/Express TypeScript REST APIs powering core platform features with emphasis on correctness, reliability, and clean data models using PostgreSQL.',
-			'Developed predictive maintenance capabilities and supporting API routes consumed by internal dashboards.',
-			'Wrote automated tests that improved coverage and reduced production regressions; participated in code reviews and production issue diagnosis.'
+			'Hardened NestJS/Express + Prisma/Postgres data layer: added NGN/GBP currency, org slug uniqueness and validation, eliminated N+1 on asset lists (2 queries removed, 2× throughput), plus cron inventory alerts, seed permissions and streaming PDF/CSV exports.',
+			'Built employee management vertical slice end-to-end: server pagination and bulk import; frontend list/detail/cards, bulk import with polling/progress/CSV, paginated error results (10/page) and dialog→sidebar refactors.',
+			'Shipped predictive maintenance and asset intelligence: dashboard, paginated failure predictions and recommended tasks, failure-history tab moved to right sidebar with snapshots, and fixed /predictive route param capture.',
+			'Improved frontend performance and reliability: React Query staleTime 30s to cut redundant fetches, lazy-init PowerSync WASM with 2s debounce, compile/runtime rendering cuts, fire-and-forget audits and DISTINCT optimization, plus auth/session and org-fetch race fixes.',
+			'Polished product surfaces: low-stock alert widget, Power BI-aligned charts, vendor→inventory navigation, org-currency dashboards and forms, Metadata→Customizations rename, communication red dot for unread and ports/Prisma regeneration fixes.'
 		],
-		tags: ['NestJS', 'Express', 'TypeScript', 'PostgreSQL', 'Prisma']
+		tags: ['NestJS', 'Express', 'TypeScript', 'PostgreSQL', 'Prisma', 'React', 'TanStack Query', 'PowerSync']
 	},
 	{
 		company: "Kat's & Co",

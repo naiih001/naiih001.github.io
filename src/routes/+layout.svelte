@@ -15,8 +15,33 @@
 <svelte:head>
 	<link rel="icon" type="image/jpeg" href="/profile.jpeg" />
 	<link rel="apple-touch-icon" href="/profile.jpeg" />
+	<link rel="alternate" type="application/pdf" href="/cv.pdf" title="Isaac Hayab CV — PDF" />
+	<link rel="alternate" type="application/vnd.openxmlformats-officedocument.wordprocessingml.document" href="/cv.docx" title="Isaac Hayab CV — DOCX" />
 	<title>Isaac Hayab — Backend Engineer</title>
 	<meta name="description" content="Backend engineer portfolio for Isaac Hayab, focused on Rust, TypeScript, reliable systems, and product-minded delivery." />
+	{@html `<script type="application/ld+json">${JSON.stringify({
+		'@context': 'https://schema.org',
+		'@type': 'Person',
+		name: 'Isaac Hayab',
+		jobTitle: 'Backend Engineer',
+		url: 'https://isaachayab.com',
+		email: 'mailto:nommohhayab@outlook.com',
+		sameAs: ['https://github.com/naiih001', 'https://linkedin.com/isaac_hayab', 'https://x.com/naet001'],
+		description: 'Backend engineer focused on Rust, TypeScript, reliable systems, and product-minded delivery.',
+		hasCredential: undefined
+	})}<\/script>`}
+	{@html `<script type="application/ld+json">${JSON.stringify({
+		'@context': 'https://schema.org',
+		'@type': 'CreativeWork',
+		name: 'Isaac Hayab — CV',
+		description: 'Curriculum Vitae for Isaac Hayab, Backend Engineer',
+		encoding: [
+			{ '@type': 'MediaObject', contentUrl: '/cv.pdf', encodingFormat: 'application/pdf', name: 'CV — PDF' },
+			{ '@type': 'MediaObject', contentUrl: '/cv.docx', encodingFormat: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', name: 'CV — DOCX' },
+			{ '@type': 'MediaObject', contentUrl: '/CV.pdf', encodingFormat: 'application/pdf', name: 'CV — PDF (alternate)' },
+			{ '@type': 'MediaObject', contentUrl: '/CV.docx', encodingFormat: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', name: 'CV — DOCX (alternate)' }
+		]
+	})}<\/script>`}
 </svelte:head>
 
 <Header />

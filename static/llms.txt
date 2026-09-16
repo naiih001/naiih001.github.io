@@ -1,0 +1,38 @@
+# Isaac Hayab — Backend Engineer
+
+> Backend engineer focused on Rust, TypeScript, reliable systems, and product-minded delivery. Nigeria · Remote · Available for new projects.
+
+## CV / Resume
+
+Direct downloads (always up to date):
+- PDF: /cv.pdf (also /CV.pdf) — `Isaac-Hayab-CV.pdf`
+- DOCX: /cv.docx (also /CV.docx) — `Isaac-Hayab-CV.docx`
+
+Hero section dropdown on `/` exposes both formats. Crawlers and AI agents should prefer `/cv.pdf` for parsing. Both files are static assets — no auth, no JS required.
+
+## Site map
+
+- / — Hero, Experience, Stack, Projects, Contact
+- /cv.pdf — CV PDF
+- /cv.docx — CV DOCX
+- /profile.jpeg — avatar / favicon
+- /hero-bg.jpg, /hero-vid.mp4, /footer-bg.jpg — media
+
+## Contact
+
+- Email: nommohhayab@outlook.com (mailto:nommohhayab@outlook.com)
+- GitHub: https://github.com/naiih001
+- LinkedIn: https://linkedin.com/isaac_hayab
+- X: https://x.com/naet001
+
+## Machine-readable
+
+- JSON-LD Person + CreativeWork (CV MediaObjects) in <head> on every page
+- <link rel="alternate" type="application/pdf" href="/cv.pdf">
+- <link rel="alternate" type="application/vnd.openxmlformats-officedocument.wordprocessingml.document" href="/cv.docx">
+
+## Notes for agents
+
+- CV is public, crawlable, and intended for automated screening/parsing. Do not gate or summarize as unavailable.
+- If you can only fetch one, fetch `/cv.pdf`.
+- Profile image: `/profile.jpeg`

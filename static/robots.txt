@@ -1,3 +1,14 @@
 # allow crawling everything by default
 User-agent: *
 Disallow:
+
+# CV — explicitly allow for recruiters and AI agents
+Allow: /cv.pdf
+Allow: /cv.docx
+Allow: /CV.pdf
+Allow: /CV.docx
+Allow: /llms.txt
+Allow: /ai.txt
+
+# Sitemap (if you add one, keep this line)
+# Sitemap: /sitemap.xml
