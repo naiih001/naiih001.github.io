@@ -8,7 +8,6 @@
 
 	let video: HTMLVideoElement | undefined = $state();
 	let section: HTMLElement | undefined = $state();
-	let showFade = $state(false);
 
 	onMount(() => {
 		const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -16,12 +15,6 @@
 			video?.pause();
 			video?.removeAttribute('autoplay');
 		}
-
-		const onScroll = () => {
-			showFade = window.scrollY > 20;
-		};
-		onScroll();
-		window.addEventListener('scroll', onScroll, { passive: true });
 
 		let ctx: gsap.Context | undefined;
 		if (!reduced && section && video) {
@@ -46,7 +39,6 @@
 		}
 
 		return () => {
-			window.removeEventListener('scroll', onScroll);
 			ctx?.revert();
 		};
 	});
@@ -76,11 +68,6 @@
 		aria-hidden="true"
 		class="absolute inset-0 bg-gradient-to-r from-[var(--color-bg)]/70 via-[var(--color-bg)]/30 to-transparent"
 	></div>
-	<div
-		aria-hidden="true"
-		class="pointer-events-none absolute inset-x-0 bottom-0 h-[100px] bg-gradient-to-t from-[#f4efe7] to-transparent transition-opacity duration-500 ease-out {showFade ? 'opacity-100' : 'opacity-0'}"
-	></div>
-
 	<div
 		class="relative mx-auto flex w-full max-w-6xl px-6 pt-16 pb-20 md:pt-28 md:pb-28 lg:pt-32 lg:pb-32"
 	>

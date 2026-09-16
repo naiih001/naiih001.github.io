@@ -37,11 +37,6 @@
 						: 'text-[var(--color-text)]/80 hover:text-[var(--color-text)]'}">{item.label}</a
 				>
 			{/each}
-			<a
-				href="#contact"
-				class="rounded-full px-4 py-2 text-base font-medium transition-colors bg-[var(--color-text)] text-[var(--color-bg)] hover:opacity-90"
-				>Contact</a
-			>
 		</nav>
 
 		<button
@@ -75,12 +70,6 @@
 							class="py-1 text-base transition-colors text-[var(--color-muted)] hover:text-[var(--color-text)]">{item.label}</a
 						>
 					{/each}
-					<a
-						href="#contact"
-						onclick={() => (open = false)}
-						class="mt-2 rounded-full px-4 py-2 text-center text-base font-medium transition-colors bg-[var(--color-text)] text-[var(--color-bg)] hover:opacity-90"
-						>Contact</a
-					>
 				</div>
 			</nav>
 		{/if}
