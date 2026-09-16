@@ -9,6 +9,7 @@ export const navItems: NavItem[] = [
 
 export type Experience = {
 	company: string;
+	companyUrl?: string;
 	role: string;
 	period: string;
 	location: string;
@@ -20,6 +21,7 @@ export type Experience = {
 export const experiences: Experience[] = [
 	{
 		company: 'Uptime Tech',
+		companyUrl: 'https://www.useuptime.site/',
 		role: 'Backend Engineer',
 		period: 'Apr 2026 – Jul 2026',
 		location: 'Lagos, Nigeria',
@@ -34,6 +36,7 @@ export const experiences: Experience[] = [
 	},
 	{
 		company: "Kat's & Co",
+		companyUrl: 'https://x.com/KatsDojo',
 		role: 'Web3 Backend Engineer',
 		period: 'Jan 2024 – Feb 2026',
 		location: 'Remote · Canada',
@@ -145,23 +148,43 @@ export type Project = {
 
 export const projects: Project[] = [
 	{
+		title: 'lean — Autonomous Coding Assistant',
+		description:
+			'Single-binary autonomous coding assistant in Rust (ratatui TUI, SSE streaming agent loop, 6 tools, skills system, MCP integration). Works with any OpenAI-compatible API — no Electron, no Node, just cargo build.',
+		focus: 'Rust systems & agent infra',
+		outcome: 'TUI, streaming agent loop, tool routing, and guarded execution.',
+		tags: ['Rust', 'ratatui', 'TUI', 'SSE', 'MCP', 'OpenAI API'],
+		links: { github: 'https://github.com/naiih001/lean' },
+		featured: true
+	},
+	{
+		title: 'tedii — Terminal Editor',
+		description:
+			'Keyboard-driven terminal editor in Rust — rope-based buffer, tree-sitter parsing, Lua (mlua) extensibility, git integration (gix), and clipboard support. Most-starred repo (6★), built for speed and low footprint.',
+		focus: 'Rust TUI & systems',
+		outcome: 'Rope buffer, syntax parsing, and Lua plugin surface.',
+		tags: ['Rust', 'ratatui', 'tree-sitter', 'Lua', 'ropey', 'gix'],
+		links: { github: 'https://github.com/naiih001/tedii' },
+		featured: true
+	},
+	{
 		title: 'ProTask API',
 		description:
 			'Multi-tenant task management REST API with full RBAC across normalized tables (users, teams, projects, tasks, comments). JWT auth, role-based guards, team invites, activity logging, pagination, filtering, rate limiting, and BullMQ/Redis background jobs.',
 		focus: 'Multi-tenant RBAC API',
 		outcome: 'Normalized data model, JWT guards, invites, activity log, and background processing.',
 		tags: ['NestJS', 'PostgreSQL', 'Prisma', 'JWT', 'BullMQ', 'Redis', 'Docker'],
-		links: { github: 'https://github.com/naiih001' },
+		links: { github: 'https://github.com/naiih001/protask' },
 		featured: true
 	},
 	{
-		title: 'PayFlow API',
+		title: 'zk-mcp — Zettelkasten MCP Server',
 		description:
-			'SaaS payment and subscription backend with idempotent Paystack webhook handling, plan-based feature gating, subscription lifecycle management, and secure payment flows — directly relevant to marketplace wallets, escrow, and booking payments.',
-		focus: 'Payments & subscriptions',
-		outcome: 'Idempotent webhooks, plan gating, and subscription lifecycle.',
-		tags: ['NestJS', 'PostgreSQL', 'Prisma', 'Paystack', 'BullMQ', 'Redis', 'Docker'],
-		links: { github: 'https://github.com/naiih001' },
+			'Zettelkasten note system as an MCP server (Streamable HTTP + stdio). Create, link, tag, search, and retrieve atomic notes via any MCP client — PostgreSQL + Prisma persistence, dual transports, and typed tool surface.',
+		focus: 'MCP & knowledge infra',
+		outcome: 'MCP tool surface, linked note graph, and Prisma persistence.',
+		tags: ['TypeScript', 'MCP', 'PostgreSQL', 'Prisma', 'Node.js'],
+		links: { github: 'https://github.com/naiih001/zk-mcp' },
 		featured: true
 	}
 ];
