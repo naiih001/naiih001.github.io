@@ -6,6 +6,7 @@
 	import '@fontsource/instrument-sans/700.css';
 	import '@fontsource/geist-mono/400.css';
 	import '@fontsource/geist-mono/500.css';
+	import '@fontsource/prata/400.css';
 	import Footer from '$lib/components/Footer.svelte';
 	import Header from '$lib/components/Header.svelte';
 

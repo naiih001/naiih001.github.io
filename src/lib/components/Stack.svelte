@@ -39,11 +39,5 @@
 			{/each}
 		</div>
 
-		<div class="mt-8 rounded-2xl bg-[#edf3f1] p-5 text-[#2f5f57] ring-1 ring-[#2f5f57]/10 md:flex md:items-center md:justify-between md:gap-8">
-			<p class="text-lg font-semibold">Best fit: backend-heavy teams that still care about the user-facing product.</p>
-			<p class="mt-2 max-w-xl text-base leading-7 md:mt-0">
-				Rust and TypeScript sit at the center; SvelteKit, Node, PostgreSQL, and tests support the work around them.
-			</p>
-		</div>
 	</div>
 </section>

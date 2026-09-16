@@ -275,9 +275,7 @@ export const socials: SocialLink[] = [
 
 export const site = {
 	name: 'Hayab Nommoh Isaac',
-	role: 'Senior Full-Stack Software Developer',
-	tagline:
-		'Full-stack engineer building production Node.js/TypeScript REST APIs, PostgreSQL + Prisma data layers, Redis/BullMQ processing, and modern web frontends — from investigation through deployment.',
+	role: 'Software Developer',
 	location: 'Niger, Nigeria · Remote Africa',
 	email: 'nommohhayab@outlook.com'
 };

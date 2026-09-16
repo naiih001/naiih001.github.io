@@ -2,7 +2,7 @@
 
 @theme {
 	--font-sans: 'Instrument Sans', system-ui, -apple-system, sans-serif;
-	--font-display: 'Instrument Sans', system-ui, sans-serif;
+	--font-display: 'Prata', serif;
 	--font-mono: 'Geist Mono', 'JetBrains Mono', monospace;
 	--color-bg: #071934;
 	--color-surface: #2a3345;
@@ -32,7 +32,11 @@ body {
 h1,
 h2,
 h3 {
+	font-family: var(--font-display);
+	font-weight: 400;
 	color: var(--color-text);
+	letter-spacing: -0.02em;
+	text-wrap: balance;
 }
 
 a:focus-visible,

@@ -11,6 +11,14 @@
 	let sheetEl: HTMLElement | undefined = $state();
 	let linkEls: Record<string, HTMLAnchorElement> = $state({} as any);
 	let indicatorStyle = $state('');
+	let suppressUntil = $state(0);
+
+	function handleNavClick(id: string) {
+		active = id;
+		suppressUntil = Date.now() + 700;
+		tick().then(updateIndicator);
+		requestAnimationFrame(updateIndicator);
+	}
 
 	function updateIndicator() {
 		if (!navEl) return;
@@ -39,6 +47,10 @@
 
 		const io = new IntersectionObserver(
 			(entries) => {
+				if (Date.now() < suppressUntil) {
+					requestAnimationFrame(updateIndicator);
+					return;
+				}
 				// pick the most visible / closest to top
 				const visible = entries
 					.filter((e) => e.isIntersecting)
@@ -169,12 +181,6 @@
 						? 'text-[#172033]'
 						: 'text-white'}">{site.name}</span
 				>
-				<span
-					class="text-[11px] font-medium tracking-[0.14em] uppercase transition-colors duration-500 {scrolled || open
-						? 'text-[#536070]'
-						: 'text-white/70'}">Backend Engineer</span
-				>
-			</span>
 			<span
 				class="sm:hidden text-[15px] font-semibold tracking-[-0.02em] transition-colors duration-500 {scrolled || open
 					? 'text-[#172033]'
@@ -201,6 +207,7 @@
 				<a
 					bind:this={linkEls[item.href]}
 					href={item.href}
+					onclick={() => handleNavClick(item.href.replace('#', ''))}
 					aria-current={isActive ? 'page' : undefined}
 					class="relative z-10 rounded-full px-4 py-[7px] text-sm font-medium transition-colors duration-300
 						{isActive

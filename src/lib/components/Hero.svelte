@@ -80,15 +80,7 @@
 				<span class="font-semibold tracking-[-0.03em]">{site.name}</span>
 				<span class="block text-left text-2xl font-normal tracking-[-0.01em] text-white/85 md:text-3xl">{site.role}</span>
 			</h1>
-			<p data-hero-item class="mt-4 max-w-xl text-left text-base md:text-lg leading-7 text-white/80">
-				{site.tagline}
-			</p>
 			<div data-hero-item class="mt-6 flex flex-wrap justify-start gap-3">
-				<a
-					href="#projects"
-					class="rounded-full bg-white px-5 py-2.5 text-base font-medium text-[var(--color-bg)] hover:opacity-90"
-					>View projects</a
-				>
 				<a
 					href="#contact"
 					class="rounded-full border border-white/25 bg-white/10 px-5 py-2.5 text-base font-medium text-white backdrop-blur hover:bg-white/20"

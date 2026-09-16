@@ -5,12 +5,27 @@
 	let parchIndex = $state(0);
 	let failed = $state<Record<string, boolean>>({});
 	let activeTag = $state('All');
+	let showAll = $state(false);
+	let showAllTags = $state(false);
+
+	const INITIAL_PROJECTS = 4;
+	const INITIAL_TAGS = 6;
+	const TAGS_PER_CARD = 3;
 
 	let allTags = $derived([...new Set(projects.flatMap((p) => p.tags))].sort((a, b) => a.localeCompare(b)));
 	let tagCounts = $derived(
 		Object.fromEntries(allTags.map((t) => [t, projects.filter((p) => p.tags.includes(t)).length]))
 	);
 	let filtered = $derived(activeTag === 'All' ? projects : projects.filter((p) => p.tags.includes(activeTag)));
+	let sortedTags = $derived([...allTags].sort((a, b) => (tagCounts[b] - tagCounts[a]) || a.localeCompare(b)));
+	let visibleFilterTags = $derived(showAllTags ? sortedTags : sortedTags.slice(0, INITIAL_TAGS));
+	let visibleProjects = $derived(showAll ? filtered : filtered.slice(0, INITIAL_PROJECTS));
+	let remaining = $derived(Math.max(0, filtered.length - INITIAL_PROJECTS));
+
+	$effect(() => {
+		void filtered.length;
+		showAll = false;
+	});
 
 	function webpOf(png: string) {
 		return png.replace(/\.png$/i, '.webp');
@@ -35,18 +50,18 @@
 			<button
 				type="button"
 				aria-pressed={activeTag === 'All'}
-				onclick={() => (activeTag = 'All')}
+				onclick={() => { activeTag = 'All'; showAll = false; }}
 				class="rounded-full px-3 py-1 text-xs font-medium ring-1 transition {activeTag === 'All'
 					? 'bg-[#172033] text-white ring-[#172033]'
 					: 'bg-[#fbf8f2] text-[#536070] ring-[#172033]/[0.06] hover:bg-white hover:ring-[#172033]/10'}"
 			>
 				All <span class="opacity-60 font-normal">({projects.length})</span>
 			</button>
-			{#each allTags as t (t)}
+			{#each visibleFilterTags as t (t)}
 				<button
 					type="button"
 					aria-pressed={activeTag === t}
-					onclick={() => (activeTag = t)}
+					onclick={() => { activeTag = t; showAll = false; }}
 					class="rounded-full px-3 py-1 text-xs font-medium ring-1 transition {activeTag === t
 						? 'bg-[#172033] text-white ring-[#172033]'
 						: 'bg-[#fbf8f2] text-[#536070] ring-[#172033]/[0.06] hover:bg-white hover:ring-[#172033]/10'}"
@@ -54,6 +69,15 @@
 					{t} <span class="opacity-60 font-normal">({tagCounts[t]})</span>
 				</button>
 			{/each}
+			{#if allTags.length > INITIAL_TAGS}
+				<button
+					type="button"
+					onclick={() => (showAllTags = !showAllTags)}
+					class="rounded-full px-3 py-1 text-xs font-medium ring-1 transition bg-white text-[#172033] ring-[#172033]/10 hover:bg-[#fbf8f2]"
+				>
+					{showAllTags ? 'Show fewer' : `+${allTags.length - INITIAL_TAGS} more`}
+				</button>
+			{/if}
 		</div>
 
 		{#if filtered.length === 0}
@@ -61,7 +85,7 @@
 				<p class="text-base font-medium text-[#172033]">No projects match "{activeTag}".</p>
 				<button
 					type="button"
-					onclick={() => (activeTag = 'All')}
+					onclick={() => { activeTag = 'All'; showAll = false; }}
 					class="mt-4 rounded-full bg-[#172033] px-5 py-2 text-sm font-semibold text-white transition hover:bg-[#1e2b47]"
 				>
 					Clear filter
@@ -69,7 +93,7 @@
 			</div>
 		{:else}
 			<div class="grid gap-5 md:grid-cols-2">
-				{#each filtered as p, index (p.title)}
+				{#each visibleProjects as p, index (p.title)}
 				{@const imgs = p.images ?? (p.image ? [p.image] : [])}
 				{@const hasImage = imgs.length > 0}
 				{@const isCarousel = (p.images?.length ?? 0) > 1}
@@ -161,14 +185,14 @@
 							<p class="mt-2 text-base leading-7 text-[#2c3648]">{p.outcome}</p>
 						</div>
 						<div class="mt-4 flex flex-wrap items-center gap-1.5">
-							{#each p.tags.slice(0, 4) as tag (tag)}
+							{#each p.tags.slice(0, TAGS_PER_CARD) as tag (tag)}
 								<TechIcon label={tag} />
 							{/each}
-							{#if p.tags.length > 4}
+							{#if p.tags.length > TAGS_PER_CARD}
 								<span
-									title={p.tags.slice(4).join(', ')}
+									title={p.tags.slice(TAGS_PER_CARD).join(', ')}
 									class="rounded-full bg-[#f6f1ea] px-2.5 py-1 text-xs font-medium leading-none text-[#536070] ring-1 ring-[#172033]/[0.06]"
-									>+{p.tags.length - 4}</span
+									>+{p.tags.length - TAGS_PER_CARD}</span
 								>
 							{/if}
 						</div>
@@ -196,6 +220,17 @@
 				</article>
 			{/each}
 			</div>
+			{#if filtered.length > INITIAL_PROJECTS}
+				<div class="mt-8 flex justify-center">
+					<button
+						type="button"
+						onclick={() => (showAll = !showAll)}
+						class="rounded-full bg-[#172033] px-6 py-2.5 text-sm font-semibold text-white transition hover:bg-[#1e2b47] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d17857] focus-visible:ring-offset-2 focus-visible:ring-offset-[#f4efe7]"
+					>
+						{showAll ? 'Show fewer projects' : `Show all projects (${remaining} more)`}
+					</button>
+				</div>
+			{/if}
 		{/if}
 	</div>
 </section>
