@@ -146,6 +146,8 @@ export type Project = {
 	tags: string[];
 	links: { github?: string; demo?: string };
 	featured?: boolean;
+	image?: string;
+	images?: string[];
 };
 
 export const projects: Project[] = [
@@ -157,7 +159,8 @@ export const projects: Project[] = [
 		outcome: 'Responsive showcase with image-led narrative and clean typographic system.',
 		tags: ['React', 'Next.js', 'Tailwind CSS', 'Vercel'],
 		links: { demo: 'https://lumina-rho-ten.vercel.app/' },
-		featured: true
+		featured: true,
+		image: '/projects/lumina.png'
 	},
 	{
 		title: 'PARCH — Founded Goods',
@@ -167,7 +170,8 @@ export const projects: Project[] = [
 		outcome: 'Minimal commerce UI with product carousels, reviews, and signup flow.',
 		tags: ['React', 'Next.js', 'Tailwind CSS', 'Vercel', 'E-commerce'],
 		links: { demo: 'https://parch-store.vercel.app/' },
-		featured: true
+		featured: true,
+		images: ['/projects/parch-1.png', '/projects/parch-2.png', '/projects/parch-3.png', '/projects/parch-4.png']
 	},
 	{
 		title: 'Golden Pizza',
@@ -176,7 +180,8 @@ export const projects: Project[] = [
 		focus: 'Restaurant & local business',
 		outcome: 'Menu-led site optimized for late-night discovery and local search.',
 		tags: ['React', 'Tailwind CSS', 'Vercel'],
-		links: { demo: 'https://client-research-lake.vercel.app/' }
+		links: { demo: 'https://client-research-lake.vercel.app/' },
+		image: '/projects/golden-pizza.png'
 	},
 	{
 		title: 'Praise Portfolio',
@@ -185,7 +190,8 @@ export const projects: Project[] = [
 		focus: 'Designer portfolio',
 		outcome: 'Case-study grid with testimonials and service sections.',
 		tags: ['React', 'Tailwind CSS', 'Framer Motion', 'Vercel'],
-		links: { demo: 'https://praise-portfolio-phi.vercel.app/' }
+		links: { demo: 'https://praise-portfolio-phi.vercel.app/' },
+		image: '/projects/praise-portfolio.png'
 	},
 	{
 		title: 'Terra',
@@ -194,7 +200,8 @@ export const projects: Project[] = [
 		focus: 'Brand landing page',
 		outcome: 'Editorial landing with sustainability storytelling and product hero.',
 		tags: ['React', 'Next.js', 'Tailwind CSS', 'Vercel'],
-		links: { demo: 'https://terra-water.vercel.app/' }
+		links: { demo: 'https://terra-water.vercel.app/' },
+		image: '/projects/terra.png'
 	},
 	{
 		title: 'tedii — Terminal Editor',
@@ -204,7 +211,8 @@ export const projects: Project[] = [
 		outcome: 'Rope buffer, syntax parsing, and Lua plugin surface.',
 		tags: ['Rust', 'ratatui', 'tree-sitter', 'Lua', 'ropey', 'gix'],
 		links: { github: 'https://github.com/naiih001/tedii' },
-		featured: true
+		featured: true,
+		image: '/projects/tedii.png'
 	},
 	{
 		title: 'zk-mcp — Zettelkasten MCP Server',

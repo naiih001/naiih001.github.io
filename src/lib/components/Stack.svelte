@@ -2,8 +2,17 @@
 	import { stack } from '$lib/data';
 </script>
 
-<section id="stack" class="bg-[#fbf8f2] text-[#172033]">
-	<div class="mx-auto max-w-6xl px-6 py-20 md:py-28">
+<section id="stack" class="relative overflow-hidden bg-[#fbf8f2] text-[#172033]">
+	<img
+		src="/stack-bg.jpeg"
+		alt=""
+		aria-hidden="true"
+		loading="lazy"
+		decoding="async"
+		class="pointer-events-none absolute inset-0 h-full w-full object-cover"
+	/>
+	<div class="pointer-events-none absolute inset-0 bg-[#fbf8f2]/62" aria-hidden="true"></div>
+	<div class="relative mx-auto max-w-6xl px-6 py-20 md:py-28">
 		<div class="grid gap-8 md:grid-cols-[0.9fr_1.1fr] md:items-end">
 			<div>
 				<h2 class="max-w-xl text-4xl font-semibold leading-none tracking-tight text-[#172033] md:text-6xl">
