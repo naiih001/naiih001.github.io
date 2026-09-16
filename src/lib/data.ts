@@ -150,33 +150,60 @@ export type Project = {
 
 export const projects: Project[] = [
 	{
-		title: 'lean — Autonomous Coding Assistant',
+		title: 'Lumina',
 		description:
-			'Single-binary autonomous coding assistant in Rust (ratatui TUI, SSE streaming agent loop, 6 tools, skills system, MCP integration). Works with any OpenAI-compatible API — no Electron, no Node, just cargo build.',
-		focus: 'Rust systems & agent infra',
-		outcome: 'TUI, streaming agent loop, tool routing, and guarded execution.',
-		tags: ['Rust', 'ratatui', 'TUI', 'SSE', 'MCP', 'OpenAI API'],
-		links: { github: 'https://github.com/naiih001/lean' },
+			'Furniture brand website showcasing craftsmanship, sustainability values, and company story. Editorial layout with product storytelling and brand narrative.',
+		focus: 'Brand & editorial web',
+		outcome: 'Responsive showcase with image-led narrative and clean typographic system.',
+		tags: ['React', 'Next.js', 'Tailwind CSS', 'Vercel'],
+		links: { demo: 'https://lumina-rho-ten.vercel.app/' },
 		featured: true
+	},
+	{
+		title: 'PARCH — Founded Goods',
+		description:
+			'Premium essentials e-commerce store — minimal design with product showcase, feature highlights, reviews, and newsletter signup. Built with a modern web stack and carousel-driven merchandising.',
+		focus: 'E-commerce storefront',
+		outcome: 'Minimal commerce UI with product carousels, reviews, and signup flow.',
+		tags: ['React', 'Next.js', 'Tailwind CSS', 'Vercel', 'E-commerce'],
+		links: { demo: 'https://parch-store.vercel.app/' },
+		featured: true
+	},
+	{
+		title: 'Golden Pizza',
+		description:
+			"Toronto's late-night pizza spot on the Danforth — handcrafted pizzas, classic sides, cold drinks, and a back patio. Menu-forward site built for a neighborhood restaurant open late.",
+		focus: 'Restaurant & local business',
+		outcome: 'Menu-led site optimized for late-night discovery and local search.',
+		tags: ['React', 'Tailwind CSS', 'Vercel'],
+		links: { demo: 'https://client-research-lake.vercel.app/' }
+	},
+	{
+		title: 'Praise Portfolio',
+		description:
+			'Creative designer portfolio with project showcases, client testimonials, and service offerings. Motion-rich presentation with case-study layout.',
+		focus: 'Designer portfolio',
+		outcome: 'Case-study grid with testimonials and service sections.',
+		tags: ['React', 'Tailwind CSS', 'Framer Motion', 'Vercel'],
+		links: { demo: 'https://praise-portfolio-phi.vercel.app/' }
+	},
+	{
+		title: 'Terra',
+		description:
+			'Natural spring water brand landing page — source-to-table purity story and sustainable packaging narrative with editorial product presentation.',
+		focus: 'Brand landing page',
+		outcome: 'Editorial landing with sustainability storytelling and product hero.',
+		tags: ['React', 'Next.js', 'Tailwind CSS', 'Vercel'],
+		links: { demo: 'https://terra-water.vercel.app/' }
 	},
 	{
 		title: 'tedii — Terminal Editor',
 		description:
-			'Keyboard-driven terminal editor in Rust — rope-based buffer, tree-sitter parsing, Lua (mlua) extensibility, git integration (gix), and clipboard support. Most-starred repo (6★), built for speed and low footprint.',
+			'Keyboard-driven terminal editor in Rust — rope-based buffer (ropey), tree-sitter parsing, Lua (mlua) extensibility, git integration (gix), and clipboard support. Most-starred repo (6★), built for speed and low footprint.',
 		focus: 'Rust TUI & systems',
 		outcome: 'Rope buffer, syntax parsing, and Lua plugin surface.',
 		tags: ['Rust', 'ratatui', 'tree-sitter', 'Lua', 'ropey', 'gix'],
 		links: { github: 'https://github.com/naiih001/tedii' },
-		featured: true
-	},
-	{
-		title: 'ProTask API',
-		description:
-			'Multi-tenant task management REST API with full RBAC across normalized tables (users, teams, projects, tasks, comments). JWT auth, role-based guards, team invites, activity logging, pagination, filtering, rate limiting, and BullMQ/Redis background jobs.',
-		focus: 'Multi-tenant RBAC API',
-		outcome: 'Normalized data model, JWT guards, invites, activity log, and background processing.',
-		tags: ['NestJS', 'PostgreSQL', 'Prisma', 'JWT', 'BullMQ', 'Redis', 'Docker'],
-		links: { github: 'https://github.com/naiih001/protask' },
 		featured: true
 	},
 	{
@@ -187,6 +214,44 @@ export const projects: Project[] = [
 		outcome: 'MCP tool surface, linked note graph, and Prisma persistence.',
 		tags: ['TypeScript', 'MCP', 'PostgreSQL', 'Prisma', 'Node.js'],
 		links: { github: 'https://github.com/naiih001/zk-mcp' },
+		featured: true
+	},
+	{
+		title: 'ASCII Game',
+		description:
+			'Terminal-based game with ASCII graphics and interactive gameplay — built in Go with keyboard-driven loop and text rendering.',
+		focus: 'Go & terminal game',
+		outcome: 'ASCII render loop and interactive terminal controls.',
+		tags: ['Go', 'Terminal', 'ASCII', 'Game'],
+		links: { github: 'https://github.com/naiih001/ascii-game' }
+	},
+	{
+		title: 'Trading Bot',
+		description:
+			'Automated trading bot with algorithmic strategy execution and market analysis — Go service for strategy evaluation and trade execution.',
+		focus: 'Go & trading automation',
+		outcome: 'Strategy engine with market data intake and execution loop.',
+		tags: ['Go', 'Trading', 'Automation'],
+		links: { github: 'https://github.com/naiih001/trading-bot' }
+	},
+	{
+		title: 'lean — Autonomous Coding Assistant',
+		description:
+			'Single-binary autonomous coding assistant in Rust (ratatui TUI, SSE streaming agent loop, 6 tools, skills system, MCP integration). Works with any OpenAI-compatible API — no Electron, no Node, just cargo build.',
+		focus: 'Rust systems & agent infra',
+		outcome: 'TUI, streaming agent loop, tool routing, and guarded execution.',
+		tags: ['Rust', 'ratatui', 'TUI', 'SSE', 'MCP', 'OpenAI API'],
+		links: { github: 'https://github.com/naiih001/lean' },
+		featured: true
+	},
+	{
+		title: 'ProTask API',
+		description:
+			'Multi-tenant task management REST API with full RBAC across normalized tables (users, teams, projects, tasks, comments). JWT auth, role-based guards, team invites, activity logging, pagination, filtering, rate limiting, and BullMQ/Redis background jobs.',
+		focus: 'Multi-tenant RBAC API',
+		outcome: 'Normalized data model, JWT guards, invites, activity log, and background processing.',
+		tags: ['NestJS', 'PostgreSQL', 'Prisma', 'JWT', 'BullMQ', 'Redis', 'Docker'],
+		links: { github: 'https://github.com/naiih001/protask' },
 		featured: true
 	}
 ];
