@@ -1,12 +1,12 @@
 <script lang="ts">
 	import '../app.css';
-	import '@fontsource/instrument-sans/400.css';
-	import '@fontsource/instrument-sans/500.css';
-	import '@fontsource/instrument-sans/600.css';
-	import '@fontsource/instrument-sans/700.css';
-	import '@fontsource/geist-mono/400.css';
-	import '@fontsource/geist-mono/500.css';
-	import '@fontsource/prata/400.css';
+	import '@fontsource/instrument-sans/latin-400.css';
+	import '@fontsource/instrument-sans/latin-500.css';
+	import '@fontsource/instrument-sans/latin-600.css';
+	import '@fontsource/instrument-sans/latin-700.css';
+	import '@fontsource/geist-mono/latin-400.css';
+	import '@fontsource/geist-mono/latin-500.css';
+	import '@fontsource/prata/latin-400.css';
 	import Footer from '$lib/components/Footer.svelte';
 	import Header from '$lib/components/Header.svelte';
 	import { onMount } from 'svelte';
@@ -82,6 +82,7 @@
 </script>
 
 <svelte:head>
+	<link rel="preload" as="image" href="/hero-bg.webp" fetchpriority="high" type="image/webp" />
 	<link rel="icon" type="image/jpeg" href="/profile.jpeg" />
 	<link rel="apple-touch-icon" href="/profile.jpeg" />
 	<link rel="alternate" type="application/pdf" href="/cv.pdf" title="Isaac Hayab CV — PDF" />

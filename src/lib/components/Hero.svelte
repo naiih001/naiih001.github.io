@@ -1,11 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import gsap from 'gsap';
-	import { ScrollTrigger } from 'gsap/ScrollTrigger';
 	import { site, socials } from '$lib/data';
 	import SocialIcon from '$lib/components/SocialIcon.svelte';
-
-	gsap.registerPlugin(ScrollTrigger);
 
 	let video: HTMLVideoElement | undefined = $state();
 	let section: HTMLElement | undefined = $state();
@@ -17,29 +13,37 @@
 			video?.removeAttribute('autoplay');
 		}
 
-		let ctx: gsap.Context | undefined;
+		let ctx: any | undefined;
+		let cancelled = false;
+
 		if (!reduced && section && video) {
-			const videoEl: HTMLVideoElement = video;
-			const sectionEl: HTMLElement = section;
-			ctx = gsap.context(() => {
-				// Cinematic stagger + bg zoom on load
-				const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
-				tl.from(videoEl, { scale: 1.15, duration: 2, ease: 'power2.out' }, 0);
-				tl.from(
-					'[data-hero-item]',
-					{ y: 36, opacity: 0, duration: 0.9, stagger: 0.12 },
-					0.15
-				);
-				// Gentle scroll parallax on the bg video
-				gsap.to(videoEl, {
-					yPercent: 12,
-					ease: 'none',
-					scrollTrigger: { trigger: sectionEl, start: 'top top', end: 'bottom top', scrub: true }
-				});
-			}, sectionEl);
+			const run = async () => {
+				if (cancelled) return;
+				const [{ default: gsap }, { ScrollTrigger }] = await Promise.all([
+					import('gsap'),
+					import('gsap/ScrollTrigger')
+				]);
+				gsap.registerPlugin(ScrollTrigger);
+				if (cancelled || !section || !video) return;
+				const videoEl: HTMLVideoElement = video!;
+				const sectionEl: HTMLElement = section!;
+				ctx = gsap.context(() => {
+					const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+					tl.from(videoEl, { scale: 1.15, duration: 2, ease: 'power2.out' }, 0);
+					tl.from('[data-hero-item]', { y: 36, opacity: 0, duration: 0.9, stagger: 0.12 }, 0.15);
+					gsap.to(videoEl, {
+						yPercent: 12,
+						ease: 'none',
+						scrollTrigger: { trigger: sectionEl, start: 'top top', end: 'bottom top', scrub: true }
+					});
+				}, sectionEl);
+			};
+			if ('requestIdleCallback' in window) (window as any).requestIdleCallback(() => { run(); }, { timeout: 2000 });
+			else setTimeout(run, 150);
 		}
 
 		return () => {
+			cancelled = true;
 			ctx?.revert();
 		};
 	});
@@ -59,8 +63,8 @@
 		muted
 		loop
 		playsinline
-		preload="metadata"
-		poster="/hero-bg.jpg"
+		preload="none"
+		poster="/hero-bg.webp"
 	>
 		<source src="/hero-vid.mp4" type="video/mp4" />
 	</video>
