@@ -16,7 +16,7 @@ Hero section dropdown on `/` exposes both formats. Crawlers and AI agents should
 - /cv.pdf — CV PDF
 - /cv.docx — CV DOCX
 - /profile.jpeg — avatar / favicon
-- /hero-bg.jpg, /hero-vid.mp4, /footer-bg.jpg — media
+- /hero-bg.webp, /hero-vid.mp4, /footer-bg.jpg — media
 
 ## Contact
 

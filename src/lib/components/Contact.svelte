@@ -7,14 +7,16 @@
 		<div id="contact-card" class="overflow-hidden rounded-[2rem] shadow-[0_28px_90px_rgba(23,32,51,0.22)] scroll-mt-8">
 			<div class="grid gap-0 lg:grid-cols-[1.1fr_0.9fr]">
 				<div class="relative overflow-hidden p-6 text-white md:p-10 lg:p-12">
-					<img
-						src="/contact-bg.jpg"
-						alt=""
-						aria-hidden="true"
-						loading="lazy"
-						decoding="async"
-						class="pointer-events-none absolute inset-0 h-full w-full object-cover"
-					/>
+					<picture aria-hidden="true" class="pointer-events-none absolute inset-0">
+						<source srcset="/contact-bg.webp" type="image/webp" />
+						<img
+							src="/contact-bg.jpg"
+							alt=""
+							loading="lazy"
+							decoding="async"
+							class="h-full w-full object-cover"
+						/>
+					</picture>
 					<div class="pointer-events-none absolute inset-0 bg-[#172033]/70" aria-hidden="true"></div>
 					<div class="pointer-events-none absolute inset-0 bg-gradient-to-br from-[#172033]/45 via-transparent to-[#172033]/35" aria-hidden="true"></div>
 					<div class="relative">

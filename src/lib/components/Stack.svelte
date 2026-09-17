@@ -6,6 +6,7 @@
 	<picture aria-hidden="true" class="pointer-events-none absolute inset-0">
 		<source media="(max-width: 640px)" srcset="/stack-bg-mobile.webp" type="image/webp" />
 		<source media="(max-width: 640px)" srcset="/stack-bg-mobile.jpeg" />
+		<source srcset="/stack-bg.webp" type="image/webp" />
 		<img
 			src="/stack-bg.jpeg"
 			alt=""

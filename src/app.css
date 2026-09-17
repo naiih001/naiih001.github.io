@@ -24,6 +24,15 @@ body {
 	color: var(--color-text);
 }
 
+/* Skip offscreen rendering for below-fold sections; intrinsic size preserves scrollbar */
+#experience,
+#stack,
+#projects,
+#contact {
+	content-visibility: auto;
+	contain-intrinsic-size: auto 1200px;
+}
+
 ::selection {
 	background-color: var(--color-surface);
 	color: var(--color-text);

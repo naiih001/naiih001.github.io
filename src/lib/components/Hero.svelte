@@ -9,8 +9,11 @@
 	onMount(() => {
 		const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 		if (reduced) {
+			// Don't download the video at all: poster alone is the reduced-motion experience
 			video?.pause();
 			video?.removeAttribute('autoplay');
+			video?.querySelectorAll('source').forEach((s) => s.remove());
+			video?.load();
 		}
 
 		let ctx: any | undefined;
@@ -66,7 +69,7 @@
 		preload="none"
 		poster="/hero-bg.webp"
 	>
-		<source src="/hero-vid.mp4" type="video/mp4" />
+		<source src="/hero-vid.mp4" type="video/mp4" media="(min-width: 641px)" />
 	</video>
 	<div aria-hidden="true" class="absolute inset-0 bg-[var(--color-bg)]/45"></div>
 	<div

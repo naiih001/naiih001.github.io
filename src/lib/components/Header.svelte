@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { onMount, tick } from 'svelte';
-	import gsap from 'gsap';
 	import { navItems, site } from '$lib/data';
 
 	let open = $state(false);
@@ -100,9 +99,12 @@
 			const prev = document.body.style.overflow;
 			document.body.style.overflow = 'hidden';
 			const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-			tick().then(() => {
-				if (!sheetEl) return;
-				if (reduced) return;
+			if (reduced) return;
+			tick().then(async () => {
+				// Lazy-load GSAP only when the menu actually opens — keeps it out of the initial bundle
+				if (!open || !sheetEl) return;
+				const { default: gsap } = await import('gsap');
+				if (!open || !sheetEl) return;
 				const items = sheetEl.querySelectorAll('[data-sheet-item]');
 				gsap.fromTo(
 					items,

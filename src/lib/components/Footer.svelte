@@ -6,11 +6,16 @@
 <footer
 	class="relative isolate flex min-h-[45vh] flex-col overflow-hidden border-t border-[var(--color-text)]/10 bg-[var(--color-bg)] md:min-h-[50vh]"
 >
-	<div
-		class="absolute inset-0 -z-10 bg-cover bg-center"
-		style="background-image: url('/footer-bg.jpg')"
-		aria-hidden="true"
-	></div>
+	<picture aria-hidden="true" class="absolute inset-0 -z-10">
+		<source srcset="/footer-bg.webp" type="image/webp" />
+		<img
+			src="/footer-bg.jpg"
+			alt=""
+			loading="lazy"
+			decoding="async"
+			class="h-full w-full object-cover object-center"
+		/>
+	</picture>
 	<div class="absolute inset-0 -z-10 bg-[var(--color-bg)]/70" aria-hidden="true"></div>
 
 	<div class="relative z-10 mx-auto flex w-full max-w-6xl flex-1 flex-col px-6">

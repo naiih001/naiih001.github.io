@@ -3,8 +3,6 @@
 	import '@fontsource/instrument-sans/latin-400.css';
 	import '@fontsource/instrument-sans/latin-500.css';
 	import '@fontsource/instrument-sans/latin-600.css';
-	import '@fontsource/instrument-sans/latin-700.css';
-	import '@fontsource/geist-mono/latin-400.css';
 	import '@fontsource/geist-mono/latin-500.css';
 	import '@fontsource/prata/latin-400.css';
 	import Footer from '$lib/components/Footer.svelte';
@@ -83,6 +81,7 @@
 
 <svelte:head>
 	<link rel="preload" as="image" href="/hero-bg.webp" fetchpriority="high" type="image/webp" />
+	<meta name="theme-color" content="#071934" />
 	<link rel="icon" type="image/jpeg" href="/profile.jpeg" />
 	<link rel="apple-touch-icon" href="/profile.jpeg" />
 	<link rel="alternate" type="application/pdf" href="/cv.pdf" title="Isaac Hayab CV — PDF" />
