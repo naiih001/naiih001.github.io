@@ -37,11 +37,10 @@ non-blocking warning (`Header.svelte:178` implicit `</span>`). `README.md` is up
 ## Gotchas
 
 - Static prerender: `adapter-static` + `prerender = true`. `package.json` still also lists
-  `adapter-auto` (migration uncommitted) — do not revert to `adapter-auto`.
-- `gsap` is a phantom dep: imported by `src/lib/gsap.ts`, `Header.svelte` (static) and
-  `Hero.svelte` (lazy `import('gsap')` on idle), but missing from `package.json` / `bun.lock`.
-  Don't trust a clean `bun install` for animations; `bun add gsap` if touching them.
-  `gsap.ts` uses `SplitText` (Club plugin) — check licensing before upgrading.
+  `adapter-auto` (leftover) — do not switch back to it.
+- `gsap` (`gsap.ts` `SplitText`, `Header.svelte`, lazy `import('gsap')` in `Hero.svelte`):
+  pinned in `package.json` since the Pages deploy; `gsap.ts` uses `SplitText` (Club plugin) —
+  check licensing before upgrading.
 - Anchor scrolling in `+layout.svelte` is **mobile-only** (`max-width: 767px`); desktop relies
   on native `scroll-padding-top: 4.5rem` (`app.css`). Keep the `prefers-reduced-motion` branches
   and the ~70ms delay that waits for the mobile sheet to close before measuring.
@@ -51,3 +50,10 @@ non-blocking warning (`Header.svelte:178` implicit `</span>`). `README.md` is up
   the `<svelte:head>` JSON-LD — keep both casings.
 - `.svelte-kit/` and `build/` are generated, never edit. `tsconfig.json` extends the generated
   config — `bun run check` re-syncs it when types look stale.
+
+## Deploy
+
+- Live at `https://naiih001.github.io/` via `.github/workflows/deploy.yml` (bun build →
+  `build/` artifact → `deploy-pages`, Pages `build_type: workflow`). Push to `master`
+  on `naiih001/naiih001.github.io` redeploys (local branch `main` pushes as `main:master`).
+- Pre-Pages site preserved on remote branch `backup-old-site`.
