@@ -4,10 +4,14 @@
 	--font-sans: 'Instrument Sans', system-ui, -apple-system, sans-serif;
 	--font-display: 'Prata', serif;
 	--font-mono: 'Geist Mono', 'JetBrains Mono', monospace;
-	--color-bg: #071934;
-	--color-surface: #2a3345;
-	--color-muted: #898887;
-	--color-text: #92969c;
+	--color-bg: #101014;
+	--color-surface: #1b1b22;
+	--color-surface-raised: #24232b;
+	--color-line: #34323b;
+	--color-muted: #9b98a5;
+	--color-text: #f2f0eb;
+	--color-accent: #d7ad68;
+	--color-accent-soft: #efe0bd;
 }
 
 html {
@@ -22,6 +26,20 @@ body {
 	-moz-osx-font-smoothing: grayscale;
 	background-color: var(--color-bg);
 	color: var(--color-text);
+	background-image: radial-gradient(circle at 80% 0%, rgba(215, 173, 104, 0.08), transparent 28rem);
+}
+
+section {
+	border-top: 1px solid color-mix(in srgb, var(--color-line) 70%, transparent);
+}
+
+#experience, #projects { background-color: var(--color-bg) !important; color: var(--color-text) !important; }
+#stack, #contact { background-color: var(--color-surface) !important; color: var(--color-text) !important; }
+
+[data-hero-item] { text-wrap: balance; }
+
+@media (min-width: 768px) {
+	section > div { max-width: 72rem; }
 }
 
 /* Skip offscreen rendering for below-fold sections; intrinsic size preserves scrollbar */
