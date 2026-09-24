@@ -177,18 +177,9 @@
 				loading="eager"
 				decoding="async"
 			/>
-			<span class="hidden sm:flex flex-col leading-none">
-				<span
-					class="text-[15px] font-semibold tracking-[-0.02em] transition-colors duration-500 {scrolled || open
-						? 'text-[#172033]'
-						: 'text-white'}">{site.name}</span
-				>
-				<span
-					class="sm:hidden text-[15px] font-semibold tracking-[-0.02em] transition-colors duration-500 {scrolled || open
-						? 'text-[#172033]'
-						: 'text-white'}">{site.name}</span
-				>
-			</span>
+				<span class="hidden flex-col leading-none sm:flex">
+					<span class="text-[15px] font-semibold tracking-[-0.02em] transition-colors duration-500 {scrolled || open ? 'text-[#172033]' : 'text-white'}">{site.name}</span>
+				</span>
 			</a>
 
 		<!-- Desktop nav — centered -->
