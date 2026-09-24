@@ -8,7 +8,7 @@
 
 <span
 	title={label}
-	class="inline-flex items-center gap-1.5 rounded-full bg-[#f6f1ea] px-2.5 py-1 text-xs font-medium leading-none text-[#536070] ring-1 ring-[#172033]/[0.06]"
+	class="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-3 py-1.5 text-sm font-medium text-white ring-1 ring-white/10"
 >
 	{#if icon}
 		<svg

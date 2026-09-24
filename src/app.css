@@ -33,8 +33,7 @@ section {
 	border-top: 1px solid color-mix(in srgb, var(--color-line) 70%, transparent);
 }
 
-#experience, #projects { background-color: var(--color-bg) !important; color: var(--color-text) !important; }
-#stack, #contact { background-color: var(--color-surface) !important; color: var(--color-text) !important; }
+#experience, #stack, #projects, #contact { background-color: var(--color-bg) !important; color: var(--color-text) !important; }
 
 [data-hero-item] { text-wrap: balance; }
 

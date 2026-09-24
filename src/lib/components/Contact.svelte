@@ -2,9 +2,18 @@
 	import { site, socials } from '$lib/data';
 </script>
 
-<section id="contact" class="bg-[#fbf8f2] text-[#172033]">
+<section id="contact" class="bg-[var(--color-bg)] text-white">
 	<div class="mx-auto max-w-6xl px-6 py-20 md:py-28">
-		<div id="contact-card" class="overflow-hidden rounded-[2rem] shadow-[0_28px_90px_rgba(23,32,51,0.22)] scroll-mt-8">
+		<div class="max-w-2xl">
+			<p class="text-xs font-medium tracking-wide text-white/70">Contact</p>
+			<h2 class="mt-4 text-4xl font-semibold leading-none tracking-tight text-white md:text-5xl">
+				Have a backend-heavy role that needs product sense?
+			</h2>
+			<p class="mt-5 max-w-xl text-lg leading-8 text-white/70">
+				Send the role, the team context, or the problem area. I read direct email first, and the links below are the fastest way to verify code and work history.
+			</p>
+		</div>
+		<div id="contact-card" class="mt-10 overflow-hidden rounded-[2rem] shadow-[0_28px_90px_rgba(0,0,0,0.45)] ring-1 ring-white/10 scroll-mt-8">
 			<div class="grid gap-0 lg:grid-cols-[1.1fr_0.9fr]">
 				<div class="relative overflow-hidden p-6 text-white md:p-10 lg:p-12">
 					<picture aria-hidden="true" class="pointer-events-none absolute inset-0">
@@ -17,24 +26,19 @@
 							class="h-full w-full object-cover"
 						/>
 					</picture>
-					<div class="pointer-events-none absolute inset-0 bg-[#172033]/70" aria-hidden="true"></div>
-					<div class="pointer-events-none absolute inset-0 bg-gradient-to-br from-[#172033]/45 via-transparent to-[#172033]/35" aria-hidden="true"></div>
-					<div class="relative">
-					<h2 class="max-w-2xl text-4xl font-semibold leading-none tracking-tight md:text-6xl">
-						Have a backend-heavy role that needs product sense?
-					</h2>
-					<p class="mt-6 max-w-2xl text-lg leading-8 text-white/72">
-						Send the role, the team context, or the problem area. I read direct email first, and the links below are the fastest way to verify code and work history.
-					</p>
-					<div class="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
+					<div class="pointer-events-none absolute inset-0 bg-[var(--color-bg)]/70" aria-hidden="true"></div>
+					<div class="pointer-events-none absolute inset-0 bg-gradient-to-br from-[var(--color-bg)]/45 via-transparent to-[var(--color-bg)]/35" aria-hidden="true"></div>
+					<div class="relative flex h-full flex-col">
+					<div>
+					<div class="mt-2 flex flex-col gap-3 sm:flex-row sm:items-center">
 						<a
 							href="mailto:{site.email}?subject=Backend%20Engineer%20Opportunity"
-							class="inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-base font-semibold text-[#172033] transition hover:bg-[#edf3f1]"
+							class="inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-base font-semibold text-[#101014] transition hover:bg-white/90"
 							>Email Isaac</a
 						>
 						<a
 							href="#projects"
-							class="inline-flex items-center justify-center rounded-full border border-white/18 px-6 py-3 text-base font-semibold text-white transition hover:bg-white/10"
+							class="inline-flex items-center justify-center rounded-full border border-white/25 bg-white/10 px-6 py-3 text-base font-semibold text-white backdrop-blur transition hover:bg-white/20"
 							>Review projects</a
 						>
 					</div>
@@ -44,21 +48,36 @@
 						>{site.email}</a
 					>
 					</div>
+					<dl class="mt-auto grid gap-0 border-t border-white/15 pt-10">
+						<div class="flex items-baseline justify-between gap-6 border-b border-white/15 py-3">
+							<dt class="text-xs font-semibold uppercase tracking-[0.18em] text-white/60">Location</dt>
+							<dd class="text-right text-sm font-medium text-white/85">{site.location}</dd>
+						</div>
+						<div class="flex items-baseline justify-between gap-6 border-b border-white/15 py-3">
+							<dt class="text-xs font-semibold uppercase tracking-[0.18em] text-white/60">Availability</dt>
+							<dd class="text-right text-sm font-medium text-white/85">Available for new projects</dd>
+						</div>
+						<div class="flex items-baseline justify-between gap-6 border-b border-white/15 py-3">
+							<dt class="text-xs font-semibold uppercase tracking-[0.18em] text-white/60">Focus</dt>
+							<dd class="text-right text-sm font-medium text-white/85">{site.role}</dd>
+						</div>
+					</dl>
+					</div>
 				</div>
 
-				<aside class="bg-white p-6 text-[#172033] md:p-10 lg:p-12">
+				<aside class="bg-[var(--color-surface)] p-6 text-white md:p-10 lg:p-12">
 					<p class="text-sm font-semibold uppercase tracking-[0.18em] text-[#d17857]">Verify</p>
 					<h3 class="mt-4 text-3xl font-semibold leading-tight">Links recruiters usually need.</h3>
 					<div class="mt-8 grid gap-3">
 						{#each socials as s (s.label)}
 							<a
 								href={s.href}
-								class="group flex items-center justify-between rounded-2xl bg-[#f4efe7] px-4 py-3 text-base font-semibold text-[#172033] ring-1 ring-[#172033]/8 transition hover:bg-[#edf3f1]"
+								class="group flex items-center justify-between rounded-2xl bg-white/10 px-4 py-3 text-base font-semibold text-white ring-1 ring-white/10 transition hover:bg-white/15"
 								target={s.href.startsWith('http') ? '_blank' : undefined}
 								rel={s.href.startsWith('http') ? 'noreferrer' : undefined}
 							>
 								<span class="flex items-center gap-3">
-									<span class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white text-[#172033] ring-1 ring-[#172033]/10">
+									<span class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white ring-1 ring-white/10">
 										{#if s.label === 'GitHub'}
 											<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.77.6-3.36-1.18-3.36-1.18-.45-1.14-1.1-1.44-1.1-1.44-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.08-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.1.4-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02A9.5 9.5 0 0 1 12 6.8a9.5 9.5 0 0 1 2.5.33c1.9-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.63.71 1.03 1.61 1.03 2.71 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85v2.74c0 .27.16.59.67.49A10 10 0 0 0 12 2z"/></svg>
 										{:else if s.label === 'LinkedIn'}
