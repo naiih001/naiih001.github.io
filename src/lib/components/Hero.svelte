@@ -71,10 +71,10 @@
 	>
 		<source src="/hero-vid.mp4" type="video/mp4" media="(min-width: 641px)" />
 	</video>
-	<div aria-hidden="true" class="absolute inset-0 bg-[var(--color-bg)]/45"></div>
+	<div aria-hidden="true" class="absolute inset-0 bg-[var(--color-bg)]/40"></div>
 	<div
 		aria-hidden="true"
-		class="absolute inset-0 bg-gradient-to-r from-[var(--color-bg)]/70 via-[var(--color-bg)]/30 to-transparent"
+		class="absolute inset-0 bg-gradient-to-r from-[var(--color-bg)]/55 via-[var(--color-bg)]/25 to-[var(--color-bg)]/35"
 	></div>
 	<div
 		class="relative mx-auto flex w-full max-w-6xl px-6 pt-16 pb-20 md:pt-28 md:pb-28 lg:pt-32 lg:pb-32"

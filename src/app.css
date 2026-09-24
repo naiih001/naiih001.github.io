@@ -38,10 +38,6 @@ section {
 
 [data-hero-item] { text-wrap: balance; }
 
-@media (min-width: 768px) {
-	section > div { max-width: 72rem; }
-}
-
 /* Skip offscreen rendering for below-fold sections; intrinsic size preserves scrollbar */
 #experience,
 #stack,
